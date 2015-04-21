@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <h:outputStylesheet name="css/jsfcrud.css"/>
+        </f:facet>
+    </head>
+    <body>
+        <ui:composition template="/MainPageTemplate.xhtml">
+            <ui:define name="content"> 
+                <h:panelGrid columns="2">
+                    <h:outputText value="Imie" />               <p:inputText value="#{mainMenuController.user.name}"/>
+                    <h:outputText value="Nazwisko" />           <p:inputText value="#{mainMenuController.user.sname}"/>
+                    <h:outputText value="Login" />              <p:inputText value="#{mainMenuController.user.login}"/>
+                </h:panelGrid>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <h:outputStylesheet name="css/jsfcrud.css"/>
+        </f:facet>
+    </h:head>
+    <h:body>
+        <ui:composition template="/MainPageTemplate.xhtml">
+            <ui:define name="content">
+                <p:accordionPanel multiple="true">
+                    <p:tab title="Podstawowe informacje">
+                        <p:dataTable id="Club" var="club" value="#{mainMenuController.playersClub}" paginator="false">
+                            <p:column headerText="Nazwa">
+                                    <h:outputText value="#{club.clubName}" />
+                            </p:column>
+                            <p:column headerText="Nick">
+                                    <h:outputText value="#{club.clubNick}" />
+                            </p:column>
+                            <p:column headerText="Reputacja">
+                                    <h:outputText value="#{club.clubReputation}" />
+                            </p:column>
+                            <p:column headerText="Barwy">
+                                    <h:outputText value="#{club.colours}" />
+                            </p:column>
+                            <p:column headerText="Rok założenia">
+                                    <h:outputText value="#{club.yearFound}" />
+                            </p:column>
+                        </p:dataTable>
+                    </p:tab>
+                    <p:tab title="Najważniejsi Pracownicy">
+                        <p:dataTable id="Staff" var="staff" value="#{staffController.staffList}" paginator="false">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Imię" />
+                                </f:facet>
+                                    <h:outputText value="#{staff.personidPerson.name}" />
+                            </p:column>
+                                <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nazwisko" />
+                                </f:facet>
+                                    <h:outputText value="#{staff.personidPerson.surname}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Funkcja" />
+                                </f:facet>
+                                <h:outputText value="#{staff.staffFunction}" />
+                            </p:column>
+                            <f:facet name="footer">  
+                                <h:outputText value=""/>
+                                </f:facet>
+                        </p:dataTable>
+                    </p:tab>
+
+                    <p:tab title="Finanse"> 
+                            <p:dataTable id="finance" var="finance" value="#{financeController.financeList}" paginator="false" >
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Budżet" />
+                                </f:facet>
+                                <h:outputText value="#{finance.budget}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Budżet transferowy" />
+                                </f:facet>
+                                <h:outputText value="#{finance.transferBudget}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Budżet płacowy" />
+                                </f:facet>
+                                <h:outputText value="#{finance.wageBudget}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Koszt stadionu" />
+                                </f:facet>
+                                <h:outputText value="#{finance.stadiumCost}" />
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Ilość biletów sezonowych" />
+                                </f:facet>
+                                <h:outputText value="#{finance.seasonTicketsNumber}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Dług" />
+                                </f:facet>
+                                <h:outputText value="#{finance.dept}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Od sponsorów" />
+                                </f:facet>
+                                <h:outputText value="#{finance.fromSponsors}" />
+                            </p:column>
+                            <f:facet name="footer">  
+                                <h:outputText value=""/>
+                                </f:facet>
+                        </p:dataTable>
+                    </p:tab>
+
+
+                    <p:tab title="Stadion">
+                        <p:dataTable id="Stadium" var="stadium" value="#{stadiumController.stadiumList}" paginator="false">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nazwa" />
+                                </f:facet>
+                                <h:outputText value="#{stadium.stadiumName}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Ilość miejsc siedzących" />
+                                </f:facet>
+                                <h:outputText value="#{stadium.sitsNumber}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Rok budowy" />
+                                </f:facet>
+                                <h:outputText value="#{stadium.yearBuild}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Miasto" />
+                                </f:facet>
+                                <h:outputText value="#{stadium.cityidCity.cityName}" />
+                            </p:column>
+                                <f:facet name="footer">  
+                                    <h:outputText value=""/>
+                                </f:facet>
+                        </p:dataTable>
+                    </p:tab>
+                </p:accordionPanel>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

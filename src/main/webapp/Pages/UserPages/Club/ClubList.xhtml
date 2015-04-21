@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <h:outputStylesheet name="css/jsfcrud.css"/>
+        </f:facet>
+    </h:head>
+    <h:body>
+        <ui:composition template="/MainPageTemplate.xhtml">
+            <ui:define name="content">
+                <p:dataTable id="Clubs" var="club" value="#{clubController.clubList}" paginator="false">
+                    <f:facet name="header">  
+                        <h:outputText value="Liga"/>
+                        </f:facet>
+                    <p:column style="width:2%">  
+                        <h:outputText value="#{clubController.clubList.rowIndex + 1}" />
+                     </p:column> 1
+                    <p:column headerText="Nazwa klubu" sortBy="#{club.clubName}">
+                        <h:outputText value="#{club.clubName}" />
+                    </p:column>
+                    <p:column headerText="Zdobyte punkty" sortBy="#{club.pointsScored}">
+                        <h:outputText value="#{club.pointsScored}" />
+                    </p:column>
+                    <p:column headerText="Bramki stracone" sortBy="#{club.goalsLost}">
+                        <h:outputText value="#{club.goalsLost}" />
+                    </p:column>
+                    <p:column headerText="Bramki zdobyte" sortBy="#{club.goalsScored}">
+                        <h:outputText value="#{club.goalsScored}" />
+                    </p:column>
+                    <p:column headerText="Żółte kartki" sortBy="#{club.yellowCards}">
+                        <h:outputText value="#{club.yellowCards}" />
+                    </p:column>
+                    <p:column headerText="Czerwone kartki" sortBy="#{club.redCards}">
+                        <h:outputText value="#{club.redCards}" />
+                    </p:column>
+                    <f:facet name="footer">  
+                        <h:outputText value=""/>
+                        </f:facet>
+                </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

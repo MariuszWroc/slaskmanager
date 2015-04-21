@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="/Adminmain.xhtml">
+            <ui:define name="content">
+         <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="ID" for="ID" />
+                    <h:inputText id="ID" value="#{playerController.id}" title="ID" />
+
+                    <h:outputLabel value="currentForm" for="currentForm" />
+                    <h:inputText id="currentForm" value="#{playerController.currentForm}" title="currentForm" />
+                    
+                    <h:outputLabel value="reputation" for="reputation" />
+                    <h:inputText id="reputation" value="#{playerController.reputation}" title="reputation" />
+                    
+                    <h:outputLabel value="potential" for="potential" />
+                    <h:inputText id="potential" value="#{playerController.potential}" title="potential" />
+                    
+                    <h:outputLabel value="legLeft" for="legLeft" />
+                    <h:inputText id="legLeft" value="#{playerController.legLeft}" title="legLeft" />
+                    
+                    <h:outputLabel value="legRight" for="legRight" />
+                    <h:inputText id="legRight" value="#{playerController.legRight}" title="legRight" />
+                    
+                    <h:outputLabel value="determination" for="determination" />
+                    <h:inputText id="determination" value="#{playerController.determination}" title="determination" />
+                    
+                    <h:outputLabel value="dirtness" for="dirtness" />
+                    <h:inputText id="dirtness" value="#{playerController.dirtness}" title="dirtness" />
+                    
+                    <h:outputLabel value="influence" for="influence" />
+                    <h:inputText id="influence" value="#{playerController.influence}" title="influence" />
+                    
+                    <h:outputLabel value="injury" for="injury" />
+                    <h:inputText id="injury" value="#{playerController.injury}" title="injury" />
+                    
+                    <h:outputLabel value="pace" for="pace" />
+                    <h:inputText id="pace" value="#{playerController.pace}" title="pace" />
+                    
+                    <h:outputLabel value="strength" for="strength" />
+                    <h:inputText id="strength" value="#{playerController.strength}" title="strength" />
+                    
+                    <h:outputLabel value="stamina" for="stamina" />
+                    <h:inputText id="stamina" value="#{playerController.stamina}" title="stamina" />
+                    
+                    <h:outputLabel value="setPieces" for="setPieces" />
+                    <h:inputText id="setPieces" value="#{playerController.setPieces}" title="setPieces" />
+                    
+                    <h:outputLabel value="technique" for="technique" />
+                    <h:inputText id="technique" value="#{playerController.technique}" title="technique" />
+                    
+                    <h:outputLabel value="finishing" for="finishing" />
+                    <h:inputText id="finishing" value="#{playerController.finishing}" title="finishing" />
+                    
+                    <h:outputLabel value="passing" for="passing" />
+                    <h:inputText id="passing" value="#{playerController.passing}" title="passing" />
+                    
+                    <h:outputLabel value="marking" for="marking" />
+                    <h:inputText id="marking" value="#{playerController.marking}" title="marking" />
+                    
+                    <h:outputLabel value="tackling" for="tackling" />
+                    <h:inputText id="tackling" value="#{playerController.tackling}" title="tackling" />
+                    
+                    <h:outputLabel value="heading" for="heading" />
+                    <h:inputText id="heading" value="#{playerController.heading}" title="heading" />
+                    
+                    <h:outputLabel value="reflex" for="reflex" />
+                    <h:inputText id="reflex" value="#{playerController.reflex}" title="reflex" />
+                    
+                    <h:outputLabel value="handling" for="handling" />
+                    <h:inputText id="handling" value="#{playerController.handling}" title="handling" />
+                    
+                    <h:outputLabel value="weight" for="weight" />
+                    <h:inputText id="weight" value="#{playerController.weight}" title="weight" />
+                    
+                    <h:outputLabel value="height" for="height" />
+                    <h:inputText id="height" value="#{playerController.height}" title="height" />
+                    
+                    <h:outputLabel value="bestPosition" for="bestPosition" />
+                    <h:inputText id="bestPosition" value="#{playerController.bestPosition}" title="bestPosition" />
+                    
+                    <h:outputLabel value="bestPositionShort" for="bestPositionShort" />
+                    <h:inputText id="bestPositionShort" value="#{playerController.bestPositionShort}" title="bestPositionShort" />
+                <!--    <p:outputLabel for="Person" value="Person:" />
+                    <p:selectOneMenu id="Person" value="#{playerController.personId}" effect="fold">
+                        <f:selectItem itemLabel="Select One" itemValue="" />
+                        <f:selectItems value="#{personController.personList}" var="pers" itemLabel="#{pers.surname}" itemValue="#{pers.id}"/>
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel for="Position" value="Position:" />
+                    <p:selectOneMenu id="Position" value="#{playerController.positionId}" effect="fold" editable="true">
+                        <f:selectItem itemLabel="Select One" itemValue="" />
+                        <f:selectItems value="#{positionController.positionList}" var="pers" itemLabel="#{pers.surname}" itemValue="#{pers.id}"/>
+                    </p:selectOneMenu> -->
+                </h:panelGrid>
+             <h:commandButton id="save" actionListener="#{playerController.update}" value="Zapisz"/>
+                <br />
+                <br />
+                <h:link outcome="ListPlayer" value="Do Listy" />
+            </h:form>
+                </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

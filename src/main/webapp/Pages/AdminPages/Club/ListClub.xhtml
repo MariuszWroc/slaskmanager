@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <h:outputStylesheet name="css/jsfcrud.css"/>
+        </f:facet>
+    </h:head>
+    <h:body>
+        <ui:composition template="/Adminmain.xhtml">
+            <ui:define name="content">
+                <p:dataTable id="Clubs" var="club" value="#{clubController.clubList}" 
+                             paginator="true" rows="10" paginatorPosition="bottom"
+                             selectionMode="single" selection="#{clubController.selectedClub}" rowKey="#{club.id}">
+                    <f:facet name="header">  
+                        <h:outputText value="Kluby"/>
+                        </f:facet>
+                    <p:column style="width:2%">  
+                        <p:rowToggler />  
+                     </p:column> 
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nazwa klubu" />
+                        </f:facet>
+                        <h:outputText value="#{club.clubName}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nick klubu" />
+                        </f:facet>
+                        <h:outputText value="#{club.clubNick}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Rok założenia" />
+                        </f:facet>
+                        <h:outputText value="#{club.yearFound}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Barwy" />
+                        </f:facet>
+                        <h:outputText value="#{club.colours}" />
+                    </p:column>
+                    <f:facet name="footer">
+                            <h:commandButton actionListener="#{clubController.destroy}" value="Usuń"/>
+                            <h:outputText value=" "/>
+                            <h:commandButton action="#{clubController.prepareEdit}" value="Edytuj"/>
+                            <h:outputText value=" "/>
+                            <h:commandButton action="#{clubController.prepareAdd}" value="Dodaj"/>
+                        </f:facet>
+                    <p:rowExpansion>  
+                <h:panelGrid id="display" columns="2" cellpadding="4" style="width:300px;"  
+                            styleClass=" ui-widget-content grid">  
+                <h:outputText value="Frekwencja średnia" />  
+                <h:outputText value="#{club.attendanceAvg}" />
+  
+                <h:outputText value="Frekwencja minimalna" />  
+                <h:outputText value="#{club.attendanceMin}" />
+  
+                <h:outputText value="Frekwencja maksymalna" />  
+                <h:outputText value="#{club.attendanceMax}" />
+  
+                <h:outputText value="Atuty treningowe" />
+                <h:outputText value="#{club.trainingAssets}" />
+                
+                <h:outputText value="Wiek" />  
+                <h:outputText value="#{club.youth}" />
+            </h:panelGrid>  
+  
+        </p:rowExpansion>  
+                </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

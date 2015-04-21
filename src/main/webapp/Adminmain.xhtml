@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>AdminView</title>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <meta name="viewport" content="width=device-width"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <div id="page">       
+            <p:layout style="height:545px;" id="layout"> 
+                    <p:layoutUnit position="west" header="Menu" resizable="true" size="100" minSize="220" maxSize="300" collapsible="true">  
+                        <p:menu>  
+                    <p:submenu label="City">  
+                        <p:menuitem value="Dodaj" outcome="/Pages/AdminPages/City/AddCity"/>  
+                        <p:menuitem value="Wyświetl" outcome="/Pages/AdminPages/City/ListCity"/>          
+                    </p:submenu>
+                            <p:submenu label="Club">  
+                        <p:menuitem value="Dodaj" outcome="/Pages/AdminPages/Club/AddClub"/>  
+                        <p:menuitem value="Wyświetl" outcome="/Pages/AdminPages/Club/ListClub"/>          
+                    </p:submenu>
+                            <p:submenu label="Contract">  
+                        <p:menuitem value="Dodaj" outcome="/Pages/AdminPages/Contract/AddContract"/>  
+                        <p:menuitem value="Wyświetl" outcome="/Pages/AdminPages/Contract/ListContract"/>          
+                    </p:submenu>
+                            <p:submenu label="Finance">  
+                        <p:menuitem value="Dodaj" outcome="/Pages/AdminPages/Finance/AddFinance"/>  
+                        <p:menuitem value="Wyświetl" outcome="/Pages/AdminPages/Finance/ListFinance"/>          
+                    </p:submenu>
+                            <p:submenu label="Fixture">  
+                        <p:menuitem value="Dodaj" outcome="/Pages/AdminPages/Fixture/AddFixture"/>  
+                        <p:menuitem value="Wyświetl" outcome="/Pages/AdminPages/Fixture/ListFixture"/>          
+                    </p:submenu>
+                            <p:submenu label="Formation">  
+                        <p:menuitem value="Dodaj" outcome="/Pages/AdminPages/Formation/AddFormation"/>  
+                        <p:menuitem value="Wyświetl" outcome="/Pages/AdminPages/Formation/ListFormation"/>          
+                    </p:submenu>
+                            <p:submenu label="Arrange">  
+                        <p:menuitem value="Dodaj" outcome="/Pages/AdminPages/Match/AddMatch"/>  
+                        <p:menuitem value="Wyświetl" outcome="/Pages/AdminPages/Match/ListMatch"/>          
+                    </p:submenu>
+                            <p:submenu label="Person">  
+                        <p:menuitem value="Dodaj" outcome="/Pages/AdminPages/Person/AddPerson"/>  
+                        <p:menuitem value="Wyświetl" outcome="/Pages/AdminPages/Person/ListPerson"/>          
+                    </p:submenu>
+                            <p:submenu label="Coach">  
+                        <p:menuitem value="Dodaj" outcome="/Pages/AdminPages/Person/Coach/AddCoach"/>  
+                        <p:menuitem value="Wyświetl" outcome="/Pages/AdminPages/Person/Coach/ListCoach"/>          
+                    </p:submenu>
+                            <p:submenu label="Player">  
+                        <p:menuitem value="Dodaj" outcome="/Pages/AdminPages/Person/Player/AddPlayer"/>  
+                        <p:menuitem value="Wyświetl" outcome="/Pages/AdminPages/Person/Player/ListPlayer"/>          
+                    </p:submenu>
+                            <p:submenu label="Position">  
+                        <p:menuitem value="Dodaj" outcome="/Pages/AdminPages/Person/Player/Position/AddPosition"/>  
+                        <p:menuitem value="Wyświetl" outcome="/Pages/AdminPages/Person/Player/Position/ListPosition"/>          
+                    </p:submenu>
+                            <p:submenu label="Referee">  
+                        <p:menuitem value="Dodaj" outcome="/Pages/AdminPages/Person/Referee/AddReferee"/>  
+                        <p:menuitem value="Wyświetl" outcome="/Pages/AdminPages/Person/Referee/ListReferee"/>          
+                    </p:submenu>
+                            <p:submenu label="Staff">  
+                        <p:menuitem value="Dodaj" outcome="/Pages/AdminPages/Person/Staff/AddStaff"/>  
+                        <p:menuitem value="Wyświetl" outcome="/Pages/AdminPages/Person/Staff/ListStaff"/>          
+                    </p:submenu>
+                            <p:submenu label="Stadium">  
+                        <p:menuitem value="Dodaj" outcome="/Pages/AdminPages/Stadium/AddStadium"/>  
+                        <p:menuitem value="Wyświetl" outcome="/Pages/AdminPages/Stadium/ListStadium"/>          
+                    </p:submenu>
+                            <p:submenu label="Tactic">  
+                        <p:menuitem value="Dodaj" outcome="/Pages/AdminPages/Tactic/AddTactic"/>  
+                        <p:menuitem value="Wyświetl" outcome="/Pages/AdminPages/Tactic/ListTactic"/>          
+                    </p:submenu>
+                            <p:submenu label="Tournament">  
+                        <p:menuitem value="Dodaj" outcome="/Pages/AdminPages/Tournament/AddTournament"/>  
+                        <p:menuitem value="Wyświetl" outcome="/Pages/AdminPages/Tournament/ListTournament"/>          
+                    </p:submenu>
+                            <p:submenu label="Training">  
+                        <p:menuitem value="Dodaj" outcome="/Pages/AdminPages/Training/AddTraining"/>  
+                        <p:menuitem value="Wyświetl" outcome="/Pages/AdminPages/Training/ListTraining"/>          
+                    </p:submenu>
+                        </p:menu>
+                    </p:layoutUnit>  
+
+                    <p:layoutUnit position="center" >  
+                        <div id="content" class="center_content">
+                            <ui:insert name="content">Content</ui:insert>
+                        </div>           
+                    </p:layoutUnit> 
+            </p:layout>
+                </div>
+        </h:form>
+    </h:body>
+</html>

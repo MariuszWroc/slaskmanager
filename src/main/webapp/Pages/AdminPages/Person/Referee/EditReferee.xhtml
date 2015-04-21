@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="/Adminmain.xhtml">
+            <ui:define name="content">
+         <h:form>
+                <h:panelGrid columns="2">
+                   <h:outputLabel value="ID" for="ID" />
+                    <h:inputText id="ID" value="#{refereeController.id}" title="ID" />
+                    
+                    <h:outputLabel value="Refereeing" for="Refereeing" />
+                    <h:inputText id="Refereeing" value="#{refereeController.refereeing}" title="Refereeing" />
+                    
+                    <h:outputLabel value="Punishing" for="Punishing" />
+                    <h:inputText id="Punishing" value="#{refereeController.punishing}" title="Punishing" />
+                    <!--    
+                    <p:outputLabel for="Person" value="Person:" />
+                    <p:selectOneMenu id="Person" value="#{refereeController.personId}" effect="fold">
+                        <f:selectItem itemLabel="Select One" itemValue="" />
+                        <f:selectItems value="#{personController.personList}" var="pers" itemLabel="#{pers.surname}" itemValue="#{pers.id}"/>
+                    </p:selectOneMenu> -->
+                </h:panelGrid>
+             <h:commandButton id="save" actionListener="#{refereeController.update}" value="Zapisz"/>
+                <br />
+                <br />
+                <h:link outcome="ListReferee" value="Do Listy" />
+            </h:form>
+                </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

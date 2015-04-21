@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <h:outputStylesheet name="css/jsfcrud.css"/>
+            </f:facet>
+        </h:head>
+    <h:body>
+        <ui:composition template="/MainPageTemplate.xhtml">
+            <ui:define name="content">
+                   <p:dataTable id="Contract" var="Contract" value="#{contractController.contractList}" paginator="false" >
+                       <f:facet name="header">  
+                        <h:outputText value="Kontrakty"/>
+                        </f:facet>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Płaca" />
+                        </f:facet>
+                        <h:outputText value="#{Contract.fee}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Czas rozpoczęcia" />
+                        </f:facet>
+                        <h:outputText value="#{Contract.dateStart}" />
+                    </p:column>
+                        <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Czas zakończenia" />
+                        </f:facet>
+                        <h:outputText value="#{Contract.dateEnd}" />
+                    </p:column>
+                       <f:facet name="footer">  
+                        <h:outputText value=""/>
+                        </f:facet>
+                    </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

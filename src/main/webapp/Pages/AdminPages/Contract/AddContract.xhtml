@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="/Adminmain.xhtml">
+            <ui:define name="content">
+         <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="ID" for="ID" />
+                    <h:inputText id="ID" value="#{contractController.id}" title="ID" />
+                    
+                    <h:outputLabel value="Fee" for="Fee" />
+                    <h:inputText id="Fee" value="#{contractController.fee}" title="Fee" />
+                    
+                    <h:outputLabel value="Wage" for="Wage" />
+                    <h:inputText id="Wage" value="#{contractController.wage}" title="Wage" />
+                    
+                    <h:outputLabel value="DateStart" for="DateStart" />
+                    <p:calendar id="DateStart" value="#{contractController.dateStart}" />
+                    
+                    <h:outputLabel value="DateEnd" for="DateEnd" />
+                    <p:calendar id="DateEnd" value="#{contractController.dateEnd}" />
+                     <!--<p:outputLabel for="Club" value="Club:" />
+                    <p:selectOneMenu id="Club" value="#{contractController.clubId}" effect="fold">
+                        <f:selectItem itemLabel="Select One" itemValue="" />
+                        <f:selectItems value="#{clubController.clubList}" var="club" itemLabel="#{club.clubName}" itemValue="#{club.id}"/>
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel for="Player" value="Player:" />
+                    <p:selectOneMenu id="Player" value="#{contractController.playerId}" effect="fold" editable="true">
+                        <f:selectItem itemLabel="Select One" itemValue="" />
+                        <f:selectItems value="#{playerController.playerList}" var="player" itemLabel="#{player.personidPerson.surname}" itemValue="#{player.id}"/>
+                    </p:selectOneMenu> -->
+                </h:panelGrid>
+                <h:commandButton id="save" actionListener="#{contractController.save}" value="Zapisz"/>
+                <br />
+                <br />
+                <h:link outcome="ListContract" value="Do Listy" />
+            </h:form>
+                </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

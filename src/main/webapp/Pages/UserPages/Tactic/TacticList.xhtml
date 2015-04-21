@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <h:outputStylesheet name="css/jsfcrud.css"/>
+        </f:facet>
+    </h:head>
+    <h:body>
+        <ui:composition template="/MainPageTemplate.xhtml">
+            <ui:define name="content">
+                
+                <p:dataTable id="Tactic" var="tactic" value="#{tacticController.tacticList}" selectionMode="single" selection="#{tacticController.selectedTactic}" rowKey="#{tactic.id}" paginator="false" >
+                    <f:facet name="header">
+                            <h:outputText value="Nazwa taktyki" />
+                        </f:facet>
+                    <p:ajax event="rowSelect" update=":form:formation" />
+                    <p:ajax event="rowUnselect" update=":form:formation" />
+                    <p:column>                       
+                        <h:outputText value="#{tactic.tacticName}" />
+                    </p:column>
+                    <f:facet name="footer">  
+                        <h:outputText value=""/>
+                        </f:facet>
+                </p:dataTable>
+                
+                <p:dataTable id="formation" var="formation" value="#{tacticController.selectedTactic.formationList}" paginator="false" >
+                     <f:facet name="header">
+                            <h:outputText value="Nazwa formacji" />
+                       </f:facet>
+                    <p:column>                      
+                        <h:outputText value="#{formation.formationName}" />
+                    </p:column>
+                    <f:facet name="footer">  
+                        <h:outputText value=""/>
+                        </f:facet>
+                </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="css/home.css"/>
+        <title>Slask Wroclaw Manager 2014 home page</title>
+    </h:head>
+    <!-- test commit-->
+    <h:body>
+      <!--  <h:outputText value="Zalogowany jako: "/> <h:outputText value="#{mainMenuController.user.login}"/>-->
+        <h:form id="form">
+            <p:menubar>
+                <p:submenu label="O grze">
+                   <p:menuitem value="Tutorial" outcome="Tutorial"/>
+                   <p:menuitem value="Screeny" outcome="Screens"/>
+                   <p:menuitem value="Ligi" outcome="Leagues"/>
+                </p:submenu>
+                <p:menuitem value="Wyślij e-mail" outcome="sendMail"/>
+                <p:menuitem value="O Autorach" outcome="aboutUs" icon="ui-icon-star"/>
+                <p:menuitem value="Zaloguj się" outcome="login"/>
+ 
+        <f:facet name="options">
+            <p:inputText style="margin-right:10px" placeholder="Wyszukaj(not implemented)"/>
+            <!-- <p:commandButton value="Wyloguj" action="#{loginController.doLogout()}" update="form"/> -->
+        </f:facet>
+    </p:menubar>
+            <p:layout style="height:545px;">
+                <p:layoutUnit position="center">
+                    <div id="content" class="center_content">
+                            <ui:insert name="content">Content</ui:insert>
+                    </div>
+                </p:layoutUnit>
+            </p:layout>
+        </h:form>
+    </h:body>
+</html>

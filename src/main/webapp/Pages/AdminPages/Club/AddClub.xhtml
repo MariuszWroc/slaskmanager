@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="/Adminmain.xhtml">
+            <ui:define name="content">
+         <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="ID" for="ID" />
+                    <h:inputText id="ID" value="#{clubController.id}" title="ID"/>
+                    
+                    <h:outputLabel value="AttendanceAvg" for="AttendanceAvg" />
+                    <h:inputText id="AttendanceAvg" value="#{clubController.attendanceAvg}" title="AttendanceAvg"/>
+                    
+                    <h:outputLabel value="AttendanceMin" for="AttendanceMin" />
+                    <h:inputText id="AttendanceMin" value="#{clubController.attendanceMin}" title="AttendanceMin"/>
+                    
+                    <h:outputLabel value="AttendanceMax" for="AttendanceMax" />
+                    <h:inputText id="AttendanceMax" value="#{clubController.attendanceMax}" title="AttendanceMax"/>
+                    
+                    <h:outputLabel value="TrainingAssets" for="TrainingAssets" />
+                    <h:inputText id="TrainingAssets" value="#{clubController.trainingAssets}" title="TrainingAssets"/>
+                    
+                    <h:outputLabel value="Youth" for="Youth" />
+                    <h:inputText id="Youth" value="#{clubController.youth}" title="Youth"/>
+                    
+                    <h:outputLabel value="ClubName" for="ClubName" />
+                    <h:inputText id="ClubName" value="#{clubController.clubName}" title="ClubName"/>
+                    
+                    <h:outputLabel value="ClubNick" for="ClubNick" />
+                    <h:inputText id="ClubNick" value="#{clubController.clubNick}" title="ClubNick"/>
+                    
+                    <h:outputLabel value="YearFound" for="YearFound" />
+                    <h:inputText id="YearFound" value="#{clubController.yearFound}" title="YearFound" />
+                    
+                    <h:outputLabel value="Morale" for="Morale" />
+                    <h:inputText id="Morale" value="#{clubController.morale}" title="Morale"/>
+                    
+                    <h:outputLabel value="ClubReputation" for="ClubReputation" />
+                    <h:inputText id="ClubReputation" value="#{clubController.clubReputation}" title="ClubReputation"/>
+                    
+                    <h:outputLabel value="Colours" for="Colours" />
+                    <h:inputText id="Colours" value="#{clubController.colours}" title="Colours"/>
+                    
+                                       <!-- <p:outputLabel for="Formation" value="Formation:" />
+                    <p:selectOneMenu id="Formation" value="#{clubController.formationId}" effect="fold" converter="formationConverter">
+                        <f:selectItems value="#{formationController.formationList}" var="formation" itemLabel="#{formation.formationName}" itemValue="#{formation}"/>
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel for="Training" value="Training:" />
+                    <p:selectOneMenu id="Training" value="#{clubController.trainingidTraining}" effect="fold" converter="trainingConverter">
+                        <f:selectItems value="#{trainingController.trainingList}" var="training" itemLabel="#{training.trainingName}" itemValue="#{training}"/>
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel for="Stadium" value="Stadium:" />
+                    <p:selectOneMenu id="Stadium" value="#{clubController.stadiumId}" effect="fold" converter="stadiumConverter">
+                        <f:selectItems value="#{stadiumController.stadiumList}" var="stadium" itemLabel="#{stadium.stadiumName}" itemValue="#{stadium}"/>
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel for="Tournament" value="Tournament:" />
+                    <p:selectOneMenu id="Tournament" value="#{clubController.tournamentId}" effect="fold" converter="tournamentConverter">
+                        <f:selectItems value="#{tournamentController.tournamentList}" var="tournament" itemLabel="#{tournament.tournamentName}" itemValue="#{tournament}"/>
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel for="Finance" value="Finance:" />
+                    <p:selectOneMenu id="Finance" value="#{clubController.financeId}" effect="fold" converter="financeConverter">
+                        <f:selectItems value="#{financeController.financeList}" var="finance" itemLabel="#{finance.id}" itemValue="#{finance}"/>
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel for="Coach" value="Coach:" />
+                    <p:selectOneMenu id="Coach" value="#{clubController.coachId}" effect="fold" converter="coachConverter">
+                        <f:selectItems value="#{coachController.coachList}" var="coach" itemLabel="#{coach.personidPerson.surname}" itemValue="#{coach}"/>
+                    </p:selectOneMenu> -->
+                </h:panelGrid>
+                <h:commandButton id="save" actionListener="#{clubController.save}" value="Zapisz"/>
+                <br />
+                <br />
+                <h:link outcome="ListClub" value="Do Listy" />
+            </h:form>
+                </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

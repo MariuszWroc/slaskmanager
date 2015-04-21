@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <h:outputStylesheet name="css/jsfcrud.css"/>
+            </f:facet>
+        </h:head>
+    <h:body>
+        <ui:composition template="/MainPageTemplate.xhtml">
+            <ui:define name="content">                   
+                   <p:dataTable id="Position" var="position" value="#{positionController.positionList}" paginator="false" >
+                    <f:facet name="header">  
+                        <h:outputText value="Pozycje"/>
+                        </f:facet>
+                     <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Bramkarz" />
+                        </f:facet>
+                        <h:outputText value="#{position.goalkeeper}" />
+                    </p:column>
+                       <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Lewy obrońca" />
+                        </f:facet>
+                        <h:outputText value="#{position.defenderLeft}" />
+                    </p:column>
+                       <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Środkowy obrońca" />
+                        </f:facet>
+                        <h:outputText value="#{position.defenderCenter}" />
+                    </p:column>
+                       <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Prawy obrońca" />
+                        </f:facet>
+                        <h:outputText value="#{position.defenderRight}" />
+                    </p:column>
+                       <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Pomocnik defensywny" />
+                        </f:facet>
+                        <h:outputText value="#{position.midfieldDef}" />
+                    </p:column>
+                       <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Prawy pomocnik" />
+                        </f:facet>
+                        <h:outputText value="#{position.midfieldRight}" />
+                    </p:column>
+                       <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Lewy pomocnik" />
+                        </f:facet>
+                        <h:outputText value="#{position.midfieldLeft}" />
+                    </p:column>
+                       <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Środkowy pomocnik" />
+                        </f:facet>
+                        <h:outputText value="#{position.midfieldCenter}" />
+                    </p:column>
+                       <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Lewy skrzydłowy" />
+                        </f:facet>
+                        <h:outputText value="#{position.wingerLeft}" />
+                    </p:column>
+                       <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Prawy skrzydłowy" />
+                        </f:facet>
+                        <h:outputText value="#{position.wingerRight}" />
+                    </p:column>
+                       <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Napastnik" />
+                        </f:facet>
+                        <h:outputText value="#{position.forward}" />
+                    </p:column>
+                       <f:facet name="footer">  
+                        <h:outputText value=""/>
+                        </f:facet>
+                    </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

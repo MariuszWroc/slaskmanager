@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="/Adminmain.xhtml">
+            <ui:define name="content">
+         <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="ID" for="ID" />
+                    <h:inputText id="ID" value="#{personController.id}" title="ID" />
+                    
+                    <h:outputLabel value="Name" for="Name" />
+                    <h:inputText id="Name" value="#{personController.name}" title="Name" />
+                    
+                    <h:outputLabel value="Surname" for="Surname" />
+                    <h:inputText id="Surname" value="#{personController.surname}" title="Surname" />
+                    
+                    <h:outputLabel value="BirthDate" for="BirthDate" />
+                    <p:calendar id="BirthDate" value="#{personController.birthDate}" />
+                    
+                    <h:outputLabel value="Nation" for="Nation" />
+                    <h:inputText id="Nation" value="#{personController.nation}" title="Nation" />
+                </h:panelGrid>
+                <h:commandButton id="save" actionListener="#{personController.save}" value="Zapisz"/>
+                <br />
+                <br />
+                <h:link outcome="ListPerson" value="Do Listy" />
+            </h:form>
+                </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

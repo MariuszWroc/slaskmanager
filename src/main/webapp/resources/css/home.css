@@ -1,0 +1,15 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:  	#000000;
+    color: #e33b06;
+    font-size: small;
+}
+
+.ui-menuitem-text{
+    color: #FFFFFF !important;
+    font-weight: bold;
+}
+
+.ui-layout-unit, .ui-layout-unit-content, .ui-layout-doc, .ui-layout-resizer{
+    background-image:url('//localhost:8080/slask2015/resources/css/Home.jpg');
+}

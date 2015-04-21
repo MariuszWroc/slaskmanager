@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <h:outputStylesheet name="css/jsfcrud.css"/>
+        </f:facet>
+    </h:head>
+    <h:body>
+        <ui:composition template="/Adminmain.xhtml">
+            <ui:define name="content">              
+                <p:dataTable id="finance" var="finance" value="#{financeController.financeList}"
+                             paginator="true" rows="10" paginatorPosition="bottom"
+                             selectionMode="single" selection="#{financeController.selectedFinance}" rowKey="#{finance.id}">
+                    <f:facet name="header">  
+                        <h:outputText value="Finanse"/>
+                        </f:facet>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Budżet" />
+                        </f:facet>
+                        <h:outputText value="#{finance.budget}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Budżet transferowy" />
+                        </f:facet>
+                        <h:outputText value="#{finance.transferBudget}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Budżet płacowy" />
+                        </f:facet>
+                        <h:outputText value="#{finance.wageBudget}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Koszt stadionu" />
+                        </f:facet>
+                        <h:outputText value="#{finance.stadiumCost}" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Ilość biletów sezonowych" />
+                        </f:facet>
+                        <h:outputText value="#{finance.seasonTicketsNumber}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Dług" />
+                        </f:facet>
+                        <h:outputText value="#{finance.dept}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Od sponsorów" />
+                        </f:facet>
+                        <h:outputText value="#{finance.fromSponsors}" />
+                    </p:column>
+                    <f:facet name="footer">
+                        <h:commandButton actionListener="#{financeController.destroy}" value="Usuń"/>
+                        <h:outputText value=" "/>
+                        <h:commandButton action="#{financeController.prepareEdit}" value="Edytuj"/>
+                        <h:outputText value=" "/>
+                        <h:commandButton action="#{financeController.prepareAdd}" value="Dodaj"/>
+                    </f:facet>
+                </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

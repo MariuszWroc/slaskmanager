@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="/Adminmain.xhtml">
+            <ui:define name="content">
+         <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="ID" for="ID" />
+                    <h:inputText id="ID" value="#{tacticController.id}" title="ID" />
+                    
+                    <h:outputLabel value="TacticName" for="TacticName" />
+                    <h:inputText id="TacticName" value="#{tacticController.tacticName}" title="TacticName" />
+                    
+                    <h:outputLabel value="Attack" for="Attack" />
+                    <h:inputText id="Attack" value="#{tacticController.attack}" title="Attack" />
+                    
+                    <h:outputLabel value="Marking" for="Marking" />
+                    <h:inputText id="Marking" value="#{tacticController.marking}" title="Marking" />
+                    
+                    <h:outputLabel value="Offside" for="Offside" />
+                    <h:inputText id="Offside" value="#{tacticController.offside}" title="Offside" />
+                    
+                    <h:outputLabel value="Pressing" for="Pressing" />
+                    <h:inputText id="Pressing" value="#{tacticController.pressing}" title="Pressing" />
+                    
+                    <h:outputLabel value="Tempo" for="Tempo" />
+                    <h:inputText id="Tempo" value="#{tacticController.tempo}" title="Tempo" />
+                    
+                    <h:outputLabel value="PlayWide" for="PlayWide" />
+                    <h:inputText id="PlayWide" value="#{tacticController.playWide}" title="PlayWide" />
+                    
+                    <h:outputLabel value="PlayHigh" for="PlayHigh" />
+                    <h:inputText id="PlayHigh" value="#{tacticController.playHigh}" title="PlayHigh" />
+                    
+                    <h:outputLabel value="Flair" for="Flair" />
+                    <h:inputText id="Flair" value="#{tacticController.flair}" title="Flair" />
+                    
+                    <h:outputLabel value="LongPass" for="LongPass" />
+                    <h:inputText id="LongPass" value="#{tacticController.longPass}" title="LongPass" />
+                    
+                    <h:outputLabel value="PlayToDefenders" for="PlayToDefenders" />
+                    <h:inputText id="PlayToDefenders" value="#{tacticController.playToDefenders}" title="PlayToDefenders" />
+                </h:panelGrid>
+                <h:commandButton id="save" actionListener="#{tacticController.save}" value="Zapisz"/>
+                <br />
+                <br />
+                <h:link outcome="ListTactic" value="Do Listy" />
+            </h:form>
+                </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <h:outputStylesheet name="css/jsfcrud.css"/>
+            </f:facet>
+        </h:head>
+    <h:body>
+        <ui:composition template="/MainPageTemplate.xhtml">
+            <ui:define name="content">
+                <p:panel header="#{playerController.labelText}">
+                    <p:panelGrid id="display" columns="2" 
+                            styleClass=" ui-widget-content grid">  
+                <p:panelGrid id="display" columns="8" 
+                            styleClass=" ui-widget-content grid">  
+
+                    <h:outputText value="Determinacja" />  
+                    <h:outputText value="#{playerController.selectedContract.playeridPlayer.determination}" />
+
+                    <h:outputText value="Wpływ" />  
+                    <h:outputText value="#{playerController.selectedContract.playeridPlayer.influence}" /> 
+
+                    <h:outputText value="Podatność na kontuzje" />
+                    <h:outputText value="#{playerController.selectedContract.playeridPlayer.injury}" /> 
+
+                    <h:outputText value="Szybkość" />  
+                    <h:outputText value="#{playerController.selectedContract.playeridPlayer.pace}" />
+
+                    <h:outputText value="Siła" />  
+                    <h:outputText value="#{playerController.selectedContract.playeridPlayer.strength}" />
+
+                    <h:outputText value="Wytrzymałość" />  
+                    <h:outputText value="#{playerController.selectedContract.playeridPlayer.stamina}" />
+
+                    <h:outputText value="Stałe fragmenty" />  
+                    <h:outputText value="#{playerController.selectedContract.playeridPlayer.setPieces}" />
+
+                    <h:outputText value="Technika" />
+                    <h:outputText value="#{playerController.selectedContract.playeridPlayer.technique}" /> 
+
+                    <h:outputText value="Wykończenie" />  
+                    <h:outputText value="#{playerController.selectedContract.playeridPlayer.finishing}" />
+
+                    <h:outputText value="Podania" />  
+                    <h:outputText value="#{playerController.selectedContract.playeridPlayer.passing}" />
+
+                    <h:outputText value="Krycie" />  
+                    <h:outputText value="#{playerController.selectedContract.playeridPlayer.marking}" />
+
+                    <h:outputText value="Wślizgi" />  
+                    <h:outputText value="#{playerController.selectedContract.playeridPlayer.tackling}" />
+
+                    <h:outputText value="Gra głową" />
+                    <h:outputText value="#{playerController.selectedContract.playeridPlayer.heading}" />
+
+                    <h:outputText value="Łapanie" />  
+                    <h:outputText value="#{playerController.selectedContract.playeridPlayer.handling}" />
+
+                    <h:outputText value="Reflex" /> 
+                    <h:outputText value="#{playerController.selectedContract.playeridPlayer.reflex}" />
+                </p:panelGrid>
+                        <p:panelGrid columns="1">
+                    
+                            <p:dataTable var="person" value="#{playerController.selectedContract.playeridPlayer.personidPerson}" >
+                            <f:facet name="header">  
+                                <h:outputText value="Dane osobowe"/>
+                            </f:facet>
+                                <p:column headerText="Imię">
+                                        <h:outputText value="#{person.name}" />
+                                </p:column>
+
+                                <p:column headerText="Nazwisko">  
+                                    <h:outputText value="#{person.surname}" />
+                                </p:column>
+
+                                <p:column headerText="Data urodzenia">  
+                                    <h:outputText value="#{person.birthDate}" />
+                                </p:column>
+                                
+                                <p:column headerText="Narodowość">  
+                                    <h:outputText value="#{person.nation}" />
+                                </p:column>
+                        </p:dataTable>
+                        
+                        <p:dataTable var="contract" value="#{playerController.selectedContract}" >
+                            <f:facet name="header">  
+                                <h:outputText value="Kontrakt"/>
+                            </f:facet>
+                                <p:column headerText="Data rozpoczęcia">
+                                        <h:outputText value="#{contract.dateStart}" />
+                                </p:column>
+
+                                <p:column headerText="Data zakończenia">  
+                                    <h:outputText value="#{contract.dateEnd}" />
+                                </p:column>
+
+                                <p:column headerText="Płaca">  
+                                    <h:outputText value="#{contract.fee}" />
+                                </p:column>
+                        </p:dataTable>
+                        </p:panelGrid>
+                    </p:panelGrid>
+                </p:panel>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

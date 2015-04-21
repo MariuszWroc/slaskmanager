@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <h:outputStylesheet name="css/jsfcrud.css"/>
+            </f:facet>
+        </h:head>
+    <h:body>
+        <ui:composition template="/Adminmain.xhtml">
+            <ui:define name="content">
+                   
+                    <p:dataTable id="Tournament" var="tournament" value="#{tournamentController.tournamentList}" 
+                                 paginator="true" rows="10" paginatorPosition="bottom"
+                                 selectionMode="single" selection="#{tournamentController.selectedArrange}" rowKey="#{tournament.id}">
+                    <f:facet name="header">  
+                        <h:outputText value="Turnieje"/>
+                        </f:facet>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nazwa turnieju" />
+                        </f:facet>
+                        <h:outputText value="#{tournament.tournamentName}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Numer drużyny" />
+                        </f:facet>
+                        <h:outputText value="#{tournament.teamsNumber}" />
+                    </p:column>
+                         <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Numer relegacji" />
+                        </f:facet>
+                        <h:outputText value="#{tournament.relegatesNumber}" />
+                    </p:column>
+                        <f:facet name="footer">
+                        <h:commandButton actionListener="#{tournamentController.destroy}" value="Usuń"/>
+                        <h:outputText value=" "/>
+                        <h:commandButton action="#{tournamentController.prepareEdit}" value="Edytuj"/>
+                        <h:outputText value=" "/>
+                        <h:commandButton action="#{tournamentController.prepareAdd}" value="Dodaj"/>
+                    </f:facet>
+                    </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

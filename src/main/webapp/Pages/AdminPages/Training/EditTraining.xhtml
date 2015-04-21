@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="/Adminmain.xhtml">
+            <ui:define name="content">
+         <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="ID" for="ID" />
+                    <h:inputText id="ID" value="#{trainingController.id}" title="ID" />
+                    
+                    <h:outputLabel value="TrainingName" for="TrainingName" />
+                    <h:inputText id="TrainingName" value="#{trainingController.trainingName}" title="TrainingName" />
+                    
+                    <h:outputText value="Choose trainings" />
+                    <p:selectManyCheckbox id="grid" value="#{trainingController.trainingChoises}" layout="grid" columns="3">
+                        <f:selectItems value="#{trainingController.train}" var="train" itemLabel="#{train}" itemValue="#{train}" />
+                    </p:selectManyCheckbox>
+                </h:panelGrid>
+             <h:commandButton id="save" actionListener="#{trainingController.update}" value="Zapisz"/>
+                <br />
+                <br />
+                <h:link outcome="ListTraining" value="Do Listy" />
+            </h:form>
+                </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="/Adminmain.xhtml">
+            <ui:define name="content">
+         <h:form>
+                <h:panelGrid columns="2">
+                   <h:outputLabel value="ID" for="ID" />
+                    <p:calendar id="ID" value="#{arrangeController.id}" />
+                    
+                    <h:outputLabel value="ArrangeDate" for="ArrangeDate" />
+                    <p:calendar id="ArrangeDate" value="#{arrangeController.arrangeDate}" />
+                    
+                    <!--   <p:outputLabel for="Fixture" value="Fixture:" />
+                    <p:selectOneMenu id="Fixture" value="#{arrangeController.fixtureId}" effect="fold">
+                        <f:selectItem itemLabel="Select One" itemValue="" />
+                        <f:selectItems value="#{fixtureController.fixtureList}" var="fixture" itemLabel="#{fixture.toString}" itemValue="#{fixture.id}"/>
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel for="Referee" value="Referee:" />
+                    <p:selectOneMenu id="Referee" value="#{arrangeController.refereeId}" effect="fold">
+                        <f:selectItem itemLabel="Select One" itemValue="" />
+                        <f:selectItems value="#{refereeController.refereeList}" var="referee" itemLabel="#{referee.personidPerson.surname}" itemValue="#{referee.id}"/>
+                    </p:selectOneMenu> -->
+                </h:panelGrid>
+                <h:commandButton id="save" actionListener="#{arrangeController.save}" value="Zapisz"/>
+                <br />
+                <br />
+                <h:link outcome="ListMatch" value="Do Listy" />
+            </h:form>
+                </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

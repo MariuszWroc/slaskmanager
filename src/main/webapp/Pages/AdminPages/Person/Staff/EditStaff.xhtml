@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="/Adminmain.xhtml">
+            <ui:define name="content">
+         <h:form>
+                <h:panelGrid columns="2">
+                <h:outputLabel value="ID" for="ID" />
+                    <h:inputText id="ID" value="#{staffController.id}" title="ID" />
+                    
+                    <h:outputLabel value="StaffFunction" for="StaffFunction" />
+                    <h:inputText id="StaffFunction" value="#{staffController.staffFunction}" title="StaffFunction" />
+                    
+                     <!--    <p:outputLabel for="Person" value="Person:" />
+                    <p:selectOneMenu id="Person" value="#{staffController.personId}" effect="fold">
+                        <f:selectItem itemLabel="Select One" itemValue="" />
+                        <f:selectItems value="#{personController.personList}" var="pers" itemLabel="#{pers.surname}" itemValue="#{pers.id}"/>
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel for="Club" value="Club:" />
+                    <p:selectOneMenu id="Club" value="#{staffController.clubId}" effect="fold">
+                        <f:selectItem itemLabel="Select One" itemValue="" />
+                        <f:selectItems value="#{clubController.clubList}" var="club" itemLabel="#{club.clubName}" itemValue="#{club.id}"/>
+                    </p:selectOneMenu> -->
+                </h:panelGrid>
+             <h:commandButton id="save" actionListener="#{staffController.update}" value="Zapisz"/>
+                <br />
+                <br />
+                <h:link outcome="ListStaff" value="Do Listy" />
+            </h:form>
+                </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <h:outputStylesheet name="css/jsfcrud.css"/>
+            </f:facet>
+        </h:head>
+    <h:body>
+        <ui:composition template="/Adminmain.xhtml">
+            <ui:define name="content">                  
+                   <p:dataTable id="Player" var="player" value="#{playerController.playerList}" 
+                                paginator="true" rows="10" paginatorPosition="bottom"
+                                selectionMode="single" selection="#{playerController.selectedPlayer}" rowKey="#{player.id}">
+                     <f:facet name="header">  
+                        <h:outputText value="Gracze"/>
+                        </f:facet>
+                     <p:column style="width:2%">  
+                        <p:rowToggler />  
+                     </p:column> 
+                       <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Imię" />
+                        </f:facet>
+                         <h:outputText value="#{player.personidPerson.name}" />
+                    </p:column>
+                       <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nazwisko" />
+                        </f:facet>
+                         <h:outputText value="#{player.personidPerson.surname}" />
+                    </p:column>
+                       <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Prawa noga" />
+                        </f:facet>
+                         <h:outputText value="#{player.legRight}" />
+                    </p:column>
+                       <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Lewa noga" />
+                        </f:facet>
+                         <h:outputText value="#{player.legLeft}" /> 
+                    </p:column>
+                       <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Wzrost" />
+                        </f:facet>
+                         <h:outputText value="#{player.height}" />
+                    </p:column>
+                       <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Waga" />
+                        </f:facet>
+                        <h:outputText value="#{player.weight}" />
+                    </p:column>
+                       <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Pozycja" />
+                        </f:facet>
+                         <h:outputText value="#{player.bestPositionShort}" />
+                    </p:column>
+                       <f:facet name="footer">
+                        <h:commandButton actionListener="#{playerController.destroy}" value="Usuń"/>
+                        <h:outputText value=" "/>
+                        <h:commandButton action="#{playerController.prepareEdit}" value="Edytuj"/>
+                        <h:outputText value=" "/>
+                        <h:commandButton action="#{playerController.prepareAdd}" value="Dodaj"/>
+                    </f:facet>
+                    <p:rowExpansion>  
+                <p:panelGrid id="display" columns="8" style="width:300px;"  
+                            styleClass=" ui-widget-content grid">  
+                <h:outputText value="Forma" />  
+                <h:outputText value="#{player.currentForm}" />
+  
+                <h:outputText value="Determinacja" />  
+                <h:outputText value="#{player.determination}" />
+  
+                <h:outputText value="Wpływ" />  
+                <h:outputText value="#{player.influence}" /> 
+  
+                <h:outputText value="Podatność na kontuzje" />
+                <h:outputText value="#{player.injury}" /> 
+                
+                <h:outputText value="Szybkość" />  
+                <h:outputText value="#{player.pace}" />
+                
+                <h:outputText value="Siła" />  
+                <h:outputText value="#{player.strength}" />
+  
+                <h:outputText value="Wytrzymałość" />  
+                <h:outputText value="#{player.stamina}" />
+  
+                <h:outputText value="Stałe fragmenty" />  
+                <h:outputText value="#{player.setPieces}" />
+  
+                <h:outputText value="Technika" />
+                <h:outputText value="#{player.technique}" /> 
+                
+                <h:outputText value="Wykończenie" />  
+                <h:outputText value="#{player.finishing}" />
+                
+                <h:outputText value="Podania" />  
+                <h:outputText value="#{player.passing}" />
+  
+                <h:outputText value="Markowanie" />  
+                <h:outputText value="#{player.marking}" />
+  
+                <h:outputText value="Blokowanie" />  
+                <h:outputText value="#{player.tackling}" />
+  
+                <h:outputText value="Gra głową" />
+                <h:outputText value="#{player.heading}" />
+                
+                <h:outputText value="Łapanie" />  
+                <h:outputText value="#{player.handling}" />
+               
+                            <h:outputText value="Reflex" /> 
+                        <h:outputText value="#{player.reflex}" />
+                        </p:panelGrid> 
+  
+        </p:rowExpansion>  
+                    </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

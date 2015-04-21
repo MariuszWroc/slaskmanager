@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <body>
+        <ui:composition>
+            <p:menubar autoDisplay="false">               
+                <p:submenu label="Kluby">
+                    <p:submenu label="#{mainMenuController.playersClub.clubName}">
+                        <p:submenu label="Pilkarze">
+                            <p:menuitem value="Pokaż pilkarzy" outcome="/Pages/Person/Player/List" />
+                            <p:menuitem value="Pokaż pozycje" outcome="/Pages/Person/Player/Position/List" />
+                        </p:submenu>
+                        <p:menuitem value="Personel" outcome="/Pages/Person/Staff/List" /> 
+                        <p:menuitem value="Stadion" outcome="/Pages/Stadium/List" /> 
+                        <p:menuitem value="Finanse" outcome="/Pages/Finance/List" />
+                    </p:submenu>
+                    <p:menuitem value="Wszystkie kluby" outcome="/Pages/Club/List" /> 
+                </p:submenu>
+
+                <p:submenu label="Terminarz">
+                    <p:menuitem value="Mecze" outcome="/Pages/Match/List" /> 
+                    <p:menuitem value="Sędziowie" outcome="/Pages/Person/Referee/List" /> 
+                </p:submenu>
+
+                <p:submenu label="Taktyki">
+                    <p:menuitem value="Formacje" outcome="/Pages/Formation/List" />
+                    <p:menuitem value="Pokaż Taktyki" outcome="/Pages/Tactic/List" />
+                </p:submenu>
+
+                <p:submenu label="Trening">
+                    <p:menuitem value="Trenerzy" outcome="/Pages/Person/Coach/List" />
+                </p:submenu>
+
+            </p:menubar> 
+        </ui:composition>
+    </body>
+</html>

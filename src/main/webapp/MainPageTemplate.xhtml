@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <title>Slask Wroclaw Manager 2014</title>
+    </h:head>
+    <!-- test commit-->
+    <h:body>
+        <h:form id="form">
+            <div id="page">
+                <div id="top" class="top">
+                    <p:menubar autoDisplay="false">               
+                        <p:submenu label="#{mainMenuController.playersClub.clubName}">
+                            <p:menuitem value="Klub" outcome="/Pages/UserPages/Club/ClubDetail" />
+                            <p:menuitem value="Skład" outcome="/Pages/UserPages/Person/Player/PlayerList" />
+                        </p:submenu>
+
+                        <p:menuitem value="Taktyka" outcome="/Pages/UserPages/Tactic/TacticList" />
+
+                        <p:menuitem value="Trening" outcome="/Pages/UserPages/Training/TrainingDetails" />
+                       
+                        <p:submenu label="Rozgrywki">
+                            <p:menuitem value="Terminarz" outcome="/Pages/UserPages/Match/MatchList" /> 
+                            <p:menuitem value="Sędziowie" outcome="/Pages/UserPages/Person/Referee/RefereeList" /> 
+                            <p:menuitem value="Tabela ligowa" outcome="/Pages/UserPages/Club/ClubList" />
+                        </p:submenu>
+
+                    </p:menubar> 
+                </div>
+
+                <p:layout style="height:545px;" id="layout"> 
+                    <p:layoutUnit position="west" header="Wiadomości" resizable="true" size="100" minSize="220" maxSize="300" collapsible="true">  
+                        <p:orderList value="#{messageController.messageList}" var="msg" controlsLocation="none"
+                                     itemLabel="#{msg}" itemValue="#{msg}" id="basicList"/>
+                    </p:layoutUnit>  
+
+                    <p:layoutUnit position="center" >  
+                        <div id="content" class="center_content">
+                            <ui:insert name="content">Content</ui:insert>
+                        </div>           
+                    </p:layoutUnit> 
+                </p:layout>
+                <p:dock>  
+                    <p:menuitem value="Rozgrywki" icon="/resources//Styles/Dock/schedule.png" outcome="/Pages/UserPages/Match/MatchList"/> 
+                    <p:menuitem value="Trening" icon="/resources/Styles/Dock/home.png" outcome="/Pages/UserPages/Training/TrainingDetails"/>  
+                    <p:menuitem value="Mecz" icon="/resources//Styles/Dock/football.png" outcome="/Pages/UserPages/Tactic/TacticList"/> 
+                </p:dock>
+
+                 <p:stack icon="/resources/Styles//Dock/football.png">  
+                    <p:menuitem value="Wyloguj" icon="/resources//Styles/Dock/home.png" action="#{loginController.doLogout()}"/>  
+                    <p:menuitem value="Profil" icon="/resources//Styles/Dock/schedule.png" outcome="/Pages/UserPages/User/ProfileDetails"/>  
+                </p:stack>
+            </div>
+        </h:form>
+    </h:body>
+</html>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="/Adminmain.xhtml">
+            <ui:define name="content">
+         <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="ID" for="ID" />
+                    <h:inputText id="ID" value="#{positionController.id}" title="ID" />
+                    
+                    <h:outputLabel value="Goalkeeper" for="Goalkeeper" />
+                    <h:inputText id="Goalkeeper" value="#{positionController.goalkeeper}" title="Goalkeeper" />
+                    
+                    <h:outputLabel value="DefenderLeft" for="DefenderLeft" />
+                    <h:inputText id="DefenderLeft" value="#{positionController.defenderLeft}" title="DefenderLeft" />
+                    
+                    <h:outputLabel value="DefenderCenter" for="DefenderCenter" />
+                    <h:inputText id="DefenderCenter" value="#{positionController.defenderCenter}" title="DefenderCenter" />
+                    
+                    <h:outputLabel value="DefenderRight" for="DefenderRight" />
+                    <h:inputText id="DefenderRight" value="#{positionController.defenderRight}" title="DefenderRight" />
+                    
+                    <h:outputLabel value="MidfieldDef" for="MidfieldDef" />
+                    <h:inputText id="MidfieldDef" value="#{positionController.midfieldDef}" title="MidfieldDef" />
+                    
+                    <h:outputLabel value="MidfieldRight" for="MidfieldRight" />
+                    <h:inputText id="MidfieldRight" value="#{positionController.midfieldRight}" title="MidfieldRight" />
+                    
+                    <h:outputLabel value="MidfieldLeft" for="MidfieldLeft" />
+                    <h:inputText id="MidfieldLeft" value="#{positionController.midfieldLeft}" title="MidfieldLeft" />
+                    
+                    <h:outputLabel value="MidfieldCenter" for="MidfieldCenter" />
+                    <h:inputText id="MidfieldCenter" value="#{positionController.midfieldCenter}" title="MidfieldCenter" />
+                    
+                    <h:outputLabel value="WingerLeft" for="WingerLeft" />
+                    <h:inputText id="WingerLeft" value="#{positionController.wingerLeft}" title="WingerLeft" />
+                    
+                    <h:outputLabel value="WingerRight" for="WingerRight" />
+                    <h:inputText id="WingerRight" value="#{positionController.wingerRight}" title="WingerRight" />
+                    
+                    <h:outputLabel value="Forward" for="Forward" />
+                    <h:inputText id="Forward" value="#{positionController.forward}" title="Forward" />
+                </h:panelGrid>
+             <h:commandButton id="save" actionListener="#{positionController.update}" value="Zapisz"/>
+                <br />
+                <br />
+                <h:link outcome="ListPosition" value="Do Listy" />
+            </h:form>
+                </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

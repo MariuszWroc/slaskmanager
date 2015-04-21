@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <h:outputStylesheet name="css/jsfcrud.css"/>
+        </f:facet>
+    </h:head>
+    <h:body>
+        <ui:composition template="/Adminmain.xhtml">
+            <ui:define name="content">
+                
+                <p:dataTable id="Stadium" var="stadium" value="#{stadiumController.stadiumList}" 
+                             paginator="true" rows="10" paginatorPosition="bottom"
+                             selectionMode="single" selection="#{stadiumController.selectedStadium}" rowKey="#{stadium.id}">
+                    <f:facet name="header">  
+                        <h:outputText value="Stadiony"/>
+                        </f:facet>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nazwa" />
+                        </f:facet>
+                        <h:outputText value="#{stadium.stadiumName}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Ilość miejsc siedzących" />
+                        </f:facet>
+                        <h:outputText value="#{stadium.sitsNumber}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Rok budowy" />
+                        </f:facet>
+                        <h:outputText value="#{stadium.yearBuild}" />
+                    </p:column>
+                    <f:facet name="footer">
+                        <h:commandButton actionListener="#{stadiumController.destroy}" value="Usuń"/>
+                            <h:outputText value=" "/>
+                            <h:commandButton action="#{stadiumController.prepareEdit}" value="Edytuj"/>
+                            <h:outputText value=" "/>
+                            <h:commandButton action="#{stadiumController.prepareAdd}" value="Dodaj"/>
+                        </f:facet>
+                </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

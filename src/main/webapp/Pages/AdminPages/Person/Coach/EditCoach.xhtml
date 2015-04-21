@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="/Adminmain.xhtml">
+            <ui:define name="content">
+         <h:form>
+                <h:panelGrid columns="2">
+                 <h:outputLabel value="ID" for="ID" />
+                    <h:inputText id="ID" value="#{coachController.id}" title="ID" />
+                    
+                    <h:outputLabel value="TacticalKnowledge" for="TacticalKnowledge" />
+                    <h:inputText id="TacticalKnowledge" value="#{coachController.tacticalKnowledge}" title="TacticalKnowledge" />
+                    
+                    <h:outputLabel value="TreningMental" for="TreningMental" />
+                    <h:inputText id="TreningMental" value="#{coachController.treningMental}" title="TreningMental" />
+                    
+                    <h:outputLabel value="TreningTactic" for="TreningTactic" />
+                    <h:inputText id="TreningTactic" value="#{coachController.treningTactic}" title="TreningTactic" />
+                    
+                    <h:outputLabel value="TreningTechnique" for="TreningTechnique" />
+                    <h:inputText id="TreningTechnique" value="#{coachController.treningTechnique}" title="TreningTechnique" />
+                    
+                    <h:outputLabel value="Motivating" for="Motivating" />
+                    <h:inputText id="Motivating" value="#{coachController.motivating}" title="Motivating" />
+                    
+                    <h:outputLabel value="Management" for="Management" />
+                    <h:inputText id="Management" value="#{coachController.management}" title="Management" />
+                    
+                    <h:outputLabel value="Discipline" for="Discipline" />
+                    <h:inputText id="Discipline" value="#{coachController.discipline}" title="Discipline" />
+                    
+                    <h:outputLabel value="SkillRate" for="SkillRate" />
+                    <h:inputText id="SkillRate" value="#{coachController.skillRate}" title="SkillRate" />
+                    
+                    <!--    <p:outputLabel for="Person" value="Person:" />
+                    <p:selectOneMenu id="Person" value="#{coachController.personId}" effect="fold">
+                        <f:selectItem itemLabel="Select One" itemValue="" />
+                        <f:selectItems value="#{personController.personList}" var="pers" itemLabel="#{pers.surname}" itemValue="#{pers.id}"/>
+                    </p:selectOneMenu> -->
+                </h:panelGrid>
+             <h:commandButton id="save" actionListener="#{coachController.update}" value="Zapisz"/>
+                <br />
+                <br />
+                <h:link outcome="ListCoach" value="Do Listy" />
+            </h:form>
+                </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
