@@ -17,9 +17,8 @@
                     <h:outputText value="temat"/> <p:inputText value="#{emailSenderController.title}" size="100"/>
                     <h:outputText value="Wiadomość"/> <p:inputTextarea value="#{emailSenderController.message}" rows="10" cols="100"/>
                 </h:panelGrid>
-                <p:commandButton value="Wyślij" />
+                <p:commandButton value="Wyślij" actionListener="#{emailSenderController.sendMail()}" update=":form"/>
             </ui:define>
-
         </ui:composition>
     </h:body>
 </html>

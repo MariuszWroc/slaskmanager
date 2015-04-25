@@ -60,7 +60,7 @@ public class User extends AbstractEntity {
     @Basic(optional = false)    
     @NotNull
     @Column(name = "enabled")
-    private Integer enabled;
+    private Integer enabled=0;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "useridUser", fetch = FetchType.LAZY)
     private List<Game> gameList;

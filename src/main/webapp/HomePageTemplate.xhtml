@@ -5,23 +5,25 @@
       xmlns:f="http://java.sun.com/jsf/core">
 
     <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="css/home.css"/>
+        <meta name="viewport" content="width=device-width"/>
         <title>Slask Wroclaw Manager 2014 home page</title>
     </h:head>
     <!-- test commit-->
     <h:body>
       <!--  <h:outputText value="Zalogowany jako: "/> <h:outputText value="#{mainMenuController.user.login}"/>-->
         <h:form id="form">
+            <div id="page">
             <p:menubar>
                 <p:submenu label="O grze">
-                   <p:menuitem value="Tutorial" outcome="Tutorial"/>
-                   <p:menuitem value="Screeny" outcome="Screens"/>
-                   <p:menuitem value="Ligi" outcome="Leagues"/>
+                   <p:menuitem value="Tutorial" outcome="/Tutorial"/>
+                   <p:menuitem value="Screeny" outcome="/Screens"/>
+                   <p:menuitem value="Ligi" outcome="/Leagues"/>
                 </p:submenu>
-                <p:menuitem value="Wyślij e-mail" outcome="sendMail"/>
-                <p:menuitem value="O Autorach" outcome="aboutUs" icon="ui-icon-star"/>
-                <p:menuitem value="Zaloguj się" outcome="login"/>
+                <p:menuitem value="Wyślij e-mail" outcome="/sendMail"/>
+                <p:menuitem value="O Autorach" outcome="/aboutUs" icon="ui-icon-star"/>
+                <p:menuitem value="Zaloguj się" outcome="/login"/>
+                <p:menuitem value="Zarejestruj się" outcome="/Pages/Register/registerNewUser"/>
  
         <f:facet name="options">
             <p:inputText style="margin-right:10px" placeholder="Wyszukaj(not implemented)"/>
@@ -35,6 +37,7 @@
                     </div>
                 </p:layoutUnit>
             </p:layout>
+            </div>
         </h:form>
     </h:body>
 </html>

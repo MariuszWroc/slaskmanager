@@ -5,10 +5,7 @@
  */
 package pl.mariuszczarny.slask2014.dao;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.List;
-import org.hibernate.Criteria;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 
@@ -42,4 +39,6 @@ public interface IGenericExtendedDao<T> {
     List<T> findAllByCriteria() throws EmptyResultDataAccessException;
     
     Long count() throws EmptyResultDataAccessException; 
+    
+    Long generateId();
 }

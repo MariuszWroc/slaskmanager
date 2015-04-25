@@ -28,6 +28,11 @@ public class UserService implements IUserService{
     public User findByLogin(String login) {
         return getUserDao().findUserByLogin(login);
     }
+    
+    @Override
+    public Long count(){
+        return getUserDao().count();
+    }
 
     @Override
     @Transactional(readOnly = false)
@@ -42,7 +47,6 @@ public class UserService implements IUserService{
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
-    
     
 
 }

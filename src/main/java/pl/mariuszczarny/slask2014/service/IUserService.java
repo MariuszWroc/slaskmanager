@@ -14,5 +14,6 @@ import pl.mariuszczarny.slask2014.model.User;
  */
 public interface IUserService {
     User findByLogin(String login);
+    public Long count();
     void add(User entity);
 }

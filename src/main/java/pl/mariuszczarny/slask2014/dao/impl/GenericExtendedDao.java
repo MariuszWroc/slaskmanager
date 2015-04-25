@@ -132,4 +132,9 @@ public abstract class GenericExtendedDao<T> implements IGenericExtendedDao<T> {
             return count;
         }
     }
+    
+    @Override
+    public Long generateId() {
+	return count() + 1L;
+    }
 }
