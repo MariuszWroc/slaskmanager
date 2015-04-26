@@ -51,6 +51,7 @@ public class LoginController implements Serializable{
             .getExternalContext().invalidateSession();
         SecurityContextHolder.clearContext();
         if(getMainMenuController().getUser()!=null){
+            //adding primefaces message
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Pomyślnie wylogowano", ""));
             getMainMenuController().setUser(null);
         }

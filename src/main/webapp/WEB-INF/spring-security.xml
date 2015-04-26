@@ -13,7 +13,7 @@
 		<form-login 
                     login-processing-url="/j_spring_security_check" 
 		    login-page="/login.xhtml" 
-		    default-target-url="/Pages/StartPage.xhtml"
+		    default-target-url="/Pages/loadGame.xhtml"
 			authentication-failure-url="/loginfail.xhtml" 
 			username-parameter="username"
 			password-parameter="password" />
@@ -34,7 +34,7 @@
                         authorities-by-username-query="
                             SELECT u.login, r.rolename
                             FROM user u, role r
-                            WHERE u.idUser = r.user_idUser AND u.login=?;" 
+                            WHERE r.idRole = u.role_idRole AND u.login=?;" 
 /> 
 
 <!--			<user-service>

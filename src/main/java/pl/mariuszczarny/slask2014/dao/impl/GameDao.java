@@ -19,8 +19,8 @@ import pl.mariuszczarny.slask2014.model.User;
 @Repository
 public class GameDao extends GenericExtendedDao<Game>{
 
-    public List<Game> findAllByUser(User user) {
-       String hql = "FROM Game G WHERE G.useridUser = 1";// + user.getId();
+    public List<Game> findAllByUser(Long idUser) {
+       String hql = "FROM Game G WHERE G.useridUser = " + idUser;
        Query query = getSession().createQuery(hql);
        List games = query.list();
        return games;

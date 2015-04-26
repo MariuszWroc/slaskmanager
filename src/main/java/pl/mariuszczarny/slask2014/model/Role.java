@@ -5,15 +5,16 @@
  */
 package pl.mariuszczarny.slask2014.model;
 
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -42,9 +43,8 @@ public class Role extends AbstractEntity {
     @Size(min = 1, max = 45)
     private String rolename;
     
-    @JoinColumn(name = "user_idUser", referencedColumnName = "idUser")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User useridUser;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roleidRole", fetch = FetchType.LAZY)
+    private List<User> userList;
 
     public Role() {
     }
@@ -70,12 +70,11 @@ public class Role extends AbstractEntity {
         this.rolename = rolename;
     }
 
-    public User getUseridUser() {
-        return useridUser;
+    public List<User> getUserList() {
+        return userList;
     }
 
-    public void setUseridUser(User useridUser) {
-        this.useridUser = useridUser;
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
-    
 }

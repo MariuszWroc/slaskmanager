@@ -7,7 +7,6 @@
 package pl.mariuszczarny.slask2014.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -17,6 +16,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import pl.mariuszczarny.slask2014.controller.utils.StringConstants;
 
 import pl.mariuszczarny.slask2014.model.User;
+import pl.mariuszczarny.slask2014.service.IRoleService;
 import pl.mariuszczarny.slask2014.service.IUserService;
 
 /**
@@ -36,6 +36,8 @@ public class RegisterController implements Serializable{
     
     @ManagedProperty(value = "#{userService}")
     private IUserService userService;
+    @ManagedProperty(value = "#{roleService}")
+    private IRoleService roleService;
     
     public RegisterController()
     {
@@ -56,6 +58,7 @@ public class RegisterController implements Serializable{
             newUser.setSname(lastName);
             newUser.setName(name);
             newUser.setPassword(password);
+            newUser.setRoleidRole(getRoleService().findAllByCriteria().get(1));
             getUserService().add(newUser);
 //            newUser = getUserService().findByLogin(newUser.getLogin());             
         }
@@ -110,6 +113,22 @@ public class RegisterController implements Serializable{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public IRoleService getRoleService() {
+        return roleService;
+    }
+
+    public void setRoleService(IRoleService roleService) {
+        this.roleService = roleService;
     }
     
     

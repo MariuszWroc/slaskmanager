@@ -13,6 +13,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -65,8 +67,9 @@ public class User extends AbstractEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "useridUser", fetch = FetchType.LAZY)
     private List<Game> gameList;
     
-    @OneToMany(mappedBy = "useridUser", fetch = FetchType.LAZY)
-    private List<Role> roleList;
+    @JoinColumn(name = "role_idRole", referencedColumnName = "idRole")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private Role roleidRole;
 
     public User() {
     }
@@ -132,12 +135,11 @@ public class User extends AbstractEntity {
         this.gameList = gameList;
     }
 
-    public List<Role> getRoleList() {
-        return roleList;
+    public Role getRoleidRole() {
+        return roleidRole;
     }
 
-    public void setRoleList(List<Role> roleList) {
-        this.roleList = roleList;
+    public void setRoleidRole(Role roleidRole) {
+        this.roleidRole = roleidRole;
     }
-    
 }

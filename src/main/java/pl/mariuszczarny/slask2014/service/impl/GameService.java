@@ -54,7 +54,7 @@ public class GameService implements IGameService{
     
     @Override
     public List<Game> findAllByUser(User user) {
-        return getGameDao().findAllByUser(user);
+        return getGameDao().findAllByUser(user.getId());
     }
 
     public GameDao getGameDao() {

@@ -48,6 +48,10 @@ public class Game extends AbstractEntity {
     @Column(name = "session_id")
     private String sessionId;
     
+    @Size(max = 45)
+    @Column(name = "game_name")
+    private String gameName;
+    
     @Column(name = "user_status")
     private Boolean userStatus;
     
@@ -114,5 +118,12 @@ public class Game extends AbstractEntity {
     public void setUseridUser(User useridUser) {
         this.useridUser = useridUser;
     }
-    
+
+    public String getGameName() {
+        return gameName;
+    }
+
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
+    }
 }
