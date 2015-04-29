@@ -841,8 +841,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `slaskdb`;
-INSERT INTO `slaskdb`.`user` (`idUser`, `name`, `sname`, `login`, `password`, `enabled`, `role_idRole`) VALUES (1, 'Mariusz', 'Czarny', 'mczarny', '123', 1, 3);
-INSERT INTO `slaskdb`.`user` (`idUser`, `name`, `sname`, `login`, `password`, `enabled`, `role_idRole`) VALUES (2, 'Jacek', 'Bednarczyk', 'jbednarczyk', '123', 1, 3);
+INSERT INTO `slaskdb`.`user` (`idUser`, `name`, `sname`, `login`, `password`, `enabled`, `role_idRole`) VALUES (1, 'Mariusz', 'Czarny', 'mczarny', '123', 1, 1);
+INSERT INTO `slaskdb`.`user` (`idUser`, `name`, `sname`, `login`, `password`, `enabled`, `role_idRole`) VALUES (2, 'Jacek', 'Bednarczyk', 'jbednarczyk', '123', 1, 1);
 INSERT INTO `slaskdb`.`user` (`idUser`, `name`, `sname`, `login`, `password`, `enabled`, `role_idRole`) VALUES (3, 'Jan', 'Kowalski', 'jkowalski', '123', 0, 2);
 COMMIT;
 
