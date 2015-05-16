@@ -7,10 +7,12 @@
 package pl.mariuszczarny.slask2014.controller;
 
 import java.io.Serializable;
+import javax.faces.application.FacesMessage;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 import pl.mariuszczarny.slask2014.controller.utils.StringConstants;
@@ -63,10 +65,10 @@ public class RegisterController implements Serializable{
 //            newUser = getUserService().findByLogin(newUser.getLogin());             
         }
         catch(EmptyResultDataAccessException e){
-            System.out.println("Dodać primefaces message dla uzytkownik nie istnieje");
-            return StringConstants.SAVE_ERROR.getValue() + " - " + newUser.toString();
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "rejestracja nieudana", ""));
+           return StringConstants.SAVE_ERROR.getValue() + " - " + newUser.toString();
         }
-        System.out.println("test usera " + newUser.getName());
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Pomyślnie Zarejstrowano", ""));
         
         return "/HomePage.xhtml";
     }

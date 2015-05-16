@@ -13,7 +13,7 @@
 		<form-login 
                     login-processing-url="/j_spring_security_check" 
 		    login-page="/login.xhtml" 
-		    default-target-url="/Pages/loadGame.xhtml"
+		    default-target-url="/Pages/UserPages/loadGame.xhtml"
 			authentication-failure-url="/loginfail.xhtml" 
 			username-parameter="username"
 			password-parameter="password" />
