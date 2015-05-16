@@ -25,8 +25,7 @@ and open the template in the editor.
                         <h:outputText value="Login" />              <p:inputText value="#{registercontroller.login}" required="true" requiredMessage="Pole jest wymagane"/>
                         <h:outputText value="Haslo" />              <p:password value="#{registercontroller.password}" required="true" requiredMessage="Pole jest wymagane"/>
                     </h:panelGrid>
-                    <p:commandButton id="save" value="Zapisz" actionListener="#{registercontroller.save}" validateClient="true" update=":form"/>
-                    <h:button value="Start" outcome="/login.xhtml"/>
+                    <p:commandButton id="save" value="Zarejestruj" actionListener="#{registercontroller.save}" validateClient="true" update=":form"/>
                 </div>
             </ui:define>
         </ui:composition>
