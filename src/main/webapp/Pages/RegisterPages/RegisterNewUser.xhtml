@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+        </f:facet>
+    </h:head>
+    <h:body>
+        <ui:composition template="/HomePageTemplate.xhtml">
+            <ui:define name="content">
+                 <div align="center">
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Imie" />               <p:inputText id="name" value="#{registercontroller.name}" required="true" requiredMessage="Podaj imię"/>
+                        <h:outputText value="Nazwisko" />           <p:inputText value="#{registercontroller.lastName}" required="true" requiredMessage="Podaj nazwisko"/>
+                        <h:outputText value="Login" />              <p:inputText value="#{registercontroller.login}" required="true" requiredMessage="Podaj login"/>
+                        <h:outputText value="Haslo" />              <p:password value="#{registercontroller.password}" required="true" requiredMessage="Podaj hasło"/>
+                    </h:panelGrid>
+                    <p:captcha id="captcha" label="Captcha" required="true" requiredMessage="Wpisz poprawnie kod"/>
+                    <p:commandButton id="save" value="Zarejestruj" actionListener="#{registercontroller.save}" ajax="false" validateClient="true" update=":form"/> 
+                    <p:messages id="messages" autoUpdate="true" showDetail="true" closable="true" />
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

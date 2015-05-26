@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <h:outputStylesheet name="css/jsfcrud.css"/>
+        </f:facet>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+        <div align="center">
+        <p:dataTable id="Games" var="game" value="#{mainMenuController.saveGames}" selectionMode="single" selection="#{mainMenuController.activeGame}" rowKey="#{game.id}" paginator="false" style="width:180px">
+                    <f:facet name="header">
+                            <h:outputText value="ZapisaneGry" />
+                        </f:facet>
+            <p:ajax event="rowSelect" listener="#{mainMenuController.select()}" update=":form" />
+            <p:ajax event="rowUnselect" listener="#{mainMenuController.unSelect()}" update=":form" />
+                    <p:column> 
+                        <f:facet name="header">
+                            <h:outputText value="Kod gry" />
+                        </f:facet>
+                        <h:outputText value="#{game.gameName}" />
+                    </p:column>
+                    <f:facet name="footer">  
+                        <h:outputText value=""/>
+                        </f:facet>
+            </p:dataTable>
+            <h:button id="newGame" outcome="/Pages/StartPage.xhtml" value="Nowa gra(not implemented yet)"/>
+            <p:commandButton type="submit" id="select" action="#{mainMenuController.load()}" value="Załaduj" disabled="#{mainMenuController.disabled}" onclick="start()" widgetVar="startButton"/>
+            <br /><br />
+    		<p:progressBar id="progressBarClient" widgetVar="pbClient" style="width:300px"/>
+        </div>
+        </h:form>
+        <style type="text/css">
+		.animated .ui-progressbar-value {
+			background-image:
+				url("/showcase/javax.faces.resource/demo/images/pbar-ani.gif.xhtml");
+		}
+		</style>
+		
+			<script type="text/javascript">
+		function start() {
+		    PF('startButton').disable();
+		 
+		    window['progress'] = setInterval(function() {
+		        var pbClient = PF('pbClient'),
+		        oldValue = pbClient.getValue(),
+		        newValue = oldValue + 10;
+		 
+		        pbClient.setValue(pbClient.getValue() + 10);
+		 
+		        if(newValue === 100) {
+		            clearInterval(window['progress']);
+		        }
+		 
+		 
+		    }, 1000);
+		}
+		 
+		function cancel() {
+		    clearInterval(window['progress']);
+		    PF('pbClient').setValue(0);
+		    PF('startButton').enable();
+		}
+	</script>
+    </h:body>
+</html>
+

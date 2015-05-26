@@ -1,0 +1,68 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package pl.mariuszczarny.slask.service.impl;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import pl.mariuszczarny.slask.dao.impl.RefereeDao;
+import pl.mariuszczarny.slask.model.Referee;
+import pl.mariuszczarny.slask.service.IRefereeService;
+
+/**
+ *
+ * @author Mariusz
+ */
+@Service("refereeService")
+@Transactional(readOnly = true)
+public class RefereeService implements IRefereeService{
+
+    @Autowired
+    RefereeDao refereeDao;
+
+    @Override
+    @Transactional(readOnly = false)
+    public void add(Referee referee) {
+        getRefereeDao().add(referee);
+    }
+
+    @Override
+    @Transactional(readOnly = false)
+    public void delete(Referee referee) {
+        getRefereeDao().delete(referee);
+    }
+
+    @Override
+    @Transactional(readOnly = false)
+    public void update(Referee referee) {
+        getRefereeDao().update(referee);
+    }
+
+    @Override
+    public Referee findById(Long id) {
+        return getRefereeDao().findById(id);
+    }
+
+    @Override
+    public List<Referee> findAllByCriteria() {
+        return getRefereeDao().findAllByCriteria();
+    }
+
+    @Override
+    public List<Referee> findRefereeAndPerson() {
+        return getRefereeDao().findRefereeAndPerson();
+    }
+
+    public RefereeDao getRefereeDao() {
+        return refereeDao;
+    }
+
+    public void setRefereeDao(RefereeDao refereeDao) {
+        this.refereeDao = refereeDao;
+    }
+    
+}

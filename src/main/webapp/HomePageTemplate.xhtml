@@ -7,7 +7,7 @@
     <h:head>
         <h:outputStylesheet name="css/home.css"/>
         <meta name="viewport" content="width=device-width"/>
-        <title>Slask Wroclaw Manager 2014 home page</title>
+        <title>Slask Wroclaw Manager 2015 home page</title>
     </h:head>
     <!-- test commit-->
     <h:body>
@@ -16,14 +16,14 @@
             <div id="page">
             <p:menubar>
                 <p:submenu label="O grze">
-                   <p:menuitem value="Tutorial" outcome="/Tutorial"/>
-                   <p:menuitem value="Screeny" outcome="/Screens"/>
-                   <p:menuitem value="Ligi" outcome="/Leagues"/>
+                   <p:menuitem value="Tutorial" outcome="/Pages/MainPages/Tutorial"/>
+                   <p:menuitem value="Screeny" outcome="/Pages/MainPages/Screens"/>
+                   <p:menuitem value="Ligi" outcome="/Pages/MainPages/Leagues"/>
                 </p:submenu>
-                <p:menuitem value="Wyślij e-mail" outcome="/sendMail"/>
-                <p:menuitem value="O Autorach" outcome="/aboutUs" icon="ui-icon-star"/>
+                <p:menuitem value="Wyślij e-mail" outcome="/Pages/MainPages/SendMail"/>
+                <p:menuitem value="O Autorach" outcome="/Pages/MainPages/AboutUs" icon="ui-icon-star"/>
                 <p:menuitem value="Zaloguj się" outcome="/login" target="_blank"/>
-                <p:menuitem value="Zarejestruj się" outcome="/Pages/Register/registerNewUser"/>
+                <p:menuitem value="Zarejestruj się" outcome="/Pages/RegisterPages/RegisterNewUser"/>
  
         <f:facet name="options">
             <p:inputText style="margin-right:10px" placeholder="Wyszukaj(not implemented)"/>

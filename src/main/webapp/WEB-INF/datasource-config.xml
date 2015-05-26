@@ -31,7 +31,7 @@
         <property name="dataSource" ref="DataSource" />
         <property name="packagesToScan">
             <list>
-                <value>pl.mariuszczarny.slask2014.model</value>
+                <value>pl.mariuszczarny.slask.model</value>
             </list>
         </property>
             

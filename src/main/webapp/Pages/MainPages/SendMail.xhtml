@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+           <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="/HomePageTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:panelGrid>
+                    <h:outputText value="Adres" />
+                    <p:inputText value="#{emailSenderController.address}" size="100" required="true" requiredMessage="Wprowadź swój adres e-mail" />
+                    <h:outputText value="Temat" />
+                    <p:inputText value="#{emailSenderController.title}" size="100" required="true" requiredMessage="Wpisz temat"/>
+                    <h:outputText value="Wiadomość" />
+                    <p:inputTextarea value="#{emailSenderController.message}" rows="10"
+                                     cols="100" required="true" requiredMessage="Brak treści przesłanej poczty"/>
+                </h:panelGrid>
+                <p:commandButton value="Wyślij"
+                                 actionListener="#{emailSenderController.sendMail()}" validateClient="true" update=":form"/>
+                <p:messages autoUpdate="true" closable="true"/>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
