@@ -12,7 +12,13 @@
         <ui:composition template="/HomePageTemplate.xhtml">
 
             <ui:define name="content">
-                <h:outputText value="Witamy na stronie głównej SlaskManager 2014"/>
+                <h:outputText value="Pierwsze szkice (wykonane przez Luizę):"/>
+                
+            <p:galleria value="#{galleriaController.images}" var="image" panelWidth="500" panelHeight="313" showCaption="true">
+                <p:graphicImage value="/resources/images/icons/#{image}" width="500" height="313" alt="Image Description for #{image}" title="#{image}"/>
+            </p:galleria>  
+                    
+              
             </ui:define>
 
         </ui:composition>
