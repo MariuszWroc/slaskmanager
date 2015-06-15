@@ -16,7 +16,7 @@ and open the template in the editor.
         </f:facet>
     </h:head>
     <h:body>
-        <ui:composition template="/MainPageTemplate.xhtml">
+        <ui:composition template="/Pages/UserPages/MainPageTemplate.xhtml">
             <ui:define name="content">
                 <p:dataTable id="Clubs" var="club" value="#{clubController.clubList}" paginator="false">
                     <f:facet name="header">  

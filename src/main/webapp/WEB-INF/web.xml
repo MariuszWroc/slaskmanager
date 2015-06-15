@@ -7,6 +7,19 @@
          id="WebApp_ID" version="2.5">
 
     <display-name>Slask Wroclaw Manager 2014</display-name>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/faces/error.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/faces/error.xhtml</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/faces/error.xhtml</location>
+	</error-page>
     
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -81,15 +94,23 @@
     </servlet-mapping>
     
     <!-- Dispatcher Servlet -->    
-<!--    <servlet>
-        <servlet-name>dispatcher</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <load-on-startup>2</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>dispatcher</servlet-name>
-        <url-pattern>/*</url-pattern>
-    </servlet-mapping>-->
+	<servlet>
+	    <servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+	    <servlet-class>
+	        org.springframework.web.servlet.DispatcherServlet
+	    </servlet-class>
+	    <init-param>
+	        <param-name>contextConfigLocation</param-name>
+	        <param-value></param-value>
+	    </init-param>
+	    <load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<!-- Map all /spring requests to the Dispatcher Servlet for handling -->
+	<servlet-mapping>
+	    <servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+	    <url-pattern>/spring/*</url-pattern>
+	</servlet-mapping>
     
     <!-- Spring security filters --> 
     <filter>

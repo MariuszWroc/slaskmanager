@@ -11,5 +11,5 @@ body {
 }
 
 .ui-layout-unit, .ui-layout-unit-content, .ui-layout-doc, .ui-layout-resizer{
-    background-image:url('//localhost:8080/slaskmanager/resources/css/homebackground.jpg');
+    background-image:url("./background/homebackground.jpg");
 }

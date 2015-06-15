@@ -37,10 +37,10 @@
                             WHERE r.idRole = u.role_idRole AND u.login=?;" 
 /> 
 
-<!--			<user-service>
+			<user-service>
 				<user name="user" password="user" authorities="ROLE_USER" />
                                 <user name="admin" password="admin" authorities="ROLE_ADMIN" />
-			</user-service>-->
+			</user-service>
 		</authentication-provider>
 	</authentication-manager>
 

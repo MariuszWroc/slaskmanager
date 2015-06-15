@@ -15,7 +15,7 @@ and open the template in the editor.
         </f:facet>
     </h:head>
     <h:body>
-        <ui:composition template="/MainPageTemplate.xhtml">
+        <ui:composition template="/Pages/UserPages/MainPageTemplate.xhtml">
             <ui:define name="content">
                 <p:panelGrid columns="2">
                 <p:dataTable id="Training" var="training" value="#{trainingController.trainingList}" selectionMode="single" selection="#{trainingController.selectedTraining}" rowKey="#{training.id}" paginator="false" style="width:180px">

@@ -4,7 +4,7 @@ root {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-image:url('//localhost:8080/slaskmanager/resources/css/gamebackground.jpg');
+    background-image:url("./background/gamebackground.jpg");
     //background-color: blue;
     color: #e33b06;
     font-size: small;
