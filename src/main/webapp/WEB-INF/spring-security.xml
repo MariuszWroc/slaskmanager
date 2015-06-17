@@ -5,7 +5,7 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-    <http pattern="/css/**" security="none" />
+    <http pattern="/resources/css/**" security="none" />
 	<http auto-config="true" use-expressions="true">
 		<intercept-url pattern="/resources*/*" access="permitAll"/>
 		<intercept-url pattern="/Pages/AdminPages/**" access="ROLE_ADMIN" />
@@ -37,10 +37,10 @@
                             WHERE r.idRole = u.role_idRole AND u.login=?;" 
 /> 
 
-			<user-service>
+<!--			<user-service>
 				<user name="user" password="user" authorities="ROLE_USER" />
                                 <user name="admin" password="admin" authorities="ROLE_ADMIN" />
-			</user-service>
+			</user-service>-->
 		</authentication-provider>
 	</authentication-manager>
 
