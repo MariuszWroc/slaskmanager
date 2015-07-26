@@ -17,6 +17,7 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <h:form id="form">
+            <p:growl id="growl" showDetail="true" sticky="true" />
         <div align="center">
         <p:dataTable id="Games" var="game" value="#{mainMenuController.saveGames}" selectionMode="single" selection="#{mainMenuController.activeGame}" rowKey="#{game.id}" paginator="false" style="width:180px">
                     <f:facet name="header">
@@ -34,8 +35,10 @@ and open the template in the editor.
                         <h:outputText value=""/>
                         </f:facet>
             </p:dataTable>
-            <h:button id="newGame" outcome="/Pages/StartPage.xhtml" value="Nowa gra(not implemented yet)"/>
+            <h:button id="newGame" outcome="newGame.xhtml" value="Nowa gra"/>
             <p:commandButton type="submit" id="select" action="#{mainMenuController.load()}" value="Załaduj" disabled="#{mainMenuController.disabled}" onclick="start()" widgetVar="startButton"/>
+            <p:commandButton type="submit" id="delete" action="#{mainMenuController.delete()}" value="Usuń zapisany stan gry" disabled="#{mainMenuController.disabled}" widgetVar="deleteButton" update="Games"/>
+            <p:commandButton type="submit" id="backUp" action="#{mainMenuController.backUp()}" value="Zapisz bazę danych" update="growl"/>
             <br /><br />
     		<p:progressBar id="progressBarClient" widgetVar="pbClient" style="width:300px"/>
         </div>

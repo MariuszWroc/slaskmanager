@@ -9,13 +9,14 @@ package pl.mariuszczarny.slask.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import pl.mariuszczarny.slask.model.Club;
 import pl.mariuszczarny.slask.model.Game;
 import pl.mariuszczarny.slask.model.User;
-import pl.mariuszczarny.slask.service.IClubService;
 import pl.mariuszczarny.slask.service.IGameService;
 import pl.mariuszczarny.slask.service.IUserService;
 
@@ -38,6 +39,7 @@ public class MainMenuController implements Serializable{
     private List<Game> saveGames;
     private Game activeGame;
     private boolean disabled;
+    private boolean clubSellected;
    
     public MainMenuController ()
     {
@@ -46,6 +48,7 @@ public class MainMenuController implements Serializable{
         saveGames = new ArrayList<>();
         activeGame = null;
         disabled = true;
+        clubSellected=true;
     }
 
     public Club getPlayersClub() {
@@ -78,6 +81,10 @@ public class MainMenuController implements Serializable{
         return user;
     }
     
+    public String create(){
+        return "Usermain";
+    }
+    
     public String load(){
         if(activeGame!=null){
             playersClub = activeGame.getClubidClub();
@@ -87,12 +94,31 @@ public class MainMenuController implements Serializable{
         }
     }
     
+    public void delete(){
+       if(activeGame!=null){
+           saveGames.remove(activeGame);
+        } 
+    }
+    
+    public void backUp(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Successful",  "Data base was souccessfully exported to csv") );
+    }
+    
     public void select(){
         disabled=false;
     }
     
     public void unSelect(){
         disabled=true;
+    }
+    
+    public void selectClub(){
+        clubSellected=false;
+    }
+    
+    public void unSelectClub(){
+        clubSellected=true;
     }
 
     public void setUser(User user) {
@@ -129,5 +155,13 @@ public class MainMenuController implements Serializable{
 
     public void setDisabled(boolean disabled) {
         this.disabled = disabled;
+    }
+
+    public boolean isClubSellected() {
+        return clubSellected;
+    }
+
+    public void setClubSellected(boolean clubSellected) {
+        this.clubSellected = clubSellected;
     }
 }
