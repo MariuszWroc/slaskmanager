@@ -1,22 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <f:facet name="first">
-            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-            <h:outputStylesheet name="css/home.css"/>
-        </f:facet>
+           <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
     </h:head>
     <h:body>
-        <h:form id="form">
+        <ui:composition template="/Pages/UserPages/MainPageTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form id="form">
             <p:growl id="growl" showDetail="true" sticky="true" />
             <div align="center">
                 <h:panelGrid columns="1">
@@ -41,24 +35,8 @@ and open the template in the editor.
                     <p:commandButton type="submit" id="delete" action="#{mainMenuController.delete()}" value="Usuń zapisany stan gry" disabled="#{mainMenuController.disabled}" widgetVar="deleteButton" update="Games"/>
                     <p:commandButton type="submit" id="backUp" action="#{mainMenuController.saveGame()}" value="Zapisz" disabled="#{!mainMenuController.loadedGame}" update="growl"/>
                     <h:panelGrid columns="2">
-                    <p:commandButton type="submit" id="joinGame" action="#{mainMenuController.joinGame()}" value="Dołącz" update="growl,joinGames"/> <p:inputText value="#{mainMenuController.userName}"/>
+                        <p:commandButton type="submit" id="joinGame" action="#{mainMenuController.saveGame()}" value="Dołącz" update="growl"/> <p:inputText value="#{mainMenuController.userName}"/>
                     </h:panelGrid>
-                    <p:dataTable id="joinGames" var="game" value="#{mainMenuController.joinGames}" selectionMode="single" selection="#{mainMenuController.gameToJoin}" rowKey="#{game.id}" paginator="false" style="width:180px">
-                            <f:facet name="header">
-                                    <h:outputText value="ZapisaneGry" />
-                                </f:facet>
-                    <p:ajax event="rowSelect" listener="#{mainMenuController.select()}" update=":form" />
-                    <p:ajax event="rowUnselect" listener="#{mainMenuController.unSelect()}" update=":form" />
-                            <p:column> 
-                                <f:facet name="header">
-                                    <h:outputText value="Kod gry" />
-                                </f:facet>
-                                <h:outputText value="#{game.gameName}" />
-                            </p:column>
-                            <f:facet name="footer">  
-                                <h:outputText value=""/>
-                                </f:facet>
-                    </p:dataTable>
                 </h:panelGrid>
                 <p:progressBar id="progressBarClient" widgetVar="pbClient" style="width:300px"/>
             </div>
@@ -95,6 +73,8 @@ and open the template in the editor.
 		    PF('startButton').enable();
 		}
 	</script>
+            </ui:define>
+
+        </ui:composition>
     </h:body>
 </html>
-

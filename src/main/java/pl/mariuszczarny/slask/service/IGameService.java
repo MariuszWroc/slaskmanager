@@ -25,4 +25,6 @@ public interface IGameService {
      List<Game> findAllByCriteria();
      
      List<Game> findAllByUser(User user);
+     
+     Long count();
 }

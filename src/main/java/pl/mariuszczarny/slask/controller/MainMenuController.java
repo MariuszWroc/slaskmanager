@@ -40,15 +40,26 @@ public class MainMenuController implements Serializable{
     private Game activeGame;
     private boolean disabled;
     private boolean clubSellected;
+    private boolean loadedGame;
+    private String userName;
+    private List<Game> joinGames;
+    private Game gameToJoin;
+    private User userToJoin;
+    private boolean loadGames;
    
     public MainMenuController ()
     {
+        loadGames = false;
+        loadedGame = false;
         login="";
         playersClub = new Club();
         saveGames = new ArrayList<>();
         activeGame = null;
         disabled = true;
         clubSellected=true;
+        userName="";
+        gameToJoin = null;
+        joinGames = new ArrayList<>();
     }
 
     public Club getPlayersClub() {
@@ -68,6 +79,7 @@ public class MainMenuController implements Serializable{
     }
 
     public List<Game> getSaveGames() {
+        // TODO sprawdzic czy status usera nie jest false
         user = getUserService().findByLogin(login);
         saveGames = getGameService().findAllByUser(user);
         return saveGames;
@@ -82,12 +94,32 @@ public class MainMenuController implements Serializable{
     }
     
     public String create(){
+        boolean status = true;
+        if(loadedGame){
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Fail",  "Nie można stworzyć gry proszę się najpierw wylogować"));
+            return null;
+        }else{
+            return create(status);
+        }
+    }
+    
+    public String create(boolean status){
+        activeGame = new Game();
+        activeGame.setId(generateId());
+//        activeGame.setClubidClub(playersClub);
+        activeGame.setGameCode(11);
+        activeGame.setGameName("lololololo123");
+        activeGame.setUseridUser(user);
+        activeGame.setUserStatus(status);
+        gameService.add(activeGame);   
         return "Usermain";
     }
     
     public String load(){
         if(activeGame!=null){
             playersClub = activeGame.getClubidClub();
+            loadedGame=true;
             return "Usermain";
         }else{
             return null;
@@ -96,13 +128,19 @@ public class MainMenuController implements Serializable{
     
     public void delete(){
        if(activeGame!=null){
-           saveGames.remove(activeGame);
+          gameService.delete(activeGame);
         } 
     }
     
-    public void backUp(){
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Successful",  "Data base was souccessfully exported to csv") );
+    public void saveGame(){
+        if(activeGame!=null){
+            //TODO: należy ustawić aktualną datę i ją wyświetlić
+            gameService.update(activeGame);
+        }
+    }
+    
+    public String joinGame(){
+       return create(false);
     }
     
     public void select(){
@@ -163,5 +201,45 @@ public class MainMenuController implements Serializable{
 
     public void setClubSellected(boolean clubSellected) {
         this.clubSellected = clubSellected;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public boolean isLoadedGame() {
+        return loadedGame;
+    }
+
+    public void setLoadedGame(boolean loadedGame) {
+        this.loadedGame = loadedGame;
+    }
+    
+     private Long generateId() {
+        return gameService.count()+1L;
+    }
+
+    public List<Game> getJoinGames() {
+        userToJoin = getUserService().findByLogin(userName);
+        if(userToJoin!=null){
+            joinGames = getGameService().findAllByUser(userToJoin);
+        }
+        return joinGames;
+    }
+
+    public void setJoinGames(List<Game> joinGames) {
+        this.joinGames = joinGames;
+    }
+
+    public Game getGameToJoin() {
+        return gameToJoin;
+    }
+
+    public void setGameToJoin(Game gameToJoin) {
+        this.gameToJoin = gameToJoin;
     }
 }

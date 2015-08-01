@@ -65,4 +65,8 @@ public class GameService implements IGameService{
         this.gameDao = gameDao;
     }
 
+    @Override
+    public Long count(){
+        return getGameDao().count();
+    }
 }
