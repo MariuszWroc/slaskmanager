@@ -14,6 +14,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.springframework.dao.DataAccessException;
+import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Contract;
 import pl.mariuszczarny.slask.model.Person;
 import pl.mariuszczarny.slask.model.Player;
@@ -203,7 +204,7 @@ public class PlayerController implements Serializable {
              player.setTechnique(technique);
              player.setWeight(weight);
             getPlayerService().add(player);
-            return SUCCESS;
+            return StringConstants.SAVE_SUCCESS.getValue();
         } catch (DataAccessException e) {
             e.printStackTrace();
         }   

@@ -12,6 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.springframework.dao.DataAccessException;
+import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Finance;
 import pl.mariuszczarny.slask.service.IFinanceService;
 
@@ -109,7 +110,7 @@ public class FinanceController implements Serializable {
             finance.setTransferBudget(transferBudget);
             finance.setWageBudget(wageBudget);
             getFinanceService().add(finance);
-            return SUCCESS;
+            return StringConstants.SAVE_SUCCESS.getValue();
         } catch (DataAccessException e) {
             e.printStackTrace();
         }

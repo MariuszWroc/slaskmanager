@@ -10,7 +10,6 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import pl.mariuszczarny.slask.model.Game;
-import pl.mariuszczarny.slask.model.User;
 
 /**
  *

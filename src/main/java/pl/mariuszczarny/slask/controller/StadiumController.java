@@ -13,6 +13,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.springframework.dao.DataAccessException;
+import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Stadium;
 import pl.mariuszczarny.slask.service.IStadiumService;
 
@@ -108,7 +109,7 @@ public class StadiumController implements Serializable {
              stadium.setStadiumName(stadiumName);
              stadium.setYearBuild(yearBuild);
             getStadiumService().add(stadium);
-            return SUCCESS;
+            return StringConstants.SAVE_SUCCESS.getValue();
         } catch (DataAccessException e) {
             e.printStackTrace();
         }   

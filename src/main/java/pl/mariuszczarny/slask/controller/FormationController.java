@@ -12,6 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.springframework.dao.DataAccessException;
+import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Formation;
 import pl.mariuszczarny.slask.model.Tactic;
 import pl.mariuszczarny.slask.service.IFormationService;
@@ -99,7 +100,7 @@ public class FormationController implements Serializable {
              formation.setMidfieldNumber(midfieldNumber);
             // formation.setTacticidTactic(tacticidTactic);
             getFormationService().add(formation);
-            return SUCCESS;
+            return StringConstants.SAVE_SUCCESS.getValue();
         } catch (DataAccessException e) {
             e.printStackTrace();
         }   

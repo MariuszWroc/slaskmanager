@@ -15,6 +15,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import org.springframework.dao.DataAccessException;
+import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Club;
 import pl.mariuszczarny.slask.model.Coach;
 import pl.mariuszczarny.slask.model.Finance;
@@ -180,7 +181,7 @@ public class ClubController implements Serializable {
              club.setYearFound(yearFound);
              club.setYouth(youth);
             getClubService().add(club);
-            return SUCCESS;
+            return StringConstants.SAVE_SUCCESS.getValue();
         } catch (DataAccessException e) {
             e.printStackTrace();
         }   

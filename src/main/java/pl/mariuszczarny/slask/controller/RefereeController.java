@@ -12,6 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.springframework.dao.DataAccessException;
+import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Person;
 import pl.mariuszczarny.slask.model.Referee;
 import pl.mariuszczarny.slask.service.IPersonService;
@@ -90,7 +91,7 @@ public class RefereeController implements Serializable {
              referee.setPunishing(punishing);
              referee.setRefereeing(refereeing);
             getRefereeService().add(referee);
-            return SUCCESS;
+            return StringConstants.SAVE_SUCCESS.getValue();
         } catch (DataAccessException e) {
             e.printStackTrace();
         }   

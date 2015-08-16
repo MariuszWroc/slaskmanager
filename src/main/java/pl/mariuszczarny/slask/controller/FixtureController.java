@@ -12,6 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.springframework.dao.DataAccessException;
+import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Fixture;
 import pl.mariuszczarny.slask.model.Tournament;
 import pl.mariuszczarny.slask.service.IFixtureService;
@@ -85,7 +86,7 @@ public class FixtureController implements Serializable {
             //fixture.setTournamentidTournament(tournamentidTournament);
             fixture.setSeasonYear(seasonYear);
             getFixtureService().add(fixture);
-            return SUCCESS;
+            return StringConstants.SAVE_SUCCESS.getValue();
         } catch (DataAccessException e) {
             e.printStackTrace();
         }

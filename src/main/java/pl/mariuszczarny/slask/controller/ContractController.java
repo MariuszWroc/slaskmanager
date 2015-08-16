@@ -14,6 +14,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.springframework.dao.DataAccessException;
+import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Club;
 import pl.mariuszczarny.slask.model.Contract;
 import pl.mariuszczarny.slask.model.Player;
@@ -107,7 +108,7 @@ public class ContractController implements Serializable {
             // contract.setPlayeridPlayer(playeridPlayer);
              contract.setWage(wage);
             getContractService().add(contract);
-            return SUCCESS;
+            return StringConstants.SAVE_SUCCESS.getValue();
         } catch (DataAccessException e) {
             e.printStackTrace();
         }   

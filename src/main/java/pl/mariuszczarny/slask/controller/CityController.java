@@ -12,6 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.springframework.dao.DataAccessException;
+import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.City;
 import pl.mariuszczarny.slask.service.ICityService;
 
@@ -85,7 +86,7 @@ public class CityController implements Serializable {
             city.setId((long)getCityService().findAllByCriteria().size()+1); 
             city.setCityName(cityName); 
             getCityService().add(city); 
-            return SUCCESS;
+            return StringConstants.SAVE_SUCCESS.getValue();
         } catch (DataAccessException e) {
             e.printStackTrace();
         }   

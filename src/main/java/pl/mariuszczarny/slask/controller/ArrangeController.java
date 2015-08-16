@@ -13,6 +13,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.springframework.dao.DataAccessException;
+import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Arrange;
 import pl.mariuszczarny.slask.model.Fixture;
 import pl.mariuszczarny.slask.model.Referee;
@@ -94,7 +95,7 @@ public class ArrangeController implements Serializable {
             //arrange.setFixtureidFixture(fixtureidFixture);
             //arrange.setRefereeidReferee(refereeidReferee);
             getArrangeService().add(arrange);
-            return SUCCESS;
+            return StringConstants.SAVE_SUCCESS.getValue();
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
