@@ -6,14 +6,18 @@
 
 package pl.mariuszczarny.slask.controller;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
 import pl.mariuszczarny.slask.model.Club;
 import pl.mariuszczarny.slask.model.Game;
 import pl.mariuszczarny.slask.model.User;
@@ -26,7 +30,7 @@ import pl.mariuszczarny.slask.service.IUserService;
  */
 @ManagedBean(name = "mainMenuController")
 @SessionScoped
-public class MainMenuController implements Serializable{
+public class MainMenuController  implements Serializable{
     
     @ManagedProperty(value = "#{gameService}")
     IGameService gameService;
@@ -94,6 +98,7 @@ public class MainMenuController implements Serializable{
     }
     
     public String create(){
+        RequestContext.getCurrentInstance().closeDialog("selectClub");
         boolean status = true;
         if(loadedGame){
             FacesContext context = FacesContext.getCurrentInstance();
@@ -112,8 +117,20 @@ public class MainMenuController implements Serializable{
         activeGame.setGameName("lololololo123");
         activeGame.setUseridUser(user);
         activeGame.setUserStatus(status);
-        gameService.add(activeGame);   
+        gameService.add(activeGame);
         return "Usermain";
+    }
+    
+    public void redirect(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("Usermain.xhtml"); 
+        } catch (IOException ex) {
+            Logger.getLogger(MainMenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void newGameHandle(){
+        RequestContext.getCurrentInstance().openDialog("selectClub");
     }
     
     public String load(){
@@ -139,7 +156,12 @@ public class MainMenuController implements Serializable{
         }
     }
     
+    public void openJoinDialog(){
+        RequestContext.getCurrentInstance().openDialog("joinGameDialog");
+    }
+    
     public String joinGame(){
+       RequestContext.getCurrentInstance().closeDialog("joinGameDialog");
        return create(false);
     }
     

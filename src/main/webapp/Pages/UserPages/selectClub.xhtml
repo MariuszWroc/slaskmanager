@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Wybierz klub</title>
+                <style type="text/css">
+            .ui-widget {
+                font-size: 90%;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+                <p:dataTable id="Clubs" var="club" value="#{clubController.clubList}" selectionMode="single" selection="#{mainMenuController.playersClub}" rowKey="#{club.id}" paginator="false" style="width:180px">
+                        <f:facet name="header">
+                                <h:outputText value="Dostępne kluby" />
+                            </f:facet>
+                <p:ajax event="rowSelect" listener="#{mainMenuController.selectClub()}" update=":form" />
+                <p:ajax event="rowUnselect" listener="#{mainMenuController.unSelectClub()}" update=":form" />
+                        <p:column> 
+                            <f:facet name="header">
+                                <h:outputText value="Nazwa klubu" />
+                            </f:facet>
+                            <h:outputText value="#{club.clubName}" />
+                        </p:column>
+                        <f:facet name="footer">  
+                            <h:outputText value=""/>
+                            </f:facet>
+                </p:dataTable>
+                <p:commandButton type="submit" id="select" action="#{mainMenuController.create()}" value="stwórz" disabled="#{mainMenuController.clubSellected}" widgetVar="startButton"/>
+        </h:form>
+    </h:body>
+</html>
+

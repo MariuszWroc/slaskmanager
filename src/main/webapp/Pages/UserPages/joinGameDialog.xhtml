@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Wybierz grę do której chcesz dołączyć</title>
+                <style type="text/css">
+            .ui-widget {
+                font-size: 90%;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+                <p:dataTable id="joinGames" var="game" value="#{mainMenuController.joinGames}" selectionMode="single" selection="#{mainMenuController.gameToJoin}" rowKey="#{game.id}" paginator="false" style="width:180px">
+                            <f:facet name="header">
+                                    <h:outputText value="ZapisaneGry" />
+                                </f:facet>
+                    <p:ajax event="rowSelect" listener="#{mainMenuController.select()}" update=":form" />
+                    <p:ajax event="rowUnselect" listener="#{mainMenuController.unSelect()}" update=":form" />
+                            <p:column> 
+                                <f:facet name="header">
+                                    <h:outputText value="Kod gry" />
+                                </f:facet>
+                                <h:outputText value="#{game.gameName}" />
+                            </p:column>
+                            <f:facet name="footer">  
+                                <h:outputText value=""/>
+                            </f:facet>
+                </p:dataTable>
+                <p:commandButton type="submit" id="select" action="#{mainMenuController.joinGame()}" value="dołącz" disabled="#{mainMenuController.gameToJoin==null}" widgetVar="startButton"/>
+        </h:form>
+    </h:body>
+</html>
+

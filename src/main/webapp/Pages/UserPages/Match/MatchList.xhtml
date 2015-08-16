@@ -17,18 +17,42 @@ and open the template in the editor.
         </h:head>
     <h:body>
         <ui:composition template="/Pages/UserPages/MainPageTemplate.xhtml">
-            <ui:define name="content">                   
-                   <p:dataTable id="Match" var="match" value="#{arrangeController.arrangeList}" paginator="false" >
-                       <f:facet name="header">
-                            <h:outputText value="Data meczu" />
-                        </f:facet>
-                       <p:column> 
-                         <h:outputText value="#{match.arrangeDate}" />
-                    </p:column>
-                       <f:facet name="footer">  
-                        <h:outputText value=""/>
-                        </f:facet>
-                    </p:dataTable>
+            <ui:define name="content">   
+                <p:accordionPanel multiple="true">
+                    <p:tab title="Data meczu">
+                        
+                    </p:tab>
+                    <p:tab title="Taktyka">
+       <!--                <p:dataTable id="Tactic1" var="tactic" value="#{tacticController.tacticList}" selectionMode="single" selection="#{tacticController.selectedTactic}" rowKey="#{tactic.id}" paginator="false" >
+                            <f:facet name="header">
+                                    <h:outputText value="Nazwa taktyki" />
+                                </f:facet>
+                            <p:ajax event="rowSelect" update=":formation" />
+                            <p:ajax event="rowUnselect" update=":formation" />
+                            <p:column>                       
+                                <h:outputText value="#{tactic.tacticName}" />
+                            </p:column>
+                            <f:facet name="footer">  
+                                <h:outputText value=""/>
+                                </f:facet>
+                        </p:dataTable>
+                        
+                        <p:dataTable id="formation" var="formation" value="#{tacticController.selectedTactic.formationList}" paginator="false" >
+                             <f:facet name="header">
+                                    <h:outputText value="Nazwa formacji" />
+                               </f:facet>
+                            <p:column>                      
+                                <h:outputText value="#{formation.formationName}" />
+                            </p:column>
+                            <f:facet name="footer">  
+                                <h:outputText value=""/>
+                                </f:facet>
+                        </p:dataTable>-->
+                    </p:tab>
+                    <p:tab title="Przeciwnik">
+                        
+                    </p:tab>
+                </p:accordionPanel>
             </ui:define>
         </ui:composition>
     </h:body>

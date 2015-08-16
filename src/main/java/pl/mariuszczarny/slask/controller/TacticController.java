@@ -135,12 +135,13 @@ public class TacticController implements Serializable {
         getMessageController().getMessageList().add("pokaż listę taktyk");
         tacticList = new ArrayList<Tactic>();
         tacticList.addAll(getTacticService().findAllByCriteria());
+        getMessageController().getMessageList().add("pokaż listę taktyk i co się gapisz");
         return tacticList;
     }
 
     public void setTacticList(List<Tactic> tacticList) {
         this.tacticList = tacticList;
-    }
+    } 
     
     public void setMessageController(MessageController messageController)
     {
