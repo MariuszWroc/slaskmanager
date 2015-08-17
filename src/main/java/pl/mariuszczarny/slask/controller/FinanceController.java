@@ -36,6 +36,7 @@ public class FinanceController implements Serializable {
     private final static String ERROR = "zapisuje";
     
     List<Finance> financeList;
+    List<Finance> leagueFinanceList;
     Finance selectedFinance;
     private Long id;
     private Integer budget;
@@ -241,5 +242,17 @@ public class FinanceController implements Serializable {
 
     public void setMenuController(MainMenuController menuController) {
         this.menuController = menuController;
+    }
+
+    public List<Finance> getLeagueFinanceList() {
+        getMessageController().getMessageList().add("pokaż listę finansów");
+        leagueFinanceList = new ArrayList<Finance>();
+        leagueFinanceList.add(getMenuController().getSellectedClub().getFinanceidFinance());
+//        financeList.addAll(getFinanceService().findAllByCriteria());
+        return leagueFinanceList;
+    }
+
+    public void setLeagueFinanceList(List<Finance> leagueFinanceList) {
+        this.leagueFinanceList = leagueFinanceList;
     }
 }

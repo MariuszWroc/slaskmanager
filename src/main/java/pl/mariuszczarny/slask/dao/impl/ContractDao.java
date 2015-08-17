@@ -18,8 +18,8 @@ import pl.mariuszczarny.slask.model.Contract;
 @Repository
 public class ContractDao extends GenericExtendedDao<Contract> {
 
-    public List<Contract> findByClub(Club club) {
-       String hql = "FROM Contract C WHERE C.clubidClub =" + club.getId();
+    public List<Contract> findByClub(Long id) {
+       String hql = "FROM Contract C WHERE C.clubidClub =" + id;
        Query query = getSession().createQuery(hql);
        List Contracts = query.list();
        return Contracts;

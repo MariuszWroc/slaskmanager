@@ -63,8 +63,7 @@ public class ContractService implements IContractService{
     }
 
     @Override
-    public List<Contract> findByClub(Club club) {
-        return getContractDao().findByClub(club);
+    public List<Contract> findByClub(Long id) {
+        return getContractDao().findByClub(id);
     }
-    
 }

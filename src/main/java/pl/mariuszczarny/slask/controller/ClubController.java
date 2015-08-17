@@ -5,6 +5,7 @@
  */
 package pl.mariuszczarny.slask.controller;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import org.springframework.dao.DataAccessException;
@@ -201,6 +203,12 @@ public class ClubController implements Serializable {
         
         //clubList.addAll(getClubService().findAllByCriteria());
         return clubList;
+    }
+    
+    public void onRowSelect(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("leagueDetails.xhtml");                    
+        } catch (IOException ex) {}
     }
 
     public void setClubList(DataModel<Club> clubList) {

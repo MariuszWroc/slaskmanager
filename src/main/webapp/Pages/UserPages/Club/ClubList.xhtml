@@ -18,10 +18,14 @@ and open the template in the editor.
     <h:body>
         <ui:composition template="/Pages/UserPages/MainPageTemplate.xhtml">
             <ui:define name="content">
-                <p:dataTable id="Clubs" var="club" value="#{clubController.clubList}" paginator="false">
+                <p:dataTable id="Clubs" var="club" value="#{clubController.clubList}" 
+                             selectionMode="single" selection="#{mainMenuController.sellectedClub}"
+                             rowKey="#{club.id}" paginator="false">
                     <f:facet name="header">  
                         <h:outputText value="Liga"/>
                         </f:facet>
+                    <p:ajax event="rowSelect" listener="#{clubController.onRowSelect}" update=":form" />
+                    <p:ajax event="rowUnselect" update=":form" />
                     <p:column style="width:2%">  
                         <h:outputText value="#{clubController.clubList.rowIndex + 1}" />
                      </p:column> 1

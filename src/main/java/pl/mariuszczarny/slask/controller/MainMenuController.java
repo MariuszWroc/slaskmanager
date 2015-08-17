@@ -39,6 +39,8 @@ public class MainMenuController  implements Serializable{
     
     private String login;
     private Club playersClub;
+    private Club sellectedClub;
+    private Long awayId;
     private User user;
     private List<Game> saveGames;
     private Game activeGame;
@@ -57,6 +59,7 @@ public class MainMenuController  implements Serializable{
         loadedGame = false;
         login="";
         playersClub = new Club();
+        sellectedClub = new Club();
         saveGames = new ArrayList<>();
         activeGame = null;
         disabled = true;
@@ -64,6 +67,7 @@ public class MainMenuController  implements Serializable{
         userName="";
         gameToJoin = null;
         joinGames = new ArrayList<>();
+        awayId = 0L;
     }
 
     public Club getPlayersClub() {
@@ -263,5 +267,21 @@ public class MainMenuController  implements Serializable{
 
     public void setGameToJoin(Game gameToJoin) {
         this.gameToJoin = gameToJoin;
+    }
+
+    public Long getAwayId() {
+        return awayId;
+    }
+
+    public void setAwayId(Long awayId) {
+        this.awayId = awayId;
+    }
+
+    public Club getSellectedClub() {
+        return sellectedClub;
+    }
+
+    public void setSellectedClub(Club sellectedClub) {
+        this.sellectedClub = sellectedClub;
     }
 }

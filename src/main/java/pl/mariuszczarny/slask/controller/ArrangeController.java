@@ -5,19 +5,27 @@
  */
 package pl.mariuszczarny.slask.controller;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import org.springframework.dao.DataAccessException;
+import pl.mariuszczarny.slask.controller.utils.Clubs;
 import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Arrange;
+import pl.mariuszczarny.slask.model.Club;
 import pl.mariuszczarny.slask.model.Fixture;
 import pl.mariuszczarny.slask.model.Referee;
 import pl.mariuszczarny.slask.service.IArrangeService;
+import pl.mariuszczarny.slask.service.IClubService;
 import pl.mariuszczarny.slask.service.IFixtureService;
 import pl.mariuszczarny.slask.service.IRefereeService;
 
@@ -37,6 +45,10 @@ public class ArrangeController implements Serializable {
     IFixtureService fixtureService;
     @ManagedProperty(value = "#{messageController}")
     private MessageController messageController;
+    @ManagedProperty(value = "#{mainMenuController}")
+    private MainMenuController mainController;
+    @ManagedProperty(value = "#{clubService}")
+    IClubService clubService;
 
     private final static String SUCCESS = "zapisuje";
     private final static String ERROR = "zapisuje";
@@ -49,6 +61,7 @@ public class ArrangeController implements Serializable {
     Date arrangeDate;
     private Fixture fixtureidFixture;
     private Referee refereeidReferee;
+    Arrange nextMatch;
 
     public ArrangeController() {
         id=0L;
@@ -58,6 +71,22 @@ public class ArrangeController implements Serializable {
         arrangeDate = new Date();
         fixtureidFixture = new Fixture();
         refereeidReferee = new Referee();
+        nextMatch = new Arrange();
+    }
+    
+    @PostConstruct
+    public void init(){
+        nextMatch.setArrangeDate(new Date());
+        if(nextMatch.getClubList()==null){
+            nextMatch.setClubList(new ArrayList<Club>()); 
+        }
+        nextMatch.getClubList().add(getMainController().getPlayersClub());
+        for(Club c:clubService.findAllByCriteria()){
+            if(getMainController().getPlayersClub().getClubName()!=c.getClubName()){
+                nextMatch.getClubList().add(c);
+            }
+        }
+        nextMatch.setRefereeidReferee(refereeService.findAllByCriteria().get(0));
     }
 
     public String prepareEdit() {
@@ -107,6 +136,15 @@ public class ArrangeController implements Serializable {
         arrangeList = new ArrayList<Arrange>();
         arrangeList.addAll(getArrangeService().findAllByCriteria());
         return arrangeList;
+    }
+    
+    public void showAway(){
+//        try {
+//            getMainController().setAwayId(Clubs.getIdByName(nextMatch.getClubList().get(1).getClubName()));
+//            FacesContext.getCurrentInstance().getExternalContext().redirect("/Web Pages/Pages/UserPages/Person/Player/awayPlayers.xhtml");
+//        } catch (IOException ex) {
+//            Logger.getLogger(ArrangeController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     public void setArrangeList(List<Arrange> arrangeList) {
@@ -185,5 +223,38 @@ public class ArrangeController implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Arrange getNextMatch() {
+        // ToDo get next arrange by todays date
+        return nextMatch;
+    }
+
+    public void setNextMatch(Arrange nextMatch) {
+        this.nextMatch = nextMatch;
+    }
+
+    public MainMenuController getMainController() {
+        return mainController;
+    }
+
+    public void setMainController(MainMenuController mainController) {
+        this.mainController = mainController;
+    }
+
+    public IClubService getClubService() {
+        return clubService;
+    }
+
+    public void setClubService(IClubService clubService) {
+        this.clubService = clubService;
+    }
+
+    public Referee getRefereeidReferee() {
+        return refereeidReferee;
+    }
+
+    public void setRefereeidReferee(Referee refereeidReferee) {
+        this.refereeidReferee = refereeidReferee;
     }
 }

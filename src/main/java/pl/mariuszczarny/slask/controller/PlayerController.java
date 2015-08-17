@@ -49,6 +49,7 @@ public class PlayerController implements Serializable {
     private final static String ERROR = "zapisuje";
 
     List<Contract> playerList;
+    private List<Contract> awayPlayerList;
     Contract selectedContract;
     Player selectedPlayer;
     Long personId;
@@ -222,7 +223,7 @@ public class PlayerController implements Serializable {
     public List<Contract> getPlayerList() {
         getMessageController().getMessageList().add("pokaż listę piłkarzy");
         playerList = new ArrayList<Contract>();
-        playerList = getContractService().findByClub(getMenuController().getPlayersClub());
+        playerList = getContractService().findByClub(getMenuController().getPlayersClub().getId());
         return playerList;
     }
 
@@ -527,6 +528,17 @@ public class PlayerController implements Serializable {
 
     public void setSelectedContract(Contract selectedContract) {
         this.selectedContract = selectedContract;
+    }
+
+    public List<Contract> getAwayPlayerList() {
+        getMessageController().getMessageList().add("pokaż listę piłkarzy");
+        awayPlayerList = new ArrayList<Contract>();
+        awayPlayerList = getContractService().findByClub(getMenuController().getAwayId());
+        return awayPlayerList;
+    }
+
+    public void setAwayPlayerList(List<Contract> awayPlayerList) {
+        this.awayPlayerList = awayPlayerList;
     }
     
     

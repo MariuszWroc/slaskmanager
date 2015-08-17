@@ -43,6 +43,7 @@ public class StaffController implements Serializable {
     private final static String ERROR = "zapisuje";
 
     List<Staff> staffList;
+    List<Staff> leagueStaffList;
     Long personId;
     Long clubId;
     Person personToAdd;
@@ -207,6 +208,15 @@ public class StaffController implements Serializable {
     public void setMenuController(MainMenuController menuController) {
         this.menuController = menuController;
     }
-    
-    
+
+    public List<Staff> getLeagueStaffList() {
+        getMessageController().getMessageList().add("pokaż listę personelu");
+        leagueStaffList = new ArrayList<Staff>();
+        leagueStaffList.addAll(getStaffService().findStaffByClub(getMenuController().getSellectedClub()));
+        return leagueStaffList;
+    }
+
+    public void setLeagueStaffList(List<Staff> leagueStaffList) {
+        this.leagueStaffList = leagueStaffList;
+    }
 }

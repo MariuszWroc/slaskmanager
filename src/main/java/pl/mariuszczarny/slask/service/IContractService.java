@@ -24,7 +24,7 @@ public interface IContractService {
 
      Contract findById(Long id);
      
-     List<Contract> findByClub(Club club);
+     List<Contract> findByClub(Long id);
 
      List<Contract> findAllByCriteria();
 }

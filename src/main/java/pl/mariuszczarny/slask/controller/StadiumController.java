@@ -44,6 +44,7 @@ public class StadiumController implements Serializable {
         this.idStadium = idStadium;
     }
     private List<Stadium> stadiumList;
+    private List<Stadium> leagueStadiumList;
     private Stadium selectedStadium;
     private String stadiumName;
     private Integer yearBuild;
@@ -216,5 +217,16 @@ public class StadiumController implements Serializable {
 
     public void setMenuController(MainMenuController menuController) {
         this.menuController = menuController;
+    }
+
+    public List<Stadium> getLeagueStadiumList() {
+        getMessageController().getMessageList().add("pokaż listę stadionów");
+        leagueStadiumList = new ArrayList<Stadium>();
+        leagueStadiumList.add(getMenuController().getSellectedClub().getStadiumidStadium());
+        return leagueStadiumList;
+    }
+
+    public void setLeagueStadiumList(List<Stadium> leagueStadiumList) {
+        this.leagueStadiumList = leagueStadiumList;
     }
 }

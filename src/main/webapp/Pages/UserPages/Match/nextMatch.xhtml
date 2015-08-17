@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <h:outputStylesheet name="css/jsfcrud.css"/>
+            </f:facet>
+        </h:head>
+    <h:body>
+        <ui:composition template="/Pages/UserPages/MainPageTemplate.xhtml">
+            <ui:define name="content">
+                <p:panelGrid columns="1">
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Data meczu "/> <h:outputText value="#{arrangeController.nextMatch.arrangeDate}"/>
+                    </h:panelGrid>
+                <!-- action="newGame.xhtml?faces-redirect=true" -->
+                    <h:panelGrid columns="3">
+                         <p:commandButton value="#{arrangeController.nextMatch.clubList.get(0).getClubName()}"/> <h:outputText value=" przeciw "/> <p:commandButton actionListener="#{arrangeController.showAway}" value="#{arrangeController.nextMatch.clubList.get(1).getClubName()}"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Sędzia "/> <p:commandButton value="#{arrangeController.nextMatch.refereeidReferee.personidPerson.name} #{arrangeController.nextMatch.refereeidReferee.personidPerson.surname}"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Stadion "/> <p:commandButton value="stadion"/>
+                    </h:panelGrid>
+                </p:panelGrid>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

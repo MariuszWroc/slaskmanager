@@ -21,7 +21,7 @@ and open the template in the editor.
             <ui:define name="content">
                 <p:accordionPanel multiple="true">
                     <p:tab title="Podstawowe informacje">
-                        <p:dataTable id="Club" var="club" value="#{mainMenuController.playersClub}" paginator="false">
+                        <p:dataTable id="Club" var="club" value="#{mainMenuController.sellectedClub}" paginator="false">
                             <p:column headerText="Nazwa">
                                     <h:outputText value="#{club.clubName}" />
                             </p:column>
@@ -40,7 +40,7 @@ and open the template in the editor.
                         </p:dataTable>
                     </p:tab>
                     <p:tab title="Najważniejsi Pracownicy">
-                        <p:dataTable id="Staff" var="staff" value="#{staffController.staffList}" paginator="false">
+                        <p:dataTable id="Staff" var="staff" value="#{staffController.leagueStaffList}" paginator="false">
                             <p:column>
                                 <f:facet name="header">
                                     <h:outputText value="Imię" />
@@ -66,7 +66,7 @@ and open the template in the editor.
                     </p:tab>
 
                     <p:tab title="Finanse"> 
-                            <p:dataTable id="finance" var="finance" value="#{financeController.financeList}" paginator="false" >
+                            <p:dataTable id="finance" var="finance" value="#{financeController.leagueFinanceList}" paginator="false" >
                             <p:column>
                                 <f:facet name="header">
                                     <h:outputText value="Budżet" />
@@ -118,7 +118,7 @@ and open the template in the editor.
 
 
                     <p:tab title="Stadion">
-                        <p:dataTable id="Stadium" var="stadium" value="#{stadiumController.stadiumList}" paginator="false">
+                        <p:dataTable id="Stadium" var="stadium" value="#{stadiumController.leagueStadiumList}" paginator="false">
                             <p:column>
                                 <f:facet name="header">
                                     <h:outputText value="Nazwa" />
