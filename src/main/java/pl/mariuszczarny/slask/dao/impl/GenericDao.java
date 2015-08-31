@@ -19,7 +19,7 @@ import pl.mariuszczarny.slask.dao.IGenericDao;
  *
  * @author Mariusz
  */
-public abstract class GenericDao<T> implements IGenericDao<T> {
+public class GenericDao<T> implements IGenericDao<T> {
 
     @Autowired
     private SessionFactory sessionFactory;
