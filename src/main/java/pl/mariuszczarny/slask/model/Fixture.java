@@ -38,7 +38,7 @@ public class Fixture extends AbstractEntity {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idFixture", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
     
     @Column(name = "SeasonYear")

@@ -39,7 +39,7 @@ public class Arrange extends AbstractEntity {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idArrange", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
     
     @Column(name = "ArrangeDate")

@@ -42,7 +42,7 @@ public class Club extends AbstractEntity {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idClub", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
     
     @Column(name = "AttendanceAvg")

@@ -37,7 +37,7 @@ public class Coach extends AbstractEntity{
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idCoach", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
     
     @Column(name = "TacticalKnowledge")

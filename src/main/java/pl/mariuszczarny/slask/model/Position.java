@@ -35,7 +35,7 @@ public class Position extends AbstractEntity{
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idPosition", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
     
     @Column(name = "Goalkeeper")

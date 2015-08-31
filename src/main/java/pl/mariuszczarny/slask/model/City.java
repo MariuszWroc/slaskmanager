@@ -37,7 +37,7 @@ public class City extends AbstractEntity{
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idCity", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
     
     @Size(max = 45)

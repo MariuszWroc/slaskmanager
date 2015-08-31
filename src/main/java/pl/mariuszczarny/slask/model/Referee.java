@@ -37,7 +37,7 @@ public class Referee extends AbstractEntity {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idReferee", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
     
     @Column(name = "Refereeing")

@@ -36,7 +36,7 @@ public class Game extends AbstractEntity {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idGame", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
     
     @Basic(optional = false)

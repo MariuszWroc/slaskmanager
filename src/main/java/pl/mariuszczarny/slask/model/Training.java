@@ -37,7 +37,7 @@ public class Training extends AbstractEntity {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idTraining", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
     
     @Size(max = 45)

@@ -42,7 +42,7 @@ public class Person extends AbstractEntity {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idPerson", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
     
     @Size(max = 45)

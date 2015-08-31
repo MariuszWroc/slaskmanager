@@ -39,7 +39,7 @@ public class Formation extends AbstractEntity {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idFormation", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
     
     @Size(max = 45)

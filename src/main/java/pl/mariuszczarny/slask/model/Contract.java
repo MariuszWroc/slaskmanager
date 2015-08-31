@@ -42,7 +42,7 @@ public class Contract extends AbstractEntity {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idContract", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     
