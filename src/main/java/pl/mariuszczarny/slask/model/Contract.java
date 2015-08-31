@@ -60,11 +60,11 @@ public class Contract extends AbstractEntity {
     @Temporal(TemporalType.DATE)
     private Date dateEnd;
     
-    @JoinColumn(name = "club_idClub", referencedColumnName = "idClub")
+    @JoinColumn(name = "club_idClub", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Club clubidClub;
     
-    @JoinColumn(name = "player_idPlayer", referencedColumnName = "idPlayer")
+    @JoinColumn(name = "player_idPlayer", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Player playeridPlayer;
 

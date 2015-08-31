@@ -64,7 +64,7 @@ public class Coach extends AbstractEntity{
     @Column(name = "SkillRate")
     private Integer skillRate;
     
-    @JoinColumn(name = "person_idPerson", referencedColumnName = "idPerson")
+    @JoinColumn(name = "person_idPerson", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Person personidPerson;
     

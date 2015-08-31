@@ -55,11 +55,11 @@ public class Game extends AbstractEntity {
     @Column(name = "user_status")
     private Boolean userStatus;
     
-    @JoinColumn(name = "club_idClub", referencedColumnName = "idClub")
+    @JoinColumn(name = "club_idClub", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
     private Club clubidClub;
     
-    @JoinColumn(name = "user_idUser", referencedColumnName = "idUser")
+    @JoinColumn(name = "user_data_idUser", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private User useridUser;
 

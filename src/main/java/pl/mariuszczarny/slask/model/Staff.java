@@ -43,11 +43,11 @@ public class Staff extends AbstractEntity {
     @Column(name = "StaffFunction")
     private String staffFunction;
     
-    @JoinColumn(name = "club_idClub", referencedColumnName = "idClub")
+    @JoinColumn(name = "club_idClub", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Club clubidClub;
     
-    @JoinColumn(name = "person_idPerson", referencedColumnName = "idPerson")
+    @JoinColumn(name = "person_idPerson", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Person personidPerson;
 

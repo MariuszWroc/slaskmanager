@@ -44,7 +44,7 @@ public class Fixture extends AbstractEntity {
     @Column(name = "SeasonYear")
     private Integer seasonYear;
     
-    @JoinColumn(name = "tournament_idTournament", referencedColumnName = "idTournament")
+    @JoinColumn(name = "tournament_idTournament", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Tournament tournamentidTournament;
     

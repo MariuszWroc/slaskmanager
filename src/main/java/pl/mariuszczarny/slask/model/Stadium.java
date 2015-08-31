@@ -64,7 +64,7 @@ public class Stadium extends AbstractEntity{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "stadiumidStadium", fetch = FetchType.LAZY)
     private List<Club> clubList;
     
-    @JoinColumn(name = "city_idCity", referencedColumnName = "idCity")
+    @JoinColumn(name = "city_idCity", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private City cityidCity;
 

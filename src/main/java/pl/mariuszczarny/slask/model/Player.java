@@ -118,11 +118,11 @@ public class Player extends AbstractEntity {
     @Column(name = "BestPositionShort")
     private String bestPositionShort;
     
-    @JoinColumn(name = "position_idPosition", referencedColumnName = "idPosition")
+    @JoinColumn(name = "position_idPosition", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Position positionidPosition;
     
-    @JoinColumn(name = "person_idPerson", referencedColumnName = "idPerson")
+    @JoinColumn(name = "person_idPerson", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Person personidPerson;
     

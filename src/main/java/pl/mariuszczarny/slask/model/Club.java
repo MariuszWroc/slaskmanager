@@ -97,8 +97,8 @@ public class Club extends AbstractEntity {
     private Integer redCards;
     
     @JoinTable(name = "club_has_arrange", joinColumns = {
-        @JoinColumn(name = "club_idClub", referencedColumnName = "idClub")}, inverseJoinColumns = {
-        @JoinColumn(name = "arrange_idArrange", referencedColumnName = "idArrange")})
+        @JoinColumn(name = "club_idClub", referencedColumnName = "id")}, inverseJoinColumns = {
+        @JoinColumn(name = "arrange_idArrange", referencedColumnName = "id")})
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Arrange> arrangeList;
     
@@ -108,27 +108,27 @@ public class Club extends AbstractEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "clubidClub", fetch = FetchType.LAZY)
     private List<Staff> staffList;
     
-    @JoinColumn(name = "formation_idFormation", referencedColumnName = "idFormation")
+    @JoinColumn(name = "formation_idFormation", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Formation formationidFormation;
     
-    @JoinColumn(name = "training_idTraining", referencedColumnName = "idTraining")
+    @JoinColumn(name = "training_idTraining", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Training trainingidTraining;
     
-    @JoinColumn(name = "stadium_idStadium", referencedColumnName = "idStadium")
+    @JoinColumn(name = "stadium_idStadium", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Stadium stadiumidStadium;
     
-    @JoinColumn(name = "tournament_idTournament", referencedColumnName = "idTournament")
+    @JoinColumn(name = "tournament_idTournament", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Tournament tournamentidTournament;
     
-    @JoinColumn(name = "finance_idFinance", referencedColumnName = "idFinance")
+    @JoinColumn(name = "finance_idFinance", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Finance financeidFinance;
     
-    @JoinColumn(name = "coach_idCoach", referencedColumnName = "idCoach")
+    @JoinColumn(name = "coach_idCoach", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Coach coachidCoach;
 

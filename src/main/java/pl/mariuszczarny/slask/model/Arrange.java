@@ -49,11 +49,11 @@ public class Arrange extends AbstractEntity {
     @ManyToMany(mappedBy = "arrangeList", fetch = FetchType.LAZY)
     private List<Club> clubList;
     
-    @JoinColumn(name = "fixture_idFixture", referencedColumnName = "idFixture")
+    @JoinColumn(name = "fixture_idFixture", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Fixture fixtureidFixture;
     
-    @JoinColumn(name = "referee_idReferee", referencedColumnName = "idReferee")
+    @JoinColumn(name = "referee_idReferee", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Referee refereeidReferee;
 

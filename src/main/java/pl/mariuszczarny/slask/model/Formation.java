@@ -58,7 +58,7 @@ public class Formation extends AbstractEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "formationidFormation", fetch = FetchType.LAZY)
     private List<Club> clubList;
     
-    @JoinColumn(name = "tactic_idTactic", referencedColumnName = "idTactic")
+    @JoinColumn(name = "tactic_idTactic", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Tactic tacticidTactic;
 

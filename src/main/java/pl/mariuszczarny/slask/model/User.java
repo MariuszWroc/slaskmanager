@@ -67,7 +67,7 @@ public class User extends AbstractEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "useridUser", fetch = FetchType.LAZY)
     private List<Game> gameList;
     
-    @JoinColumn(name = "role_idRole", referencedColumnName = "idRole")
+    @JoinColumn(name = "role_idRole", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Role roleidRole;
 

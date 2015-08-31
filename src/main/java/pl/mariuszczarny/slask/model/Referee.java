@@ -49,7 +49,7 @@ public class Referee extends AbstractEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "refereeidReferee", fetch = FetchType.LAZY)
     private List<Arrange> arrangeList;
     
-    @JoinColumn(name = "person_idPerson", referencedColumnName = "idPerson")
+    @JoinColumn(name = "person_idPerson", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Person personidPerson;
 
