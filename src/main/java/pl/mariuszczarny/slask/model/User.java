@@ -44,11 +44,11 @@ public class User extends AbstractEntity {
     private Long id;
     
     @Size(max = 30)
-    @Column(name = "name")
+    @Column(name = "first_name")
     private String name;
     
     @Size(max = 40)
-    @Column(name = "sname")
+    @Column(name = "second_name")
     private String sname;
     
     @Size(max = 50)

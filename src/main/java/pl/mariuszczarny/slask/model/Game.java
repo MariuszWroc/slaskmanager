@@ -55,6 +55,9 @@ public class Game extends AbstractEntity {
     @Column(name = "user_status")
     private Boolean userStatus;
     
+    @Column(name = "next_turn_wanted")
+    private Boolean nextTurnWanted;
+    
     @JoinColumn(name = "club_idClub", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
     private Club clubidClub;
@@ -95,7 +98,7 @@ public class Game extends AbstractEntity {
         this.sessionId = sessionId;
     }
 
-    public Boolean getUserStatus() {
+    public Boolean isUserStatus() {
         return userStatus;
     }
 
@@ -103,7 +106,15 @@ public class Game extends AbstractEntity {
         this.userStatus = userStatus;
     }
 
-    public Club getClubidClub() {
+    public Boolean isNextTurnWanted() {
+        return nextTurnWanted;
+    }
+
+    public void setNextTurnWanted(Boolean nextTurnWanted) {
+        this.nextTurnWanted = nextTurnWanted;
+    }
+
+        public Club getClubidClub() {
         return clubidClub;
     }
 

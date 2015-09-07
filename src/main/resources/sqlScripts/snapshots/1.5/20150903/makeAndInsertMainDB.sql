@@ -15,15 +15,6 @@ CREATE TABLE IF NOT EXISTS `databaseInstance`.`user_role`(
     PRIMARY KEY (`id`))
     ENGINE = InnoDB;
 
--- -----------------------------------------------------
--- Table `databaseInstance`.`clubs_dictionary`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `databaseInstance`.`clubs_dictionary`(
-    `id` INT(11) NOT NULL,
-    `club_name` VARCHAR(45) NOT NULL,
-    PRIMARY KEY (`id`))
-    ENGINE = InnoDB;
-
 -- -------------------------------------------------------
 -- Table `databaseInstance`.`users`
 -- -------------------------------------------------------
@@ -55,14 +46,14 @@ CREATE TABLE IF NOT EXISTS `databaseInstance`.`game` (
         `game_name` VARCHAR(45) NULL,
 	`user_status` INT(1) NULL DEFAULT 0,
 	`next_turn_wanted` INT(1) NULL DEFAULT 0,
-	`clubs_dictionary_idClub` INT(11) NULL,
+	`club_idClub` INT(11) NULL,
 	`user_data_idUser` INT(11) NOT NULL,
 	PRIMARY KEY (`id`),
-	INDEX `fk_game_clubs_dictionary_idx` (`clubs_dictionary_idClub` ASC),
+	INDEX `fk_game_club_idx` (`club_idClub` ASC),
 	INDEX `fk_game_user_data1_idx` (`user_data_idUser` ASC),
-	CONSTRAINT `fk_game_clubs_dictionary`
-	FOREIGN KEY (`clubs_dictionary_idClub`)
-	REFERENCES `databaseInstance`.`clubs_dictionary` (`id`)
+	CONSTRAINT `fk_game_club`
+	FOREIGN KEY (`club_idClub`)
+	REFERENCES `slaskdb`.`club` (`idClub`)
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION,
 	CONSTRAINT `fk_game_user_data1`
@@ -88,16 +79,6 @@ INSERT INTO `databaseInstance`.`user_role` (`id`, `role_name`) VALUES (3, 'ROLE_
 COMMIT;
 
 -- -----------------------------------------------------
--- Data for table `databaseInstance`.`clubs_dictionary`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `databaseInstance`;
-INSERT INTO `databaseInstance`.`clubs_dictionary` (`id`, `club_name`) VALUES (1, 'Śląsk Wrocław');
-INSERT INTO `databaseInstance`.`clubs_dictionary` (`id`, `club_name`) VALUES (2, 'Legia Warszawa');
-
-COMMIT;
-
--- -----------------------------------------------------
 -- Data for table `databaseInstance`.`user`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -112,7 +93,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `databaseInstance`;
-INSERT INTO `databaseInstance`.`game` (`id`, `game_code`, `session_id`, `game_name`, `user_status`, `next_turn_wanted`, `clubs_dictionary_idClub`, `user_data_idUser`) VALUES (1, '1', '1', 'mariuszGra', 1, 0, 1, 1);
-INSERT INTO `databaseInstance`.`game` (`id`, `game_code`, `session_id`, `game_name`, `user_status`, `next_turn_wanted`, `clubs_dictionary_idClub`, `user_data_idUser`) VALUES (2, '1', '2', 'jacekGra', 0, 0, 2, 2);
+INSERT INTO `databaseInstance`.`game` (`id`, `game_code`, `session_id`, `game_name`, `user_status`, `next_turn_wanted`, `club_idClub`, `user_data_idUser`) VALUES (1, '1', '1', 'mariuszGra', 1, 0, 1, 1);
+INSERT INTO `databaseInstance`.`game` (`id`, `game_code`, `session_id`, `game_name`, `user_status`, `next_turn_wanted`, `club_idClub`, `user_data_idUser`) VALUES (2, '1', '2', 'jacekGra', 0, 0, 2, 2);
 
 COMMIT;

@@ -38,9 +38,8 @@ public class Role extends AbstractEntity {
     @Column(name = "id", nullable = false)
     private Long id;
     
-    @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
+    @Column(name = "role_name")
     private String rolename;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "roleidRole", fetch = FetchType.LAZY)
