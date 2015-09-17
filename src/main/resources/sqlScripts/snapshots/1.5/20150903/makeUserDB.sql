@@ -2,14 +2,14 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-DROP SCHEMA IF EXISTS `databaseInstance` ;
-CREATE SCHEMA IF NOT EXISTS `databaseInstance` DEFAULT CHARACTER SET utf8 ;
-USE `databaseInstance` ;
+DROP SCHEMA IF EXISTS `slaskdb` ;
+CREATE SCHEMA IF NOT EXISTS `slaskdb` DEFAULT CHARACTER SET utf8 ;
+USE `slaskdb` ;
 
 -- -----------------------------------------------------
--- Table `databaseInstance`.`finance`
+-- Table `slaskdb`.`finance`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `databaseInstance`.`finance` (
+CREATE TABLE IF NOT EXISTS `slaskdb`.`finance` (
   `id` INT(11) NOT NULL,
   `Budget` INT(11) NULL,
   `TransferBudget` INT(11) NULL,
@@ -25,9 +25,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `databaseInstance`.`tactic`
+-- Table `slaskdb`.`tactic`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `databaseInstance`.`tactic` (
+CREATE TABLE IF NOT EXISTS `slaskdb`.`tactic` (
   `id` INT(11) NOT NULL,
   `Attack` INT(11) NULL,
   `Marking` INT(11) NULL,
@@ -45,9 +45,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `databaseInstance`.`formation`
+-- Table `slaskdb`.`formation`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `databaseInstance`.`formation` (
+CREATE TABLE IF NOT EXISTS `slaskdb`.`formation` (
   `id` INT(11) NOT NULL,
   `FormationName` VARCHAR(45) NULL,
   `DefendersNumber` INT(1) NULL,
@@ -58,16 +58,16 @@ CREATE TABLE IF NOT EXISTS `databaseInstance`.`formation` (
   INDEX `fk_formation_tactic1_idx` (`tactic_idTactic` ASC),
   CONSTRAINT `fk_formacje_taktyki1`
     FOREIGN KEY (`tactic_idTactic`)
-    REFERENCES `databaseInstance`.`tactic` (`id`)
+    REFERENCES `slaskdb`.`tactic` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `databaseInstance`.`person`
+-- Table `slaskdb`.`person`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `databaseInstance`.`person` (
+CREATE TABLE IF NOT EXISTS `slaskdb`.`person` (
   `id` INT(11) NOT NULL,
   `Name` VARCHAR(45) NULL,
   `Surname` VARCHAR(45) NULL,
@@ -78,9 +78,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `databaseInstance`.`coach`
+-- Table `slaskdb`.`coach`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `databaseInstance`.`coach` (
+CREATE TABLE IF NOT EXISTS `slaskdb`.`coach` (
   `id` INT(11) NOT NULL,
   `TacticalKnowledge` INT(11) NULL,
   `TreningMental` INT(11) NULL,
@@ -95,16 +95,16 @@ CREATE TABLE IF NOT EXISTS `databaseInstance`.`coach` (
   INDEX `fk_trenerzy_osoby1_idx` (`person_idPerson` ASC),
   CONSTRAINT `fk_trenerzy_osoby1`
     FOREIGN KEY (`person_idPerson`)
-    REFERENCES `databaseInstance`.`person` (`id`)
+    REFERENCES `slaskdb`.`person` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `databaseInstance`.`tournament`
+-- Table `slaskdb`.`tournament`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `databaseInstance`.`tournament` (
+CREATE TABLE IF NOT EXISTS `slaskdb`.`tournament` (
   `id` INT(11) NOT NULL,
   `TournamentName` VARCHAR(45) NULL,
   `TournamentReputation` INT(11) NULL,
@@ -115,9 +115,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `databaseInstance`.`city`
+-- Table `slaskdb`.`city`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `databaseInstance`.`city` (
+CREATE TABLE IF NOT EXISTS `slaskdb`.`city` (
   `id` INT(11) NOT NULL,
   `CityName` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
@@ -125,9 +125,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `databaseInstance`.`stadium`
+-- Table `slaskdb`.`stadium`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `databaseInstance`.`stadium` (
+CREATE TABLE IF NOT EXISTS `slaskdb`.`stadium` (
   `id` INT(11) NOT NULL,
   `StadiumName` VARCHAR(45) NULL,
   `SitsNumber` INT(11) NULL,
@@ -140,16 +140,16 @@ CREATE TABLE IF NOT EXISTS `databaseInstance`.`stadium` (
   INDEX `fk_stadium_city1_idx` (`city_idCity` ASC),
   CONSTRAINT `fk_stadiony_miasta1`
     FOREIGN KEY (`city_idCity`)
-    REFERENCES `databaseInstance`.`city` (`id`)
+    REFERENCES `slaskdb`.`city` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `databaseInstance`.`training`
+-- Table `slaskdb`.`training`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `databaseInstance`.`training` (
+CREATE TABLE IF NOT EXISTS `slaskdb`.`training` (
   `id` INT(11) NOT NULL,
   `TrainingName` VARCHAR(45) NULL,
   `Pace` INT(1) NULL,
@@ -169,9 +169,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `databaseInstance`.`club`
+-- Table `slaskdb`.`club`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `databaseInstance`.`club` (
+CREATE TABLE IF NOT EXISTS `slaskdb`.`club` (
   `id` INT(11) NOT NULL,
   `AttendanceAvg` INT(11) NULL,
   `AttendanceMin` INT(11) NULL,
@@ -204,41 +204,41 @@ CREATE TABLE IF NOT EXISTS `databaseInstance`.`club` (
   INDEX `fk_club_formation1_idx` (`formation_idFormation` ASC),
   CONSTRAINT `fk_kluby_trenerzy1`
     FOREIGN KEY (`coach_idCoach`)
-    REFERENCES `databaseInstance`.`coach` (`id`)
+    REFERENCES `slaskdb`.`coach` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_kluby_finanse1`
     FOREIGN KEY (`finance_idFinance`)
-    REFERENCES `databaseInstance`.`finance` (`id`)
+    REFERENCES `slaskdb`.`finance` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_kluby_rozgrywki1`
     FOREIGN KEY (`tournament_idTournament`)
-    REFERENCES `databaseInstance`.`tournament` (`id`)
+    REFERENCES `slaskdb`.`tournament` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_kluby_stadiony1`
     FOREIGN KEY (`stadium_idStadium`)
-    REFERENCES `databaseInstance`.`stadium` (`id`)
+    REFERENCES `slaskdb`.`stadium` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_kluby_trening1`
     FOREIGN KEY (`training_idTraining`)
-    REFERENCES `databaseInstance`.`training` (`id`)
+    REFERENCES `slaskdb`.`training` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_kluby_formacje1`
     FOREIGN KEY (`formation_idFormation`)
-    REFERENCES `databaseInstance`.`formation` (`id`)
+    REFERENCES `slaskdb`.`formation` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `databaseInstance`.`position`
+-- Table `slaskdb`.`position`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `databaseInstance`.`position` (
+CREATE TABLE IF NOT EXISTS `slaskdb`.`position` (
   `id` INT(11) NOT NULL,
   `Goalkeeper` INT(11) NULL,
   `DefenderLeft` INT(11) NULL,
@@ -256,9 +256,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `databaseInstance`.`player`
+-- Table `slaskdb`.`player`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `databaseInstance`.`player` (
+CREATE TABLE IF NOT EXISTS `slaskdb`.`player` (
   `id` INT(11) NOT NULL,
   `CurrentForm` INT(11) NULL,
   `Reputation` INT(11) NULL,
@@ -292,21 +292,21 @@ CREATE TABLE IF NOT EXISTS `databaseInstance`.`player` (
   INDEX `fk_player_position1_idx` (`position_idPosition` ASC),
   CONSTRAINT `fk_pilkarze_osoby1`
     FOREIGN KEY (`person_idPerson`)
-    REFERENCES `databaseInstance`.`person` (`id`)
+    REFERENCES `slaskdb`.`person` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_pilkarze_pozycje1`
     FOREIGN KEY (`position_idPosition`)
-    REFERENCES `databaseInstance`.`position` (`id`)
+    REFERENCES `slaskdb`.`position` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `databaseInstance`.`contract`
+-- Table `slaskdb`.`contract`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `databaseInstance`.`contract` (
+CREATE TABLE IF NOT EXISTS `slaskdb`.`contract` (
   `id` INT(11) NOT NULL,
   `Fee` DECIMAL(10,2) NULL,
   `Wage` DECIMAL(10,2) NULL,
@@ -319,21 +319,21 @@ CREATE TABLE IF NOT EXISTS `databaseInstance`.`contract` (
   INDEX `fk_Contract_club1_idx` (`club_idClub` ASC),
   CONSTRAINT `fk_Kontrakt_pilkarze`
     FOREIGN KEY (`player_idPlayer`)
-    REFERENCES `databaseInstance`.`player` (`id`)
+    REFERENCES `slaskdb`.`player` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Kontrakt_kluby1`
     FOREIGN KEY (`club_idClub`)
-    REFERENCES `databaseInstance`.`club` (`id`)
+    REFERENCES `slaskdb`.`club` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `databaseInstance`.`referee`
+-- Table `slaskdb`.`referee`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `databaseInstance`.`referee` (
+CREATE TABLE IF NOT EXISTS `slaskdb`.`referee` (
   `id` INT(11) NOT NULL,
   `Refereeing` INT(11) NULL,
   `Punishing` INT(11) NULL,
@@ -342,16 +342,16 @@ CREATE TABLE IF NOT EXISTS `databaseInstance`.`referee` (
   INDEX `fk_coach_person1_idx` (`person_idPerson` ASC),
   CONSTRAINT `fk_sedziowie_osoby1`
     FOREIGN KEY (`person_idPerson`)
-    REFERENCES `databaseInstance`.`person` (`id`)
+    REFERENCES `slaskdb`.`person` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `databaseInstance`.`fixture`
+-- Table `slaskdb`.`fixture`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `databaseInstance`.`fixture` (
+CREATE TABLE IF NOT EXISTS `slaskdb`.`fixture` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `SeasonYear` INT(4) NULL,
   `tournament_idTournament` INT(11) NULL,
@@ -359,16 +359,16 @@ CREATE TABLE IF NOT EXISTS `databaseInstance`.`fixture` (
   INDEX `fk_Fixture_tournament1_idx` (`tournament_idTournament` ASC),
   CONSTRAINT `fk_Terminarz_rozgrywki1`
     FOREIGN KEY (`tournament_idTournament`)
-    REFERENCES `databaseInstance`.`tournament` (`id`)
+    REFERENCES `slaskdb`.`tournament` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `databaseInstance`.`arrange`
+-- Table `slaskdb`.`arrange`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `databaseInstance`.`arrange` (
+CREATE TABLE IF NOT EXISTS `slaskdb`.`arrange` (
   `id` INT(11) NOT NULL,
   `ArrangeDate` DATETIME NULL,
   `referee_idReferee` INT(11) NULL,
@@ -378,21 +378,21 @@ CREATE TABLE IF NOT EXISTS `databaseInstance`.`arrange` (
   INDEX `fk_arrange_fixture1_idx` (`fixture_idFixture` ASC),
   CONSTRAINT `fk_Mecz_sedziowie1`
     FOREIGN KEY (`referee_idReferee`)
-    REFERENCES `databaseInstance`.`referee` (`id`)
+    REFERENCES `slaskdb`.`referee` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_mecz_terminarz1`
     FOREIGN KEY (`fixture_idFixture`)
-    REFERENCES `databaseInstance`.`fixture` (`id`)
+    REFERENCES `slaskdb`.`fixture` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `databaseInstance`.`staff`
+-- Table `slaskdb`.`staff`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `databaseInstance`.`staff` (
+CREATE TABLE IF NOT EXISTS `slaskdb`.`staff` (
   `id` INT(11) NOT NULL,
   `StaffFunction` VARCHAR(45) NULL,
   `person_idPerson` INT(11) NULL,
@@ -402,21 +402,21 @@ CREATE TABLE IF NOT EXISTS `databaseInstance`.`staff` (
   INDEX `fk_staff_club1_idx` (`club_idClub` ASC),
   CONSTRAINT `fk_personel_osoby1`
     FOREIGN KEY (`person_idPerson`)
-    REFERENCES `databaseInstance`.`person` (`id`)
+    REFERENCES `slaskdb`.`person` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_personel_kluby1`
     FOREIGN KEY (`club_idClub`)
-    REFERENCES `databaseInstance`.`club` (`id`)
+    REFERENCES `slaskdb`.`club` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `databaseInstance`.`club_has_arrange`
+-- Table `slaskdb`.`club_has_arrange`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `databaseInstance`.`club_has_arrange` (
+CREATE TABLE IF NOT EXISTS `slaskdb`.`club_has_arrange` (
   `club_idClub` INT(11) NOT NULL,
   `ArrangeDate` DATETIME NULL,
   `Describtion` VARCHAR(45) NULL,    
@@ -426,12 +426,12 @@ CREATE TABLE IF NOT EXISTS `databaseInstance`.`club_has_arrange` (
   INDEX `fk_club_has_arrange_club1_idx` (`club_idClub` ASC),
   CONSTRAINT `fk_club_has_arrange_club1`
     FOREIGN KEY (`club_idClub`)
-    REFERENCES `databaseInstance`.`club` (`id`)
+    REFERENCES `slaskdb`.`club` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_club_has_arrange_arrange1`
     FOREIGN KEY (`arrange_idArrange`)
-    REFERENCES `databaseInstance`.`arrange` (`id`)
+    REFERENCES `slaskdb`.`arrange` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

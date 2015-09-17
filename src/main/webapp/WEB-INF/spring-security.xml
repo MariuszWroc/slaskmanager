@@ -29,17 +29,17 @@
             <jdbc-user-service data-source-ref="DataSource"            
                                        users-by-username-query="
                             SELECT login, password, CASE enabled WHEN 1 THEN 'true' ELSE 'false' END 'enabled'
-                            FROM user_data
+                            FROM user
                             WHERE login=?;" 
                                        
-                                       authorities-by-username-query="
+                        authorities-by-username-query="
                             SELECT u.login, r.rolename
-                            FROM user_data u, user_role r
-                            WHERE r.idRole = u.role_idRole AND u.login=?;" 
+                            FROM user u, role r
+                            WHERE r.id = u.role_idRole AND u.login=?;" 
             /> 
 
 <!--            <user-service>
-                    <user name="user" password="user" authorities="ROLE_USER" />
+                    <user name="mariusz" password="123" authorities="ROLE_USER" />
                     <user name="admin" password="admin" authorities="ROLE_ADMIN" />
             </user-service>-->
         </authentication-provider>

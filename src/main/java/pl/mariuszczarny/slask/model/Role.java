@@ -24,10 +24,10 @@ import javax.validation.constraints.Size;
  * @author Mariusz
  */
 @Entity
-@Table(name="user_role")
+@Table(name="role")
 @NamedQueries({
     @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r"),
-    @NamedQuery(name = "Role.findByIdRole", query = "SELECT r FROM Role r WHERE r.id = :idRole"),
+    @NamedQuery(name = "Role.findByIdRole", query = "SELECT r FROM Role r WHERE r.id = :id"),
     @NamedQuery(name = "Role.findByRolename", query = "SELECT r FROM Role r WHERE r.rolename = :rolename")})
 public class Role extends AbstractEntity {
     private static final long serialVersionUID = 1L;
@@ -39,7 +39,7 @@ public class Role extends AbstractEntity {
     private Long id;
     
     @Size(min = 1, max = 45)
-    @Column(name = "role_name")
+    @Column(name = "rolename")
     private String rolename;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "roleidRole", fetch = FetchType.LAZY)

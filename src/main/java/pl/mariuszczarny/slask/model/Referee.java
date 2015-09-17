@@ -29,7 +29,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "referee")
 @NamedQueries({
     @NamedQuery(name = "Referee.findAll", query = "SELECT r FROM Referee r"),
-    @NamedQuery(name = "Referee.findByIdReferee", query = "SELECT r FROM Referee r WHERE r.id = :idReferee")})
+    @NamedQuery(name = "Referee.findByIdReferee", query = "SELECT r FROM Referee r WHERE r.id = :id")})
 public class Referee extends AbstractEntity {
     
     private static final long serialVersionUID = 1L;

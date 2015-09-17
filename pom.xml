@@ -4,7 +4,7 @@
 
     <groupId>pl.mariuszczarny</groupId>
     <artifactId>slask2015</artifactId>
-    <version>1.5-SNAPSHOT</version>
+    <version>1.6-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>slask2015</name>

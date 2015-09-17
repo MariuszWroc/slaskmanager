@@ -28,7 +28,7 @@ import javax.validation.constraints.Size;
 @Table(name = "city")
 @NamedQueries({
     @NamedQuery(name = "City.findAll", query = "SELECT c FROM City c"),
-    @NamedQuery(name = "City.findByIdCity", query = "SELECT c FROM City c WHERE c.id = :idCity"),
+    @NamedQuery(name = "City.findByIdCity", query = "SELECT c FROM City c WHERE c.id = :id"),
     @NamedQuery(name = "City.findByCityName", query = "SELECT c FROM City c WHERE c.cityName = :cityName")})
 public class City extends AbstractEntity{
     

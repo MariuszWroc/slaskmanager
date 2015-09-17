@@ -27,10 +27,10 @@ import javax.validation.constraints.Size;
  * @author Jacek
  */
 @Entity
-@Table(name = "user_data")
+@Table(name = "user")
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
-    @NamedQuery(name = "User.findByIdUser", query = "SELECT u FROM User u WHERE u.id = :idUser"),
+    @NamedQuery(name = "User.findByIdUser", query = "SELECT u FROM User u WHERE u.id = :id"),
     @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name"),
     @NamedQuery(name = "User.findBySname", query = "SELECT u FROM User u WHERE u.sname = :sname"),
     @NamedQuery(name = "User.findByLogin", query = "SELECT u FROM User u WHERE u.login = :login")})
@@ -44,11 +44,11 @@ public class User extends AbstractEntity {
     private Long id;
     
     @Size(max = 30)
-    @Column(name = "first_name")
+    @Column(name = "name")
     private String name;
     
     @Size(max = 40)
-    @Column(name = "second_name")
+    @Column(name = "sname")
     private String sname;
     
     @Size(max = 50)

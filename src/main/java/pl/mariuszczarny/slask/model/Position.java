@@ -27,7 +27,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "position")
 @NamedQueries({
     @NamedQuery(name = "Position.findAll", query = "SELECT p FROM Position p"),
-    @NamedQuery(name = "Position.findByIdPosition", query = "SELECT p FROM Position p WHERE p.id = :idPosition")})
+    @NamedQuery(name = "Position.findByIdPosition", query = "SELECT p FROM Position p WHERE p.id = :id")})
 public class Position extends AbstractEntity{
     
     private static final long serialVersionUID = 1L;

@@ -30,7 +30,7 @@ import javax.validation.constraints.Size;
 @Table(name = "player")
 @NamedQueries({
     @NamedQuery(name = "Player.findAll", query = "SELECT p FROM Player p"),
-    @NamedQuery(name = "Player.findByIdPlayer", query = "SELECT p FROM Player p WHERE p.id = :idPlayer")})
+    @NamedQuery(name = "Player.findByIdPlayer", query = "SELECT p FROM Player p WHERE p.id = :id")})
 public class Player extends AbstractEntity {
     
     private static final long serialVersionUID = 1L;

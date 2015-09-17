@@ -27,7 +27,7 @@ import javax.validation.constraints.Size;
 @Table(name = "staff")
 @NamedQueries({
     @NamedQuery(name = "Staff.findAll", query = "SELECT s FROM Staff s"),
-    @NamedQuery(name = "Staff.findByIdStaff", query = "SELECT s FROM Staff s WHERE s.id = :idStaff"),
+    @NamedQuery(name = "Staff.findByIdStaff", query = "SELECT s FROM Staff s WHERE s.id = :id"),
     @NamedQuery(name = "Staff.findByStaffFunction", query = "SELECT s FROM Staff s WHERE s.staffFunction = :staffFunction")})
 public class Staff extends AbstractEntity {
     

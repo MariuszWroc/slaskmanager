@@ -29,7 +29,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "coach")
 @NamedQueries({
     @NamedQuery(name = "Coach.findAll", query = "SELECT c FROM Coach c"),
-    @NamedQuery(name = "Coach.findByIdCoach", query = "SELECT c FROM Coach c WHERE c.id = :idCoach")})
+    @NamedQuery(name = "Coach.findByIdCoach", query = "SELECT c FROM Coach c WHERE c.id = :id")})
 public class Coach extends AbstractEntity{
     
     private static final long serialVersionUID = 1L;

@@ -29,7 +29,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "fixture")
 @NamedQueries({
     @NamedQuery(name = "Fixture.findAll", query = "SELECT f FROM Fixture f"),
-    @NamedQuery(name = "Fixture.findByIdFixture", query = "SELECT f FROM Fixture f WHERE f.id = :idFixture"),
+    @NamedQuery(name = "Fixture.findByIdFixture", query = "SELECT f FROM Fixture f WHERE f.id = :id"),
     @NamedQuery(name = "Fixture.findBySeasonYear", query = "SELECT f FROM Fixture f WHERE f.seasonYear = :seasonYear")})
 public class Fixture extends AbstractEntity {
     

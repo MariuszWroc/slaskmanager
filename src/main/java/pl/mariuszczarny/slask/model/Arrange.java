@@ -31,7 +31,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "arrange")
 @NamedQueries({
     @NamedQuery(name = "Arrange.findAll", query = "SELECT a FROM Arrange a"),
-    @NamedQuery(name = "Arrange.findByIdArrange", query = "SELECT a FROM Arrange a WHERE a.id = :idArrange")})
+    @NamedQuery(name = "Arrange.findByIdArrange", query = "SELECT a FROM Arrange a WHERE a.id = :id")})
 public class Arrange extends AbstractEntity {
     
     private static final long serialVersionUID = 1L;

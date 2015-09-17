@@ -27,7 +27,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "finance")
 @NamedQueries({
     @NamedQuery(name = "Finance.findAll", query = "SELECT f FROM Finance f"),
-    @NamedQuery(name = "Finance.findByIdFinance", query = "SELECT f FROM Finance f WHERE f.id = :idFinance")})
+    @NamedQuery(name = "Finance.findByIdFinance", query = "SELECT f FROM Finance f WHERE f.id = :id")})
 public class Finance extends AbstractEntity{
     
     private static final long serialVersionUID = 1L;

@@ -17,7 +17,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpSession;
 import org.springframework.security.core.context.SecurityContextHolder;
 import pl.mariuszczarny.slask.controller.MainMenuController;
 

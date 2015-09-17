@@ -30,7 +30,7 @@ import javax.validation.constraints.Size;
 @Table(name = "formation")
 @NamedQueries({
     @NamedQuery(name = "Formation.findAll", query = "SELECT f FROM Formation f"),
-    @NamedQuery(name = "Formation.findByIdFormation", query = "SELECT f FROM Formation f WHERE f.id = :idFormation"),
+    @NamedQuery(name = "Formation.findByIdFormation", query = "SELECT f FROM Formation f WHERE f.id = :id"),
     @NamedQuery(name = "Formation.findByFormationName", query = "SELECT f FROM Formation f WHERE f.formationName = :formationName")})
 public class Formation extends AbstractEntity {
     

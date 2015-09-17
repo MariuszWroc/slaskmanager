@@ -26,7 +26,7 @@ import javax.validation.constraints.Size;
 @Table(name = "game")
 @NamedQueries({
     @NamedQuery(name = "Game.findAll", query = "SELECT g FROM Game g"),
-    @NamedQuery(name = "Game.findByIdGame", query = "SELECT g FROM Game g WHERE g.id = :idGame"),
+    @NamedQuery(name = "Game.findByIdGame", query = "SELECT g FROM Game g WHERE g.id = :id"),
     @NamedQuery(name = "Game.findByGameCode", query = "SELECT g FROM Game g WHERE g.gameCode = :gameCode"),
     @NamedQuery(name = "Game.findBySessionId", query = "SELECT g FROM Game g WHERE g.sessionId = :sessionId"),
     @NamedQuery(name = "Game.findByUserStatus", query = "SELECT g FROM Game g WHERE g.userStatus = :userStatus")})
@@ -62,7 +62,7 @@ public class Game extends AbstractEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     private Club clubidClub;
     
-    @JoinColumn(name = "user_data_idUser", referencedColumnName = "id")
+    @JoinColumn(name = "user_idUser", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private User useridUser;
 

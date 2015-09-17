@@ -30,7 +30,7 @@ import javax.validation.constraints.Size;
 @Table(name = "stadium")
 @NamedQueries({
     @NamedQuery(name = "Stadium.findAll", query = "SELECT s FROM Stadium s"),
-    @NamedQuery(name = "Stadium.findByIdStadium", query = "SELECT s FROM Stadium s WHERE s.id = :idStadium"),
+    @NamedQuery(name = "Stadium.findByIdStadium", query = "SELECT s FROM Stadium s WHERE s.id = :id"),
     @NamedQuery(name = "Stadium.findByStadiumName", query = "SELECT s FROM Stadium s WHERE s.stadiumName = :stadiumName")})
 public class Stadium extends AbstractEntity{
     
