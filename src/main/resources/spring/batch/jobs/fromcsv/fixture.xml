@@ -1,0 +1,75 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:batch="http://www.springframework.org/schema/batch" 
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/batch
+	http://www.springframework.org/schema/batch/spring-batch-2.2.xsd
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+ 
+  <bean id="fixture" class="pl.mariuszczarny.slask.model.Fixture" scope="prototype" />
+ 
+  <batch:job id="fixtureExportJob">
+	<batch:step id="step1">
+	  <batch:tasklet>
+		<batch:chunk reader="cvsFixtureReader" writer="mysqlFixtureWriter" processor="itemProcessor"
+			commit-interval="2">
+		</batch:chunk>
+	  </batch:tasklet>
+	</batch:step>
+  </batch:job>
+  
+    <!-- Optional ItemProcessor to perform business logic/filtering on the input records -->
+  <bean id="itemProcessor" class="pl.mariuszczarny.slask.batch.ClubItemProcessor" />
+  
+  <bean id="cvsFixtureReader" class="org.springframework.batch.item.file.FlatFileItemReader">
+ 
+        <property name="encoding" value="UTF-8" />
+	<!-- Read a csv file -->
+	<property name="resource" value="classpath:csv/fixture.csv" />
+ 
+        <property name="lineMapper">
+            <bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+                <!-- split it -->
+                <property name="lineTokenizer">
+                    <bean
+                        class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+                        <property name="delimiter" value="|"/>
+                        <property name="names" value="id, cityName" />
+                    </bean>
+                </property>
+                <property name="fieldSetMapper">   
+                    <!-- return back to reader, rather than a mapped object. -->
+                    <!--
+                   <bean class="org.springframework.batch.item.file.mapping.PassThroughFieldSetMapper" />
+                    --> 
+                    <!-- map to an object -->
+                    <bean
+                        class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper">
+                        <property name="prototypeBeanName" value="fixture" />
+                    </bean>			
+                </property>
+ 
+            </bean>
+        </property>
+ 
+  </bean>
+  
+  <bean id="mysqlFixtureWriter"
+          class="org.springframework.batch.item.database.JdbcBatchItemWriter" scope="step">
+      <property name="dataSource" ref="dataSource" />
+      <property name="sql">
+        <value>
+              <![CDATA[
+                  UPDATE fixture SET cityName = :cityName WHERE id = :id; 
+              ]]>
+          </value>
+      </property>
+      <!-- It will take care matching between object property and sql name parameter -->
+      <property name="itemSqlParameterSourceProvider">
+          <bean
+              class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider" />
+      </property>
+  </bean>
+ 
+</beans>
