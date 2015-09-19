@@ -512,9 +512,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `slaskdb`;
-INSERT INTO `slaskdb`.`tactic` (`id`, `Attack`, `Marking`, `Offside`, `Pressing`, `Tempo`, `PlayWide`, `PlayHigh`, `Flair`, `LongPass`, `PlayToDefenders`, `TacticName`) VALUES (1, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, '442');
-INSERT INTO `slaskdb`.`tactic` (`id`, `Attack`, `Marking`, `Offside`, `Pressing`, `Tempo`, `PlayWide`, `PlayHigh`, `Flair`, `LongPass`, `PlayToDefenders`, `TacticName`) VALUES (2, 16, 12, 15, 17, 8, 18, 13, 9, 13, 11, '352');
-INSERT INTO `slaskdb`.`tactic` (`id`, `Attack`, `Marking`, `Offside`, `Pressing`, `Tempo`, `PlayWide`, `PlayHigh`, `Flair`, `LongPass`, `PlayToDefenders`, `TacticName`) VALUES (3, 8, 18, 7, 16, 11, 15, 9, 6, 8, 15, '451');
+INSERT INTO `slaskdb`.`tactic` (`id`, `Attack`, `Marking`, `Offside`, `Pressing`, `Tempo`, `PlayWide`, `PlayHigh`, `Flair`, `LongPass`, `PlayToDefenders`, `TacticName`) VALUES (1, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, '442 - zrównoważony');
+INSERT INTO `slaskdb`.`tactic` (`id`, `Attack`, `Marking`, `Offside`, `Pressing`, `Tempo`, `PlayWide`, `PlayHigh`, `Flair`, `LongPass`, `PlayToDefenders`, `TacticName`) VALUES (2, 16, 12, 15, 17, 8, 18, 13, 9, 13, 11, '352 - wysoki pressing');
+INSERT INTO `slaskdb`.`tactic` (`id`, `Attack`, `Marking`, `Offside`, `Pressing`, `Tempo`, `PlayWide`, `PlayHigh`, `Flair`, `LongPass`, `PlayToDefenders`, `TacticName`) VALUES (3, 8, 18, 7, 16, 11, 15, 9, 6, 8, 15, '451 - bez pressingu');
 
 COMMIT;
 
@@ -527,6 +527,7 @@ USE `slaskdb`;
 INSERT INTO `slaskdb`.`formation` (`id`, `FormationName`, `DefendersNumber`, `MidfieldNumber`, `ForwardNumber`, `tactic_idTactic`) VALUES (1, '442', 4, 4, 2, 1);
 INSERT INTO `slaskdb`.`formation` (`id`, `FormationName`, `DefendersNumber`, `MidfieldNumber`, `ForwardNumber`, `tactic_idTactic`) VALUES (2, '352', 3, 5, 2, 2);
 INSERT INTO `slaskdb`.`formation` (`id`, `FormationName`, `DefendersNumber`, `MidfieldNumber`, `ForwardNumber`, `tactic_idTactic`) VALUES (3, '451', 4, 5, 1, 3);
+INSERT INTO `slaskdb`.`formation` (`id`, `FormationName`, `DefendersNumber`, `MidfieldNumber`, `ForwardNumber`, `tactic_idTactic`) VALUES (4, '442', 4, 4, 2, 2);
 
 COMMIT;
 

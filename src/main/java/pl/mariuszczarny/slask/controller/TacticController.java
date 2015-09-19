@@ -12,7 +12,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.springframework.dao.DataAccessException;
+import pl.mariuszczarny.slask.model.Formation;
 import pl.mariuszczarny.slask.model.Tactic;
+import pl.mariuszczarny.slask.service.IFormationService;
 import pl.mariuszczarny.slask.service.ITacticService;
 
 /**
@@ -23,6 +25,8 @@ import pl.mariuszczarny.slask.service.ITacticService;
 @SessionScoped
 public class TacticController implements Serializable {
 
+    @ManagedProperty(value = "#{formationService}")
+    IFormationService formationService;
     @ManagedProperty(value = "#{tacticService}")
     ITacticService tacticService;
     @ManagedProperty(value = "#{messageController}")
@@ -30,8 +34,10 @@ public class TacticController implements Serializable {
     
     private final static String SUCCESS = "zapisuje";
     private final static String ERROR = "zapisuje";
+    
+    private boolean firstLoad = true;
 
-    List<Tactic> tacticList;
+    List<Formation> formationList;
     String tacticName;
     Integer attack;
     Integer marking;
@@ -43,12 +49,13 @@ public class TacticController implements Serializable {
     Integer flair;
     Integer longPass;
     Integer playToDefenders;
+    Formation selectedFormation;
     Tactic selectedTactic;
     private Long id;
 
     public TacticController() {
         id=0L;
-        selectedTactic = new Tactic();
+        selectedFormation = new Formation();
         tacticName="";
         attack=0;
         marking=0;
@@ -60,6 +67,7 @@ public class TacticController implements Serializable {
         flair=0;
         longPass=0;
         playToDefenders=0;
+        selectedTactic=new Tactic();
     }
     
     public String prepareEdit() {
@@ -72,12 +80,12 @@ public class TacticController implements Serializable {
     }
     
     public void destroy() {
-        getTacticService().delete(selectedTactic);
+        getFormationService().delete(selectedFormation);
     }
     
     public String update()
     {
-        System.out.println(selectedTactic);
+        System.out.println(selectedFormation);
         try {
             selectedTactic.setId((long)getTacticService().findAllByCriteria().size()+1);
             selectedTactic.setAttack(attack);
@@ -131,16 +139,20 @@ public class TacticController implements Serializable {
         this.tacticService = tacticService;
     }
 
-    public List<Tactic> getTacticList() {
+    public List<Formation> getFormationList() {
         getMessageController().getMessageList().add("pokaż listę taktyk");
-        tacticList = new ArrayList<Tactic>();
-        tacticList.addAll(getTacticService().findAllByCriteria());
+        formationList = new ArrayList<>();
+        formationList.addAll(getFormationService().findAllByCriteria());
+        if(firstLoad){
+            selectedFormation = formationList.get(0);
+            firstLoad = false;
+        }
         getMessageController().getMessageList().add("pokaż listę taktyk i co się gapisz");
-        return tacticList;
+        return formationList;
     }
 
-    public void setTacticList(List<Tactic> tacticList) {
-        this.tacticList = tacticList;
+    public void setFormationList(List<Formation> formationList) {
+        this.formationList = formationList;
     } 
     
     public void setMessageController(MessageController messageController)
@@ -241,12 +253,20 @@ public class TacticController implements Serializable {
         this.playToDefenders = playToDefenders;
     }
 
-    public Tactic getSelectedTactic() {
-        return selectedTactic;
+    public IFormationService getFormationService() {
+        return formationService;
     }
 
-    public void setSelectedTactic(Tactic selectedTactic) {
-        this.selectedTactic = selectedTactic;
+    public void setFormationService(IFormationService formationService) {
+        this.formationService = formationService;
+    }
+
+    public Formation getSelectedFormation() {
+        return selectedFormation;
+    }
+
+    public void setSelectedFormation(Formation selectedFormation) {
+        this.selectedFormation = selectedFormation;
     }
 
     public Long getId() {

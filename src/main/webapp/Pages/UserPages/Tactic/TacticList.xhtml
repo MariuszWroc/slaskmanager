@@ -19,26 +19,26 @@ and open the template in the editor.
         <ui:composition template="/Pages/UserPages/MainPageTemplate.xhtml">
             <ui:define name="content">
                 
-                <p:dataTable id="Tactic" var="tactic" value="#{tacticController.tacticList}" selectionMode="single" selection="#{tacticController.selectedTactic}" rowKey="#{tactic.id}" paginator="false" >
+                <p:dataTable id="formation" var="formation" value="#{tacticController.formationList}" selectionMode="single" selection="#{tacticController.selectedFormation}" rowKey="#{formation.id}" paginator="false" >
                     <f:facet name="header">
-                            <h:outputText value="Nazwa taktyki" />
+                            <h:outputText value="Nazwa formacji" />
                         </f:facet>
-                    <p:ajax event="rowSelect" update=":form:formation" />
-                    <p:ajax event="rowUnselect" update=":form:formation" />
+                    <p:ajax event="rowSelect" update=":form:tactic" />
+                    <p:ajax event="rowUnselect" update=":form:tactic" />
                     <p:column>                       
-                        <h:outputText value="#{tactic.tacticName}" />
+                        <h:outputText value="#{formation.formationName}" />
                     </p:column>
                     <f:facet name="footer">  
                         <h:outputText value=""/>
                         </f:facet>
                 </p:dataTable>
                 
-                <p:dataTable id="formation" var="formation" value="#{tacticController.selectedTactic.formationList}" paginator="false" >
+                <p:dataTable id="tactic" var="tactic" value="#{tacticController.selectedFormation.tacticidTactic}" paginator="false" >
                      <f:facet name="header">
-                            <h:outputText value="Nazwa formacji" />
+                            <h:outputText value="Nazwa taktyki" />
                        </f:facet>
                     <p:column>                      
-                        <h:outputText value="#{formation.formationName}" />
+                        <h:outputText value="#{tactic.tacticName}" />
                     </p:column>
                     <f:facet name="footer">  
                         <h:outputText value=""/>

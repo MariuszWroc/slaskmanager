@@ -20,8 +20,8 @@
             password-parameter="password" />
         <logout delete-cookies="true" logout-success-url="/HomePage.xhtml" invalidate-session="true" />
                 
-        <!-- enable csrf protection -->
-        <!--<csrf/>-->
+        <!-- disable csrf protection -->
+        <csrf disabled="true"/>
     </http>
 
     <authentication-manager>

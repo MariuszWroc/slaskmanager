@@ -7,7 +7,7 @@ root {
 }
 
 .menuPanel tr, .menuPanel td{
-    background-color: transparent !important;
+    background-color: #006400 !important;
     border: none !important;
     color: #FFF;
 }
@@ -51,6 +51,7 @@ table {
     height: 483px !important;
 }
 .ui-layout-unit, .ui-layout-unit-content, .ui-layout-doc, .ui-layout-resizer{
+    border: none !important;
     background-color: transparent !important;
 }
 

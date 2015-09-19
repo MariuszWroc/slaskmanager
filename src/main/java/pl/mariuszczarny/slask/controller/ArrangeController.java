@@ -138,13 +138,14 @@ public class ArrangeController implements Serializable {
         return arrangeList;
     }
     
-    public void showAway(){
-        try {
+    public String showAway(){
+//        try {
             getMainController().setAwayId(Clubs.getIdByName(nextMatch.getClubList().get(1).getClubName()));
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/webapp/Pages/UserPages/Person/Player/awayPlayers.xhtml");
-        } catch (IOException ex) {
-            Logger.getLogger(ArrangeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            //FacesContext.getCurrentInstance().getExternalContext().redirect("/webapp/Pages/UserPages/Person/Player/awayPlayers.xhtml");
+//        } catch (IOException ex) {
+//            Logger.getLogger(ArrangeController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        return "Pages/UserPages/Person/Player/awayPlayers.xhtml?faces-redirect=true";
     }
 
     public void setArrangeList(List<Arrange> arrangeList) {
