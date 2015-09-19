@@ -38,18 +38,20 @@ and open the template in the editor.
                     </p:dataTable>
                     <!--action="newGame.xhtml?faces-redirect=true" 
                         <p:ajax event="dialogReturn" listener="#{dfView.onCarChosen}" update="growl" />-->
-                    <p:commandButton id="newGame" actionListener="#{mainMenuController.newGameHandle}" value="Nowa gra">
-                           <p:ajax event="dialogReturn" listener="#{mainMenuController.redirect}" update="form" />
-                    </p:commandButton>
-                    <p:commandButton type="submit" id="select" action="#{mainMenuController.load()}" value="Załaduj" disabled="#{mainMenuController.disabled}" onclick="start()" widgetVar="startButton"/>
-                    <p:commandButton type="submit" id="delete" action="#{mainMenuController.delete()}" value="Usuń zapisany stan gry" disabled="#{mainMenuController.disabled}" widgetVar="deleteButton" update="Games"/>
-                    <p:commandButton type="submit" id="backUp" action="#{mainMenuController.saveGame()}" value="Zapisz" disabled="#{!mainMenuController.loadedGame}" update="growl"/>
-                    <h:panelGrid columns="2">
-                    <p:commandButton type="submit" id="joinGame" action="#{mainMenuController.openJoinDialog()}" value="Szukaj gier" > 
-                        <p:ajax event="dialogReturn" listener="#{mainMenuController.redirect}" update="form" />
-                    </p:commandButton>
-                    <p:inputText value="#{mainMenuController.userName}"/>
-                    </h:panelGrid>
+                    <p:panelGrid styleClass="panel" columns="1">
+                        <p:commandButton id="newGame" actionListener="#{mainMenuController.newGameHandle}" value="Nowa gra">
+                               <p:ajax event="dialogReturn" listener="#{mainMenuController.redirect}" update="form" />
+                        </p:commandButton>
+                        <p:commandButton type="submit" id="select" action="#{mainMenuController.load()}" value="Załaduj" disabled="#{mainMenuController.disabled}" onclick="start()" widgetVar="startButton"/>
+                        <p:commandButton type="submit" id="delete" action="#{mainMenuController.delete()}" value="Usuń zapisany stan gry" disabled="#{mainMenuController.disabled}" widgetVar="deleteButton" update="Games"/>
+                        <p:commandButton type="submit" id="backUp" action="#{mainMenuController.saveGame()}" value="Zapisz" disabled="#{!mainMenuController.loadedGame}" update="growl"/>
+                        <h:panelGrid columns="2">
+                            <p:commandButton type="submit" id="joinGame" action="#{mainMenuController.openJoinDialog()}" value="Szukaj gier" > 
+                                <p:ajax event="dialogReturn" listener="#{mainMenuController.redirect}" update="form" />
+                            </p:commandButton>
+                            <!--<p:inputText value="#{mainMenuController.userName}"/>-->
+                        </h:panelGrid>
+                    </p:panelGrid>
                 </h:panelGrid>
                 <p:progressBar id="progressBarClient" widgetVar="pbClient" style="width:300px"/>
             </div>
@@ -59,32 +61,32 @@ and open the template in the editor.
 			background-image:
 				url("/showcase/javax.faces.resource/demo/images/pbar-ani.gif.xhtml");
 		}
-		</style>
+        </style>
 		
-			<script type="text/javascript">
-		function start() {
-		    PF('startButton').disable();
-		 
-		    window['progress'] = setInterval(function() {
-		        var pbClient = PF('pbClient'),
-		        oldValue = pbClient.getValue(),
-		        newValue = oldValue + 10;
-		 
-		        pbClient.setValue(pbClient.getValue() + 10);
-		 
-		        if(newValue === 100) {
-		            clearInterval(window['progress']);
-		        }
-		 
-		 
-		    }, 1000);
-		}
-		 
-		function cancel() {
-		    clearInterval(window['progress']);
-		    PF('pbClient').setValue(0);
-		    PF('startButton').enable();
-		}
+	<script type="text/javascript">
+            function start() {
+                PF('startButton').disable();
+
+                window['progress'] = setInterval(function() {
+                    var pbClient = PF('pbClient'),
+                    oldValue = pbClient.getValue(),
+                    newValue = oldValue + 10;
+
+                    pbClient.setValue(pbClient.getValue() + 10);
+
+                    if(newValue === 100) {
+                        clearInterval(window['progress']);
+                    }
+
+
+                }, 1000);
+            }
+
+            function cancel() {
+                clearInterval(window['progress']);
+                PF('pbClient').setValue(0);
+                PF('startButton').enable();
+            }
 	</script>
     </h:body>
 </html>

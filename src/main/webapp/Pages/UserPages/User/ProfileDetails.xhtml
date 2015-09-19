@@ -19,11 +19,11 @@ and open the template in the editor.
     <body>
         <ui:composition template="/Pages/UserPages/MainPageTemplate.xhtml">
             <ui:define name="content"> 
-                <h:panelGrid columns="2">
+                <p:panelGrid styleClass="menuPanel" columns="2">
                     <h:outputText value="Imie" />               <p:inputText value="#{mainMenuController.user.name}"/>
                     <h:outputText value="Nazwisko" />           <p:inputText value="#{mainMenuController.user.sname}"/>
                     <h:outputText value="Login" />              <p:inputText value="#{mainMenuController.user.login}"/>
-                </h:panelGrid>
+                </p:panelGrid>
             </ui:define>
         </ui:composition>
     </body>

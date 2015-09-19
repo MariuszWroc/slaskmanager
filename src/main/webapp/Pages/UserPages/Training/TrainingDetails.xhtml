@@ -17,33 +17,33 @@ and open the template in the editor.
     <h:body>
         <ui:composition template="/Pages/UserPages/MainPageTemplate.xhtml">
             <ui:define name="content">
-                <p:panelGrid columns="2">
-                <p:dataTable id="Training" var="training" value="#{trainingController.trainingList}" selectionMode="single" selection="#{trainingController.selectedTraining}" rowKey="#{training.id}" paginator="false" style="width:180px">
-                    <f:facet name="header">
-                            <h:outputText value="Nazwa treningu" />
+                <p:panelGrid styleClass="inGamePanel" columns="2">
+                    <p:dataTable id="Training" var="training" value="#{trainingController.trainingList}" selectionMode="single" selection="#{trainingController.selectedTraining}" rowKey="#{training.id}" paginator="false" style="width:180px">
+                        <f:facet name="header">
+                                <h:outputText value="Nazwa treningu" />
+                            </f:facet>
+                        <p:ajax event="rowSelect" listener="#{trainingController.onRowSelect}" update=":form:gridTraining" />
+                        <p:ajax event="rowUnselect" listener="#{trainingController.onRowUnselect}" update=":form:gridTraining" />
+                        <p:column>                       
+                            <h:outputText value="#{training.trainingName}" />
+                        </p:column>
+                        <f:facet name="footer">  
+                            <h:outputText value=""/>
+                            </f:facet>
+                    </p:dataTable>  
+
+                    <p:dataGrid var="grid" value="#{trainingController.grid}" columns="3"
+                    rows="12" id="gridTraining">
+
+                        <f:facet name="header">
+                            Atrybuty Treningu
                         </f:facet>
-                    <p:ajax event="rowSelect" listener="#{trainingController.onRowSelect}" update=":form:gridTraining" />
-                    <p:ajax event="rowUnselect" listener="#{trainingController.onRowUnselect}" update=":form:gridTraining" />
-                    <p:column>                       
-                        <h:outputText value="#{training.trainingName}" />
-                    </p:column>
-                    <f:facet name="footer">  
-                        <h:outputText value=""/>
-                        </f:facet>
-                </p:dataTable>  
-                
-                <p:dataGrid var="grid" value="#{trainingController.grid}" columns="3"
-                rows="12" id="gridTraining">
- 
-                    <f:facet name="header">
-                        Atrybuty Treningu
-                    </f:facet>
- 
-                    <p:panel header="#{grid.attributesName}" style="text-align:center">
-                    <p:selectBooleanButton id="value1" value="#{grid.value}" onLabel="Tak" offLabel="Nie" style="width:60px" />
-                    </p:panel>
- 
-                </p:dataGrid>
+
+                        <p:panel header="#{grid.attributesName}" style="text-align:center">
+                        <p:selectBooleanButton id="value1" value="#{grid.value}" onLabel="Tak" offLabel="Nie" style="width:60px" />
+                        </p:panel>
+
+                    </p:dataGrid>
                 </p:panelGrid>
             </ui:define>
         </ui:composition>

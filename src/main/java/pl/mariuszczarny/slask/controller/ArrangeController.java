@@ -82,7 +82,7 @@ public class ArrangeController implements Serializable {
         }
         nextMatch.getClubList().add(getMainController().getPlayersClub());
         for(Club c:clubService.findAllByCriteria()){
-            if(getMainController().getPlayersClub().getClubName()!=c.getClubName()){
+            if(!getMainController().getPlayersClub().getClubName().equals(c.getClubName())){
                 nextMatch.getClubList().add(c);
             }
         }
@@ -139,12 +139,12 @@ public class ArrangeController implements Serializable {
     }
     
     public void showAway(){
-//        try {
-//            getMainController().setAwayId(Clubs.getIdByName(nextMatch.getClubList().get(1).getClubName()));
-//            FacesContext.getCurrentInstance().getExternalContext().redirect("/Web Pages/Pages/UserPages/Person/Player/awayPlayers.xhtml");
-//        } catch (IOException ex) {
-//            Logger.getLogger(ArrangeController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            getMainController().setAwayId(Clubs.getIdByName(nextMatch.getClubList().get(1).getClubName()));
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/webapp/Pages/UserPages/Person/Player/awayPlayers.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(ArrangeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void setArrangeList(List<Arrange> arrangeList) {
