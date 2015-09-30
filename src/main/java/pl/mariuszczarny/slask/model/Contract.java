@@ -132,4 +132,8 @@ public class Contract extends AbstractEntity {
         this.playeridPlayer = playeridPlayer;
     }
     
+    @Override
+    public String toString() {
+        return id + "|" + fee;
+    }
 }

@@ -153,4 +153,8 @@ public class Person extends AbstractEntity {
         this.refereeList = refereeList;
     }
     
+    @Override
+    public String toString() {
+        return id + "|" + name;
+    }
 }

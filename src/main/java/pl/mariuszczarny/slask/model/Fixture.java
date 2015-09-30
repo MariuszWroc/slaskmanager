@@ -91,4 +91,8 @@ public class Fixture extends AbstractEntity {
         this.arrangeList = arrangeList;
     }
     
+    @Override
+    public String toString() {
+        return id + "|" + seasonYear;
+    }
 }

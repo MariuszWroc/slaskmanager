@@ -365,4 +365,8 @@ public class Player extends AbstractEntity {
         return contractList;
     }
     
+    @Override
+    public String toString() {
+        return id + "|" + currentForm;
+    }
 }

@@ -167,4 +167,8 @@ public class Coach extends AbstractEntity{
         this.clubList = clubList;
     }
     
+    @Override
+    public String toString() {
+        return id + "|" + tacticalKnowledge;
+    }
 }

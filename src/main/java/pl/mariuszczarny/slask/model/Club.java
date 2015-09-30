@@ -236,47 +236,47 @@ public class Club extends AbstractEntity {
         this.colours = colours;
     }
 
-	public Integer getPointsScored() {
-		return pointsScored;
-	}
+    public Integer getPointsScored() {
+        return pointsScored;
+    }
 
-	public void setPointsScored(Integer pointsScored) {
-		this.pointsScored = pointsScored;
-	}
+    public void setPointsScored(Integer pointsScored) {
+        this.pointsScored = pointsScored;
+    }
 
-	public Integer getGoalsScored() {
-		return goalsScored;
-	}
+    public Integer getGoalsScored() {
+        return goalsScored;
+    }
 
-	public void setGoalsScored(Integer goalsScored) {
-		this.goalsScored = goalsScored;
-	}
+    public void setGoalsScored(Integer goalsScored) {
+        this.goalsScored = goalsScored;
+    }
 
-	public Integer getGoalsLost() {
-		return goalsLost;
-	}
+    public Integer getGoalsLost() {
+        return goalsLost;
+    }
 
-	public void setGoalsLost(Integer goalsLost) {
-		this.goalsLost = goalsLost;
-	}
+    public void setGoalsLost(Integer goalsLost) {
+        this.goalsLost = goalsLost;
+    }
 
-	public Integer getYellowCards() {
-		return yellowCards;
-	}
+    public Integer getYellowCards() {
+        return yellowCards;
+    }
 
-	public void setYellowCards(Integer yellowCards) {
-		this.yellowCards = yellowCards;
-	}
+    public void setYellowCards(Integer yellowCards) {
+        this.yellowCards = yellowCards;
+    }
 
-	public Integer getRedCards() {
-		return redCards;
-	}
+    public Integer getRedCards() {
+        return redCards;
+    }
 
-	public void setRedCards(Integer redCards) {
-		this.redCards = redCards;
-	}
+    public void setRedCards(Integer redCards) {
+        this.redCards = redCards;
+    }
 
-	public List<Arrange> getArrangeList() {
+    public List<Arrange> getArrangeList() {
         return arrangeList;
     }
 
@@ -346,5 +346,10 @@ public class Club extends AbstractEntity {
 
     public void setCoachidCoach(Coach coachidCoach) {
         this.coachidCoach = coachidCoach;
+    }
+    
+    @Override
+    public String toString() {
+        return id + "|" + attendanceAvg;
     }
 }

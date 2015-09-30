@@ -91,4 +91,8 @@ public class Staff extends AbstractEntity {
         this.personidPerson = personidPerson;
     }
     
+    @Override
+    public String toString() {
+        return id + "|" + staffFunction;
+    }
 }

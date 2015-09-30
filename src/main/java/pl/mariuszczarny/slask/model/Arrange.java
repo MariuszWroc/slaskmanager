@@ -105,4 +105,8 @@ public class Arrange extends AbstractEntity {
         this.refereeidReferee = refereeidReferee;
     }
     
+    @Override
+    public String toString() {
+        return id + "|" + arrangeDate;
+    }
 }
