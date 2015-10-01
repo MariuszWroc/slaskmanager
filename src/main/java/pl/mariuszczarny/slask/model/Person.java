@@ -155,6 +155,6 @@ public class Person extends AbstractEntity {
     
     @Override
     public String toString() {
-        return id + "|" + name;
+        return id + "|" + name + "|" + surname + "|" + birthDate + "|" +  nation;
     }
 }

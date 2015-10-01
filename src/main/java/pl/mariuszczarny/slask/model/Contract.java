@@ -134,6 +134,6 @@ public class Contract extends AbstractEntity {
     
     @Override
     public String toString() {
-        return id + "|" + fee;
+        return id + "|" + fee + "|" + wage + "|" + dateStart + "|" + dateEnd;
     }
 }

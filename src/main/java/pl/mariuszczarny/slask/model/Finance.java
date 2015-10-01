@@ -166,7 +166,8 @@ public class Finance extends AbstractEntity{
     
     @Override
     public String toString() {
-        return id + "|" + budget;
+        return id + "|" + budget + "|" + transferBudget + "|" + wageBudget + "|" + stadiumCost + "|" + avgTicketCost + 
+                "|" + avgSeasonTicketCost + "|" + seasonTicketsNumber + "|" + dept + "|" + fromSponsors;
     }
     
 }

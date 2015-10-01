@@ -103,6 +103,6 @@ public class Referee extends AbstractEntity {
     
     @Override
     public String toString() {
-        return id + "|" + refereeing;
+        return id + "|" + refereeing + "|" + punishing + "|" + arrangeList.iterator().next().toString();
     }
 }

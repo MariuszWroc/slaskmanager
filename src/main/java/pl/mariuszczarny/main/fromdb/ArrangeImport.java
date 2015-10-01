@@ -12,36 +12,36 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersInvalidException;
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
 import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
 import org.springframework.batch.core.repository.JobRestartException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
  * @author mczarny
  */
+@Configuration
+@EnableBatchProcessing
 public class ArrangeImport {
 
     private final static Logger fLogger = Logger.getLogger("AppJobArrangeImport");
+    
+    @Autowired
+    private static ApplicationContext appContext;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         fLogger.log(Level.INFO, "Import arrange csv from mysql");
-        String[] springConfig
-                = {"spring/batch/config/database.xml",
-                    "spring/batch/config/context.xml",
-                    "spring/batch/jobs/fromdb/arrange.xml"
-                };
-
-        ApplicationContext context
-                = new ClassPathXmlApplicationContext(springConfig);
-
-        JobLauncher jobArrangeLauncher = (JobLauncher) context.getBean("jobLauncher");
-        Job arrangeJob = (Job) context.getBean("arrangeImportJob");
+        
+        JobLauncher jobArrangeLauncher = (JobLauncher) appContext.getBean("jobLauncher");
+        Job arrangeJob = (Job) appContext.getBean("arrangeImportJob");
 
         try {
             JobExecution execution = jobArrangeLauncher.run(arrangeJob, new JobParameters());

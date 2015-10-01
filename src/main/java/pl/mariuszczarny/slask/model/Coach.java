@@ -169,6 +169,7 @@ public class Coach extends AbstractEntity{
     
     @Override
     public String toString() {
-        return id + "|" + tacticalKnowledge;
+        return id + "|" + tacticalKnowledge + "|" + treningMental + "|" + treningTactic + "|" + treningTechnique
+                + "|" + motivating + "|" + management + "|" + discipline + "|" + skillRate;
     }
 }

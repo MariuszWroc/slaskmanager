@@ -350,6 +350,8 @@ public class Club extends AbstractEntity {
     
     @Override
     public String toString() {
-        return id + "|" + attendanceAvg;
+        return id + "|" + attendanceAvg + "|" + attendanceMin + "|" + attendanceMax + "|" + trainingAssets + "|" + youth +
+                "|" + yearFound + "|" + morale + "|" + clubReputation + "|" + pointsScored + "|" + goalsScored + "|" + goalsLost +
+                 "|" + yellowCards + "|" + redCards;
     }
 }

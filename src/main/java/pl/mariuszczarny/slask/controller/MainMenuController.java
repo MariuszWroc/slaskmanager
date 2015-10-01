@@ -10,14 +10,14 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.mariuszczarny.slask.model.Club;
 import pl.mariuszczarny.slask.model.Game;
 import pl.mariuszczarny.slask.model.User;
@@ -31,6 +31,8 @@ import pl.mariuszczarny.slask.service.IUserService;
 @ManagedBean(name = "mainMenuController")
 @SessionScoped
 public class MainMenuController  implements Serializable{
+    final static Logger logger = LoggerFactory.getLogger(MainMenuController.class);
+    
     
     @ManagedProperty(value = "#{gameService}")
     IGameService gameService;
@@ -55,6 +57,7 @@ public class MainMenuController  implements Serializable{
    
     public MainMenuController ()
     {
+        logger.info("MainMenuController!!!!!!!!!!!!!!!!!!!!!!!!");
         loadGames = false;
         loadedGame = false;
         login="";
@@ -118,7 +121,7 @@ public class MainMenuController  implements Serializable{
         activeGame.setId(generateId());
 //        activeGame.setClubidClub(playersClub);
         activeGame.setGameCode(11);
-        activeGame.setGameName("lololololo123");
+        activeGame.setGameName("gameName1");
         activeGame.setUseridUser(user);
         activeGame.setUserStatus(status);
         gameService.add(activeGame);
@@ -129,7 +132,7 @@ public class MainMenuController  implements Serializable{
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("Usermain.xhtml"); 
         } catch (IOException ex) {
-            Logger.getLogger(MainMenuController.class.getName()).log(Level.SEVERE, null, ex);
+            logger.info("redirect failed " + ex.getMessage());
         }
     }
     
