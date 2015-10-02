@@ -4,23 +4,23 @@
  * and open the template in the editor.
  */
 
-package pl.mariuszczarny.slask.batch;
+package pl.mariuszczarny.slask.batch.processor;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.batch.item.ItemProcessor;
-import pl.mariuszczarny.slask.model.Person;
+import pl.mariuszczarny.slask.model.Referee;
 
 /**
  *
  * @author mczarny
  */
-public class PersonProcessor implements ItemProcessor<Person, Person> {
+public class RefereeProcessor implements ItemProcessor<Referee, Referee> {
 
     private final static Logger fLogger = Logger.getLogger("AppJobAllExport");
 
     @Override
-    public Person process(Person result) throws Exception {
+    public Referee process(Referee result) throws Exception {
         fLogger.log(Level.INFO, "Processing result :{0}", result);
 
         return result;

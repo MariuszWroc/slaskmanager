@@ -4,23 +4,23 @@
  * and open the template in the editor.
  */
 
-package pl.mariuszczarny.slask.batch;
+package pl.mariuszczarny.slask.batch.processor;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.batch.item.ItemProcessor;
-import pl.mariuszczarny.slask.model.City;
+import pl.mariuszczarny.slask.model.Arrange;
 
 /**
  *
- * @author mariusz
+ * @author mczarny
  */
-public class CityProcessor implements ItemProcessor<City, City> {
+public class ArrangeProcessor implements ItemProcessor<Arrange, Arrange> {
 
     private final static Logger fLogger = Logger.getLogger("AppJobAllExport");
 
     @Override
-    public City process(City result) throws Exception {
+    public Arrange process(Arrange result) throws Exception {
         fLogger.log(Level.INFO, "Processing result :{0}", result);
 
         return result;

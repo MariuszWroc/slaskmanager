@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package pl.mariuszczarny.slask.batch;
+package pl.mariuszczarny.slask.batch.processor;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
