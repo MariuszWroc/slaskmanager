@@ -7,7 +7,6 @@ import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 public class BatchLauncher {
 
@@ -17,8 +16,8 @@ public class BatchLauncher {
 
 	public static void main(String args[]) {
 		try {
-			AbstractApplicationContext applicationContext = new FileSystemXmlApplicationContext("/src/main/webapp/WEB-INF/simpleJob.xml");
-			
+			AbstractApplicationContext applicationContext = new ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/simpleJob.xml");
+                               
 			JobParametersBuilder builder = new JobParametersBuilder();
 			builder.addString("Date", "12/02/2011");
 			jobLauncher.run(job, builder.toJobParameters());

@@ -20,7 +20,7 @@
   </batch:job>
   
     <!-- Optional ItemProcessor to perform business logic/filtering on the input records -->
-  <bean id="itemProcessor" class="pl.mariuszczarny.slask.batch.FinanceProcessor" />
+  <bean id="itemProcessor" class="pl.mariuszczarny.slask.batch.processor.FinanceProcessor" />
   
   <bean id="cvsFinanceReader" class="org.springframework.batch.item.file.FlatFileItemReader">
  

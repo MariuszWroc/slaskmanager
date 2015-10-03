@@ -22,7 +22,7 @@
   </batch:job>
   
     <!-- Optional ItemProcessor to perform business logic/filtering on the input records -->
-  <bean id="itemProcessor" class="pl.mariuszczarny.slask.batch.ArrangeProcessor" />
+  <bean id="itemProcessor" class="pl.mariuszczarny.slask.batch.processor.ArrangeProcessor" />
   
   <bean id="cvsArrangeReader" class="org.springframework.batch.item.file.FlatFileItemReader">
  

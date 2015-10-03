@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc" 
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -7,7 +8,8 @@
 
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
-	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd"
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+            http://www.springframework.org/schema/jdbc https://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd"
 >
 
     <bean id="jobRepository" class="org.springframework.batch.core.repository.support.JobRepositoryFactoryBean">
@@ -22,17 +24,10 @@
 
     <bean id="transactionManager" class="org.springframework.batch.support.transaction.ResourcelessTransactionManager"/>
     
-          <!-- create job-meta tables automatically -->
-<!--    <jdbc:initialize-database data-source="DataSource">
-	<jdbc:script location="org/springframework/batch/core/schema-drop-mysql.sql" />
-	<jdbc:script location="org/springframework/batch/core/schema-mysql.sql" />
-    </jdbc:initialize-database>-->
-    
     <!-- DB Properties Placeholder -->
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location">
-            <value>/resources/database.local.properties</value>
-        </property>
+        <property name="location" value="/resources/database.local.properties" />
+<!--        <property name="location" value="file:src/main/webapp/resources/database.local.properties" />-->
     </bean>
 
     <!-- Data Source Declaration -->
@@ -42,6 +37,13 @@
         <property name="username" value="${jdbc.username}" />
         <property name="password" value="${jdbc.password}" />
     </bean>
+
+        
+    <!-- create job-meta tables automatically -->
+<!--    <jdbc:initialize-database data-source="DataSource">
+	<jdbc:script location="org/springframework/batch/core/schema-drop-mysql.sql" />
+	<jdbc:script location="org/springframework/batch/core/schema-mysql.sql" />
+    </jdbc:initialize-database>-->
 
     <!-- Session Factory Declaration -->
     <bean id="SessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
