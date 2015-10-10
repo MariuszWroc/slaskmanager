@@ -33,6 +33,9 @@ public class RefereeController implements Serializable {
     @ManagedProperty(value = "#{messageController}")
     private MessageController messageController;
     
+    @ManagedProperty(value = "#{mainMenuController}")
+    MainMenuController menuController;
+    
     private final static String SUCCESS = "zapisuje";
     private final static String ERROR = "zapisuje";
 
@@ -109,7 +112,12 @@ public class RefereeController implements Serializable {
     public List<Referee> getRefereeList() {
         getMessageController().getMessageList().add("pokaż listę sędziów");
         refereeList = new ArrayList<Referee>();
-        refereeList.addAll(getRefereeService().findAllByCriteria());
+//        if(getMenuController().getRefereeId()>=0){
+            //session cast error needs a fix Mariusz youre up
+            //refereeList.add(getRefereeService().findById(getMenuController().getRefereeId()));
+//        }else{
+            refereeList.addAll(getRefereeService().findAllByCriteria());
+//        }
         return refereeList;
     }
 
@@ -176,5 +184,11 @@ public class RefereeController implements Serializable {
         this.id = id;
     }
     
-    
+     public MainMenuController getMenuController() {
+        return menuController;
+    }
+
+    public void setMenuController(MainMenuController menuController) {
+        this.menuController = menuController;
+    }
 }

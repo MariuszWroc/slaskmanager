@@ -6,6 +6,13 @@ root {
     border: none !important;
 }
 
+.ui-fieldset .ui-fieldset-legend{
+    border: none !important;
+    background: transparent !important;
+    color: #006400 !important;
+    height: 10px;
+}
+
 .menuPanel tr, .menuPanel td{
     background-color: #006400 !important;
     border: none !important;

@@ -52,6 +52,9 @@ public class MainMenuController  implements Serializable{
     private Game gameToJoin;
     private User userToJoin;
     private boolean loadGames;
+    private String userPages ="http://localhost:8080/slaskmanager/Pages/UserPages/";
+    private Long stadiumId =-1L;
+    private Long refereeId =-1L;
    
     public MainMenuController ()
     {
@@ -140,6 +143,7 @@ public class MainMenuController  implements Serializable{
     public String load(){
         if(activeGame!=null){
             playersClub = activeGame.getClubidClub();
+            stadiumId = activeGame.getClubidClub().getStadiumidStadium().getId();
             loadedGame=true;
             return "Usermain";
         }else{
@@ -284,4 +288,26 @@ public class MainMenuController  implements Serializable{
     public void setSellectedClub(Club sellectedClub) {
         this.sellectedClub = sellectedClub;
     }
+
+    public String getUserPages() {
+        return userPages;
+    }
+
+    public Long getStadiumId() {
+        return stadiumId;
+    }
+
+    public void setStadiumId(Long stadiumId) {
+        this.stadiumId = stadiumId;
+    }
+
+    public Long getRefereeId() {
+        return refereeId;
+    }
+
+    public void setRefereeId(Long refereeId) {
+        this.refereeId = refereeId;
+    }
+    
+    
 }

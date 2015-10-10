@@ -18,10 +18,7 @@
             <div id="page">
                 <div id="top" class="top">
                     <p:menubar autoDisplay="false">               
-                        <p:submenu label="#{mainMenuController.playersClub.clubName}">
-                            <p:menuitem value="Klub" outcome="/Pages/UserPages/Club/ClubDetail" />
-                            <p:menuitem value="Skład" outcome="/Pages/UserPages/Person/Player/PlayerList" />
-                        </p:submenu>
+                        <p:menuitem value="#{mainMenuController.playersClub.clubName}" outcome="/Pages/UserPages/Club/ClubDetail" />
 
                         <p:menuitem value="Taktyka" outcome="/Pages/UserPages/Tactic/TacticList" />
 

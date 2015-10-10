@@ -510,7 +510,7 @@ public class PlayerController implements Serializable {
     public void onRowSelect(){
         try {
             labelText=selectedContract.getPlayeridPlayer().getPersonidPerson().getName() + " " + selectedContract.getPlayeridPlayer().getPersonidPerson().getSurname();
-            FacesContext.getCurrentInstance().getExternalContext().redirect("PlayerProfile.xhtml");                    
+            FacesContext.getCurrentInstance().getExternalContext().redirect(getMenuController().getUserPages() + "Person/Player/PlayerProfile.xhtml");                    
         } catch (IOException ex) {}
     }
 

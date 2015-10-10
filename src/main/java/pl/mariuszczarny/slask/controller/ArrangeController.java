@@ -138,14 +138,39 @@ public class ArrangeController implements Serializable {
         return arrangeList;
     }
     
-    public String showAway(){
-//        try {
-            getMainController().setAwayId(Clubs.getIdByName(nextMatch.getClubList().get(1).getClubName()));
-            //FacesContext.getCurrentInstance().getExternalContext().redirect("/webapp/Pages/UserPages/Person/Player/awayPlayers.xhtml");
-//        } catch (IOException ex) {
-//            Logger.getLogger(ArrangeController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        return "Pages/UserPages/Person/Player/awayPlayers.xhtml?faces-redirect=true";
+    public void showAway(){
+        try {
+            getMainController().setAwayId(Clubs.getIdByName(nextMatch.getClubList().get(0).getClubName()));
+            FacesContext.getCurrentInstance().getExternalContext().redirect(getMainController().getUserPages() + "Person/Player/awayPlayers.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(ArrangeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void showHome(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect(getMainController().getUserPages() + "Person/Player/PlayerList.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(ArrangeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void showReferee(){
+        try {
+            getMainController().setRefereeId(nextMatch.getRefereeidReferee().getId());
+            FacesContext.getCurrentInstance().getExternalContext().redirect(getMainController().getUserPages() + "Person/Referee/RefereeList.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(ArrangeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void showStadium(){
+        try {
+            getMainController().setStadiumId(nextMatch.getClubList().get(0).getStadiumidStadium().getId());
+            FacesContext.getCurrentInstance().getExternalContext().redirect(getMainController().getUserPages() + "Stadium/StadiumList.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(ArrangeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void setArrangeList(List<Arrange> arrangeList) {

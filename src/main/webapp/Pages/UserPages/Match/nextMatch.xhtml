@@ -25,7 +25,7 @@ and open the template in the editor.
                 <!-- action="newGame.xhtml?faces-redirect=true" -->
                     <h:panelGrid columns="2">
                         <h:outputText value="Gospodarz"/>
-                        <p:commandLink actionListener="#{arrangeController.showAway}">
+                        <p:commandLink actionListener="#{arrangeController.showHome}">
                             <h:outputText value="#{arrangeController.nextMatch.clubList.get(0).getClubName()}" />
                         </p:commandLink>
                         <h:outputText value="Gość"/> 
@@ -33,11 +33,11 @@ and open the template in the editor.
                             <h:outputText value="#{arrangeController.nextMatch.clubList.get(1).getClubName()}" />
                         </p:commandLink>
                         <h:outputText value="Sędzia "/> 
-                        <p:commandLink actionListener="#{arrangeController.showAway}">
+                        <p:commandLink actionListener="#{arrangeController.showReferee}">
                             <h:outputText value="#{arrangeController.nextMatch.refereeidReferee.personidPerson.name} #{arrangeController.nextMatch.refereeidReferee.personidPerson.surname}" />
                         </p:commandLink>
                         <h:outputText value="Rozgrywany na "/> 
-                        <p:commandLink actionListener="#{arrangeController.showAway}">
+                        <p:commandLink actionListener="#{arrangeController.showStadium}">
                             <h:outputText value="#{arrangeController.nextMatch.clubList.get(0).stadiumidStadium.stadiumName}" />
                         </p:commandLink>
                     </h:panelGrid>

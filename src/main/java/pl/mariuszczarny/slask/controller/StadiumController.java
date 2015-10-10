@@ -129,7 +129,8 @@ public class StadiumController implements Serializable {
         getMessageController().getMessageList().add("pokaż listę stadionów");
         stadiumList = new ArrayList<Stadium>();
         stadiumList.add(getMenuController().getPlayersClub().getStadiumidStadium());
-//        stadiumList.addAll(getStadiumService().findAllByCriteria());
+        //session cast error needs a fix Mariusz youre up
+//        stadiumList.add(getStadiumService().findById(getMenuController().getStadiumId()));
         return stadiumList;
     }
 
