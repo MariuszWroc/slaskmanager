@@ -365,4 +365,11 @@ public class Player extends AbstractEntity {
         return contractList;
     }
     
+    @Override
+    public String toString() {
+        return id + "|" + currentForm + "|" + reputation + "|" + potential + "|" + legLeft + "|" + legRight + "|" + 
+                determination + "|" + dirtness + "|" + influence + "|" + injury + "|" + pace + "|" + strength +
+                "|" + stamina + "|" + setPieces + "|" + technique + "|" + finishing + "|" + passing + "|" + marking + 
+                "|" + tackling + "|" + heading + "|" + reflex + "|" + handling;
+    }
 }

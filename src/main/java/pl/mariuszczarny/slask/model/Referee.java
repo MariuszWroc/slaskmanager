@@ -101,4 +101,8 @@ public class Referee extends AbstractEntity {
         this.personidPerson = personidPerson;
     }
     
+    @Override
+    public String toString() {
+        return id + "|" + refereeing + "|" + punishing + "|" + arrangeList.iterator().next().toString();
+    }
 }

@@ -164,4 +164,10 @@ public class Finance extends AbstractEntity{
         this.clubList = clubList;
     }
     
+    @Override
+    public String toString() {
+        return id + "|" + budget + "|" + transferBudget + "|" + wageBudget + "|" + stadiumCost + "|" + avgTicketCost + 
+                "|" + avgSeasonTicketCost + "|" + seasonTicketsNumber + "|" + dept + "|" + fromSponsors;
+    }
+    
 }

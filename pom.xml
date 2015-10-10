@@ -6,7 +6,6 @@
     <artifactId>slask2015</artifactId>
     <version>1.6-SNAPSHOT</version>
     <packaging>war</packaging>
-
     <name>slask2015</name>
 
     <properties>
@@ -189,6 +188,12 @@
             <version>{spring-webflow.version}</version>
         </dependency>-->
 
+        <!-- -->
+        <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>1.1.2</version>
+        </dependency>
 
         
         <!--  Hibernate dependencies --> 

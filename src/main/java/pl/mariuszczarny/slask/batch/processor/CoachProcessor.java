@@ -4,26 +4,26 @@
  * and open the template in the editor.
  */
 
-package pl.mariuszczarny.slask.batch;
+package pl.mariuszczarny.slask.batch.processor;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.batch.item.ItemProcessor;
-import pl.mariuszczarny.slask.model.Staff;
+import pl.mariuszczarny.slask.model.Coach;
 
 /**
  *
  * @author mczarny
  */
-public class StaffProcessor implements ItemProcessor<Staff, Staff> {
+public class CoachProcessor implements ItemProcessor<Coach, Coach> {
 
     private final static Logger fLogger = Logger.getLogger("AppJobAllExport");
 
     @Override
-    public Staff process(Staff result) throws Exception {
+    public Coach process(Coach result) throws Exception {
         fLogger.log(Level.INFO, "Processing result :{0}", result);
 
         return result;
     }
-    
+
 }

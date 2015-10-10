@@ -4,23 +4,23 @@
  * and open the template in the editor.
  */
 
-package pl.mariuszczarny.slask.batch;
+package pl.mariuszczarny.slask.batch.processor;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.batch.item.ItemProcessor;
-import pl.mariuszczarny.slask.model.Fixture;
+import pl.mariuszczarny.slask.model.Finance;
 
 /**
  *
  * @author mczarny
  */
-public class FixtureProcessor implements ItemProcessor<Fixture, Fixture> {
+public class FinanceProcessor implements ItemProcessor<Finance, Finance> {
 
     private final static Logger fLogger = Logger.getLogger("AppJobAllExport");
 
     @Override
-    public Fixture process(Fixture result) throws Exception {
+    public Finance process(Finance result) throws Exception {
         fLogger.log(Level.INFO, "Processing result :{0}", result);
 
         return result;
