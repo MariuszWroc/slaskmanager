@@ -75,12 +75,7 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
     @Override
     public List<T> findAllByCriteria() {
         Criteria criteria = getSession().createCriteria(type);
-        List list = criteria.list();
         return criteria.list();
     }
 
-//    @Override
-//    public Integer countAll() {
-//        return DataAccessUtils.intResult(getHibernateTemplate().find("select count(*) from " + type.getName()));
-//    }
 }

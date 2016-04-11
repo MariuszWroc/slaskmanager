@@ -27,8 +27,9 @@ import pl.mariuszczarny.slask.controller.MainMenuController;
 @ManagedBean(name = "loginController")
 @RequestScoped
 public class LoginController implements Serializable{
-
-    @ManagedProperty(value = "#{mainMenuController}")
+	private static final long serialVersionUID = 1L;
+	
+	@ManagedProperty(value = "#{mainMenuController}")
     MainMenuController mainMenuController;
     
     public String doLogin() throws IOException, ServletException {

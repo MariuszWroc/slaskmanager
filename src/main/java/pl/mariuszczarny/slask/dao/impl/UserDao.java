@@ -19,15 +19,16 @@ import pl.mariuszczarny.slask.model.User;
 @Repository
 public class UserDao extends GenericExtendedDao<User> implements IUserDao{
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public User findUserByLogin(String login) {
         Session session = getSession();
-        List list = session
+        List<User> list = session
                 .createQuery("From User U WHERE U.login= :login")
                 .setParameter("login", login).list();
         if(list.isEmpty())
             return null;
-        return (User) list.get(0);
+        return list.get(0);
     }
     
 }

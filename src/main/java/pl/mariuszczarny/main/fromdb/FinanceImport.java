@@ -37,7 +37,8 @@ public class FinanceImport {
                     "spring/batch/jobs/fromdb/finance.xml"
                 };
 
-        ApplicationContext context
+        @SuppressWarnings("resource")
+		ApplicationContext context
                 = new ClassPathXmlApplicationContext(springConfig);
 
         JobLauncher jobFinanceLauncher = (JobLauncher) context.getBean("jobLauncher");

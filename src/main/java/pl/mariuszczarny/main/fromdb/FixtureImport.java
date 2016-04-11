@@ -37,7 +37,8 @@ public class FixtureImport {
                     "spring/batch/jobs/fromdb/fixture.xml"
                 };
 
-        ApplicationContext context
+        @SuppressWarnings("resource")
+		ApplicationContext context
                 = new ClassPathXmlApplicationContext(springConfig);
 
         JobLauncher jobFixtureLauncher = (JobLauncher) context.getBean("jobLauncher");

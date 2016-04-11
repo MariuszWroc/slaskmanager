@@ -8,10 +8,14 @@ package pl.mariuszczarny.slask.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
+
 import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Fixture;
 import pl.mariuszczarny.slask.model.Tournament;
@@ -24,24 +28,18 @@ import pl.mariuszczarny.slask.service.ITournamentService;
  */
 @ManagedBean(name = "fixtureController")
 @SessionScoped
-public class FixtureController implements Serializable {
-
-    @ManagedProperty(value = "#{fixtureService}")
-    IFixtureService fixtureService;
-    @ManagedProperty(value = "#{tournamentService}")
-    ITournamentService tournamentService;
-    @ManagedProperty(value = "#{messageController}")
+public class FixtureController implements Serializable, IAppController {
+	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LoggerFactory.getLogger(FixtureController.class);
+	private IFixtureService fixtureService;
+    private ITournamentService tournamentService;
     private MessageController messageController;
-    
-    private final static String SUCCESS = "zapisuje";
-    private final static String ERROR = "zapisuje";
-
     private Integer seasonYear;
-    List<Fixture> fixtureList;
-    Fixture selectedFixture;
-    Long tournamentId;
+    private List<Fixture> fixtureList;
+    private Fixture selectedFixture;
+    private Long tournamentId;
     private Long id;
-    Tournament tournamentidTournament;
+    private Tournament tournamentidTournament;
 
     public FixtureController() {
         id=0L;
@@ -66,10 +64,9 @@ public class FixtureController implements Serializable {
     
     public String update()
     {
-        System.out.println(selectedFixture);
+    	logger.info("selectedFixture " + selectedFixture);
         try {
             selectedFixture.setId(id);
-           // selectedFixture.setTournamentidTournament(tournamentidTournament);
             selectedFixture.setSeasonYear(seasonYear);
         getFixtureService().update(selectedFixture);
         } catch (DataAccessException e) {
@@ -79,11 +76,10 @@ public class FixtureController implements Serializable {
     }
 
     public String save() {
-        System.out.println("Start saving");
+    	logger.info("Start saving");
         try {
             Fixture fixture = new Fixture();
             fixture.setId((long)getFixtureService().findAllByCriteria().size()+1);
-            //fixture.setTournamentidTournament(tournamentidTournament);
             fixture.setSeasonYear(seasonYear);
             getFixtureService().add(fixture);
             return StringConstants.SAVE_SUCCESS.getValue();
@@ -160,4 +156,12 @@ public class FixtureController implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+	public Tournament getTournamentidTournament() {
+		return tournamentidTournament;
+	}
+
+	public void setTournamentidTournament(Tournament tournamentidTournament) {
+		this.tournamentidTournament = tournamentidTournament;
+	}
 }

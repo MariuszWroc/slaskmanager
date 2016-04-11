@@ -10,14 +10,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
+
 import pl.mariuszczarny.slask.controller.utils.Clubs;
 import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Arrange;
@@ -35,33 +37,24 @@ import pl.mariuszczarny.slask.service.IRefereeService;
  */
 @ManagedBean(name = "arrangeController")
 @SessionScoped
-public class ArrangeController implements Serializable {
-
-    @ManagedProperty(value = "#{arrangeService}")
-    IArrangeService arrangeService;
-    @ManagedProperty(value = "#{refereeService}")
-    IRefereeService refereeService;
-    @ManagedProperty(value = "#{fixtureService}")
-    IFixtureService fixtureService;
-    @ManagedProperty(value = "#{messageController}")
+public class ArrangeController implements Serializable, IAppController {
+	private static final long serialVersionUID = 7729132232860348366L;
+	private static final Logger logger = LoggerFactory.getLogger(ArrangeController.class);
+	private IArrangeService arrangeService;
+	private IRefereeService refereeService;
+	private IFixtureService fixtureService;
     private MessageController messageController;
-    @ManagedProperty(value = "#{mainMenuController}")
     private MainMenuController mainController;
-    @ManagedProperty(value = "#{clubService}")
-    IClubService clubService;
-
-    private final static String SUCCESS = "zapisuje";
-    private final static String ERROR = "zapisuje";
-
-    List<Arrange> arrangeList;
-    Arrange selectedArrange;
-    Long fixtureId;
+    private IClubService clubService;
+    private List<Arrange> arrangeList;
+    private Arrange selectedArrange;
+    private Long fixtureId;
     private Long id;
-    Long refereeId;
-    Date arrangeDate;
-    private Fixture fixtureidFixture;
+    private Long refereeId;
+    private Date arrangeDate;
     private Referee refereeidReferee;
-    Arrange nextMatch;
+    private Arrange nextMatch;
+	private Fixture fixtureidFixture;
 
     public ArrangeController() {
         id=0L;
@@ -102,31 +95,27 @@ public class ArrangeController implements Serializable {
     }
 
     public String update() {
-        System.out.println(selectedArrange);
+    	logger.info("selectedArrange " + selectedArrange);
         try {
             selectedArrange.setId((long)getArrangeService().findAllByCriteria().size()+1);
             selectedArrange.setArrangeDate(arrangeDate);
-            //selectedArrange.setFixtureidFixture(fixtureidFixture);
-            //selectedArrange.setRefereeidReferee(refereeidReferee);
             getArrangeService().update(selectedArrange);
         } catch (DataAccessException e) {
-            e.printStackTrace();
+            e.getMessage();
         }
         return selectedArrange.toString();
     }
 
     public String save() {
-        System.out.println("Start saving");
+    	logger.info("Start saving");
         Arrange arrange = new Arrange();
         try {
             arrange.setId(id);
             arrange.setArrangeDate(arrangeDate);
-            //arrange.setFixtureidFixture(fixtureidFixture);
-            //arrange.setRefereeidReferee(refereeidReferee);
             getArrangeService().add(arrange);
             return StringConstants.SAVE_SUCCESS.getValue();
         } catch (DataAccessException e) {
-            e.printStackTrace();
+            e.getMessage();
         }
         return ERROR + " - " + arrange.toString();
     }
@@ -143,7 +132,7 @@ public class ArrangeController implements Serializable {
             getMainController().setAwayId(Clubs.getIdByName(nextMatch.getClubList().get(0).getClubName()));
             FacesContext.getCurrentInstance().getExternalContext().redirect(getMainController().getUserPages() + "Person/Player/awayPlayers.xhtml");
         } catch (IOException ex) {
-            Logger.getLogger(ArrangeController.class.getName()).log(Level.SEVERE, null, ex);
+        	logger.info("In showAway()", ex);
         }
     }
     
@@ -151,7 +140,7 @@ public class ArrangeController implements Serializable {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect(getMainController().getUserPages() + "Person/Player/PlayerList.xhtml");
         } catch (IOException ex) {
-            Logger.getLogger(ArrangeController.class.getName()).log(Level.SEVERE, null, ex);
+        	logger.info("In showHome()", ex);
         }
     }
     
@@ -160,7 +149,7 @@ public class ArrangeController implements Serializable {
             getMainController().setRefereeId(nextMatch.getRefereeidReferee().getId());
             FacesContext.getCurrentInstance().getExternalContext().redirect(getMainController().getUserPages() + "Person/Referee/RefereeList.xhtml");
         } catch (IOException ex) {
-            Logger.getLogger(ArrangeController.class.getName()).log(Level.SEVERE, null, ex);
+        	logger.info("In showReferee()", ex);
         }
     }
     
@@ -169,7 +158,7 @@ public class ArrangeController implements Serializable {
             getMainController().setStadiumId(nextMatch.getClubList().get(0).getStadiumidStadium().getId());
             FacesContext.getCurrentInstance().getExternalContext().redirect(getMainController().getUserPages() + "Stadium/StadiumList.xhtml");
         } catch (IOException ex) {
-            Logger.getLogger(ArrangeController.class.getName()).log(Level.SEVERE, null, ex);
+        	logger.info("In showStadium()", ex);
         }
     }
 
@@ -199,7 +188,7 @@ public class ArrangeController implements Serializable {
 
     public void setFixtureId(Long fixtureId) {
         this.fixtureId = fixtureId;
-        fixtureidFixture = getFixtureService().findById(this.fixtureId);
+        setFixtureidFixture(getFixtureService().findById(this.fixtureId));
     }
 
     public Long getRefereeId() {
@@ -252,7 +241,7 @@ public class ArrangeController implements Serializable {
     }
 
     public Arrange getNextMatch() {
-        // ToDo get next arrange by todays date
+        // TODO: get next arrange by todays date
         return nextMatch;
     }
 
@@ -283,4 +272,12 @@ public class ArrangeController implements Serializable {
     public void setRefereeidReferee(Referee refereeidReferee) {
         this.refereeidReferee = refereeidReferee;
     }
+
+	public Fixture getFixtureidFixture() {
+		return fixtureidFixture;
+	}
+
+	public void setFixtureidFixture(Fixture fixtureidFixture) {
+		this.fixtureidFixture = fixtureidFixture;
+	}
 }

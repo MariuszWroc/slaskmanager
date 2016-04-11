@@ -9,11 +9,15 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
+
 import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Contract;
 import pl.mariuszczarny.slask.model.Person;
@@ -30,32 +34,23 @@ import pl.mariuszczarny.slask.service.IPositionService;
  */
 @ManagedBean(name = "playerController")
 @SessionScoped
-public class PlayerController implements Serializable {
-
-    @ManagedProperty(value = "#{playerService}")
-    IPlayerService playerService;
-    @ManagedProperty(value = "#{positionService}")
-    IPositionService positionService;
-    @ManagedProperty(value = "#{personService}")
-    IPersonService personService;
-    @ManagedProperty(value = "#{messageController}")
+public class PlayerController implements Serializable, IAppController {
+	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LoggerFactory.getLogger(PlayerController.class);
+	private IPlayerService playerService;
+    private IPositionService positionService;
+    private IPersonService personService;
     private MessageController messageController;
-    @ManagedProperty(value = "#{contractService}")
-    IContractService contractService;
-    @ManagedProperty(value = "#{mainMenuController}")
-    MainMenuController menuController;
-    
-    private final static String SUCCESS = "zapisuje";
-    private final static String ERROR = "zapisuje";
-
-    List<Contract> playerList;
+    private IContractService contractService;
+    private MainMenuController menuController;
+    private List<Contract> playerList;
     private List<Contract> awayPlayerList;
-    Contract selectedContract;
-    Player selectedPlayer;
-    Long personId;
-    Long positionId;
-    Person personToAdd;
-    Position positionToAdd;
+    private Contract selectedContract;
+    private Player selectedPlayer;
+    private Long personId;
+    private Long positionId;
+    private Person personToAdd;
+    private Position positionToAdd;
     private Long id;
     private Integer currentForm;
     private Integer reputation;
@@ -134,7 +129,7 @@ public class PlayerController implements Serializable {
     
     public String update()
     {
-        System.out.println(selectedPlayer);
+    	logger.info("selectedPlayer " + selectedPlayer);
         try {
              selectedPlayer.setId((long)getPlayerService().findAllByCriteria().size()+1);
              selectedPlayer.setBestPosition(bestPosition);
@@ -153,8 +148,6 @@ public class PlayerController implements Serializable {
              selectedPlayer.setMarking(marking);
              selectedPlayer.setPace(pace);
              selectedPlayer.setPassing(passing);
-            // selectedPlayer.setPersonidPerson(personToAdd);
-            // selectedPlayer.setPositionidPosition(positionToAdd);
              selectedPlayer.setPotential(potential);
              selectedPlayer.setReflex(reflex);
              selectedPlayer.setReputation(reputation);
@@ -166,14 +159,14 @@ public class PlayerController implements Serializable {
              selectedPlayer.setWeight(weight);
             getPlayerService().update(selectedPlayer);
         } catch (DataAccessException e) {
-            e.printStackTrace();
+        	logger.warn(e.getMessage(), e);
         }  
         return selectedPlayer.toString();
     }
     
     public String save()
     {
-        System.out.println("Start saving");
+        logger.info("Start saving");
         Player player = new Player();
          try {
              player.setId(id);
@@ -207,7 +200,7 @@ public class PlayerController implements Serializable {
             getPlayerService().add(player);
             return StringConstants.SAVE_SUCCESS.getValue();
         } catch (DataAccessException e) {
-            e.printStackTrace();
+        	logger.warn(e.getMessage(), e);
         }   
         return ERROR + " - " + player.toString();
     }
@@ -222,7 +215,7 @@ public class PlayerController implements Serializable {
 
     public List<Contract> getPlayerList() {
         getMessageController().getMessageList().add("pokaż listę piłkarzy");
-        playerList = new ArrayList<Contract>();
+        playerList = new ArrayList<>();
         playerList = getContractService().findByClub(getMenuController().getPlayersClub().getId());
         return playerList;
     }
@@ -511,7 +504,9 @@ public class PlayerController implements Serializable {
         try {
             labelText=selectedContract.getPlayeridPlayer().getPersonidPerson().getName() + " " + selectedContract.getPlayeridPlayer().getPersonidPerson().getSurname();
             FacesContext.getCurrentInstance().getExternalContext().redirect(getMenuController().getUserPages() + "Person/Player/PlayerProfile.xhtml");                    
-        } catch (IOException ex) {}
+        } catch (IOException e) {
+        	logger.warn(e.getMessage(), e);
+        }
     }
 
     public String getLabelText() {
@@ -532,7 +527,7 @@ public class PlayerController implements Serializable {
 
     public List<Contract> getAwayPlayerList() {
         getMessageController().getMessageList().add("pokaż listę piłkarzy");
-        awayPlayerList = new ArrayList<Contract>();
+        awayPlayerList = new ArrayList<>();
         awayPlayerList = getContractService().findByClub(getMenuController().getAwayId());
         return awayPlayerList;
     }

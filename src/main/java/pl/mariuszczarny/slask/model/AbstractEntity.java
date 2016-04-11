@@ -12,6 +12,7 @@ import javax.persistence.MappedSuperclass;
  *
  * @author Mariusz
  */
+@SuppressWarnings("serial")
 @MappedSuperclass
 public abstract class AbstractEntity implements Serializable {
 

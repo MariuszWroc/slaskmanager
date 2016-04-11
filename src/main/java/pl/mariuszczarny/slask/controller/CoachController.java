@@ -8,10 +8,14 @@ package pl.mariuszczarny.slask.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
+
 import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Coach;
 import pl.mariuszczarny.slask.model.Person;
@@ -24,21 +28,15 @@ import pl.mariuszczarny.slask.service.IPersonService;
  */
 @ManagedBean(name = "coachController")
 @SessionScoped
-public class CoachController implements Serializable {
-
-    @ManagedProperty(value = "#{coachService}")
-    ICoachService coachService;
-    @ManagedProperty(value = "#{personService}")
-    IPersonService personService;
-    @ManagedProperty(value = "#{messageController}")
+public class CoachController implements Serializable, IAppController {
+	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LoggerFactory.getLogger(CoachController.class);
+	private ICoachService coachService;
+	private IPersonService personService;
     private MessageController messageController;
-    
-    private final static String SUCCESS = "zapisuje";
-    private final static String ERROR = "zapisuje";
-
-    List<Coach> coachList;
-    Coach selectedCoach;
-    Long personId;
+    private List<Coach> coachList;
+    private Coach selectedCoach;
+    private Long personId;
     private Long id;
     private Integer tacticalKnowledge;
     private Integer treningMental;
@@ -48,7 +46,7 @@ public class CoachController implements Serializable {
     private Integer management;
     private Integer discipline;
     private Integer skillRate;
-    Person personToAdd;
+    private Person personToAdd;
 
     public CoachController() {
         id=0L;
@@ -79,12 +77,11 @@ public class CoachController implements Serializable {
     
     public String update()
     {
-        System.out.println(selectedCoach);
+    	logger.info("selectedCoach" + selectedCoach);
         try {
              selectedCoach.setDiscipline(discipline);
              selectedCoach.setManagement(management);
              selectedCoach.setMotivating(motivating);
-            // selectedCoach.setPersonidPerson(personToAdd);
              selectedCoach.setSkillRate(skillRate);
              selectedCoach.setTacticalKnowledge(tacticalKnowledge);
              selectedCoach.setTreningMental(treningMental);
@@ -99,14 +96,13 @@ public class CoachController implements Serializable {
     
     public String save()
     {
-        System.out.println("Start saving");
+    	logger.info("Start saving");
         Coach coach = new Coach();
          try {
              coach.setId((long)getCoachService().findAllByCriteria().size()+1);
              coach.setDiscipline(discipline);
              coach.setManagement(management);
              coach.setMotivating(motivating);
-            // coach.setPersonidPerson(personToAdd);
              coach.setSkillRate(skillRate);
              coach.setTacticalKnowledge(tacticalKnowledge);
              coach.setTreningMental(treningMental);
@@ -245,4 +241,12 @@ public class CoachController implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+	public Person getPersonToAdd() {
+		return personToAdd;
+	}
+
+	public void setPersonToAdd(Person personToAdd) {
+		this.personToAdd = personToAdd;
+	}
 }

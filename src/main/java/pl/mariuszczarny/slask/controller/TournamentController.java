@@ -8,14 +8,17 @@ package pl.mariuszczarny.slask.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
-import pl.mariuszczarny.slask.controller.utils.StringConstants;
+
+import static pl.mariuszczarny.slask.controller.utils.StringConstants.*;
 import pl.mariuszczarny.slask.model.Tournament;
 import pl.mariuszczarny.slask.service.ITournamentService;
-import pl.mariuszczarny.slask.service.ITrainingService;
 
 /**
  *
@@ -23,148 +26,137 @@ import pl.mariuszczarny.slask.service.ITrainingService;
  */
 @ManagedBean(name = "tournamentController")
 @SessionScoped
-public class TournamentController implements Serializable {
+public class TournamentController implements Serializable, IAppController {
+	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LoggerFactory.getLogger(TournamentController.class);
+	private ITournamentService tournamentService;
+	private MessageController messageController;
+	private List<Tournament> tournamentList;
+	private String tournamentName;
+	private Integer tournamentReputation;
+	private Integer teamsNumber;
+	private Integer relegatesNumber;
+	private Tournament selectedTournament;
+	private Long id;
 
-    @ManagedProperty(value = "#{tournamentService}")
-    ITournamentService tournamentService;
-    @ManagedProperty(value = "#{messageController}")
-    private MessageController messageController;
-    
-    private final static String SUCCESS = "zapisuje";
-    private final static String ERROR = "zapisuje";
+	public TournamentController() {
+		id = 0L;
+		tournamentName = "";
+		tournamentReputation = 0;
+		teamsNumber = 0;
+		relegatesNumber = 0;
+		selectedTournament = new Tournament();
+	}
 
-    List<Tournament> tournamentList;
-    String tournamentName;
-    Integer tournamentReputation;
-    Integer teamsNumber;
-    Integer relegatesNumber;
-    Tournament selectedTournament;
-    private Long id;
+	public String prepareEdit() {
+		return "EditTournament";
+	}
 
-    public TournamentController() {
-        id=0L;
-        tournamentName="";
-        tournamentReputation=0;
-        teamsNumber=0;
-        relegatesNumber=0;
-        selectedTournament= new Tournament();
-    }
-    
-    public String prepareEdit() {
-        return "EditTournament";
-    }
-    
-    public String prepareAdd()
-    {
-        return "AddTournament";
-    }
-    
-     public void destroy() {
-        getTournamentService().delete(selectedTournament);
-    }
-    
-    public String update()
-    {
-        System.out.println(selectedTournament);
-        try {
-            selectedTournament.setId((long)getTournamentService().findAllByCriteria().size()+1);
-            selectedTournament.setRelegatesNumber(getRelegatesNumber());
-            selectedTournament.setTeamsNumber(getTeamsNumber());
-            selectedTournament.setTournamentName(tournamentName);
-            selectedTournament.setTournamentReputation(getTournamentReputation());
-        getTournamentService().update(selectedTournament);
-        } catch (DataAccessException e) {
-            e.printStackTrace();
-        }  
-        return selectedTournament.toString();
-    }
-    
-    public String save()
-    {
-        System.out.println("Start saving");
-        Tournament tournament = new Tournament();
-         try {
-             tournament.setId(id);
-            tournament.setRelegatesNumber(getRelegatesNumber());
-            tournament.setTeamsNumber(getTeamsNumber());
-            tournament.setTournamentName(tournamentName);
-            tournament.setTournamentReputation(getTournamentReputation());
-            getTournamentService().add(tournament);
-            return StringConstants.SAVE_SUCCESS.getValue();
-        } catch (DataAccessException e) {
-            e.printStackTrace();
-        }   
-        return ERROR + " - " + tournament.toString();
-    }
+	public String prepareAdd() {
+		return "AddTournament";
+	}
 
-    public ITournamentService getTournamentService() {
-        return tournamentService;
-    }
+	public void destroy() {
+		getTournamentService().delete(selectedTournament);
+	}
 
-    public void setTournamentService(ITournamentService tournamentService) {
-        this.tournamentService = tournamentService;
-    }
+	public String update() {
+		logger.info("selectedTournament " + selectedTournament);
+		try {
+			selectedTournament.setId((long) getTournamentService().findAllByCriteria().size() + 1);
+			selectedTournament.setRelegatesNumber(getRelegatesNumber());
+			selectedTournament.setTeamsNumber(getTeamsNumber());
+			selectedTournament.setTournamentName(tournamentName);
+			selectedTournament.setTournamentReputation(getTournamentReputation());
+			getTournamentService().update(selectedTournament);
+		} catch (DataAccessException e) {
+			logger.warn(e.getMessage(), e);
+		}
+		return selectedTournament.toString();
+	}
 
-    public List<Tournament> getTournamentList() {
-        getMessageController().getMessageList().add("pokaż listę turnieji");
-        tournamentList = new ArrayList<Tournament>();
-        tournamentList.addAll(getTournamentService().findAllByCriteria());
-        return tournamentList;
-    }
+	public String save() {
+		logger.info("Start saving");
+		Tournament tournament = new Tournament();
+		try {
+			tournament.setId(id);
+			tournament.setRelegatesNumber(getRelegatesNumber());
+			tournament.setTeamsNumber(getTeamsNumber());
+			tournament.setTournamentName(tournamentName);
+			tournament.setTournamentReputation(getTournamentReputation());
+			getTournamentService().add(tournament);
+			return SAVE_SUCCESS.getValue();
+		} catch (DataAccessException e) {
+			logger.warn(e.getMessage(), e);
+		}
+		return ERROR + " - " + tournament.toString();
+	}
 
-    public void setTournamentList(List<Tournament> tournamentList) {
-        this.tournamentList = tournamentList;
-    }
-    
-    public void setMessageController(MessageController messageController)
-    {
-        this.messageController = messageController;
-    }
-    
-    public MessageController getMessageController()
-    {
-        return messageController;
-    }
+	public ITournamentService getTournamentService() {
+		return tournamentService;
+	}
 
-    public String getTournamentName() {
-        return tournamentName;
-    }
+	public void setTournamentService(ITournamentService tournamentService) {
+		this.tournamentService = tournamentService;
+	}
 
-    public void setTournamentName(String tournamentName) {
-        this.tournamentName = tournamentName;
-    }
+	public List<Tournament> getTournamentList() {
+		getMessageController().getMessageList().add("pokaż listę turnieji");
+		tournamentList = new ArrayList<Tournament>();
+		tournamentList.addAll(getTournamentService().findAllByCriteria());
+		return tournamentList;
+	}
 
-    public Integer getTournamentReputation() {
-        return tournamentReputation;
-    }
+	public void setTournamentList(List<Tournament> tournamentList) {
+		this.tournamentList = tournamentList;
+	}
 
-    public void setTournamentReputation(Integer tournamentReputation) {
-        this.tournamentReputation = tournamentReputation;
-    }
+	public void setMessageController(MessageController messageController) {
+		this.messageController = messageController;
+	}
 
-    public Integer getTeamsNumber() {
-        return teamsNumber;
-    }
+	public MessageController getMessageController() {
+		return messageController;
+	}
 
-    public void setTeamsNumber(Integer teamsNumber) {
-        this.teamsNumber = teamsNumber;
-    }
+	public String getTournamentName() {
+		return tournamentName;
+	}
 
-    public Integer getRelegatesNumber() {
-        return relegatesNumber;
-    }
+	public void setTournamentName(String tournamentName) {
+		this.tournamentName = tournamentName;
+	}
 
-    public void setRelegatesNumber(Integer relegatesNumber) {
-        this.relegatesNumber = relegatesNumber;
-    }
+	public Integer getTournamentReputation() {
+		return tournamentReputation;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public void setTournamentReputation(Integer tournamentReputation) {
+		this.tournamentReputation = tournamentReputation;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
-    
+	public Integer getTeamsNumber() {
+		return teamsNumber;
+	}
+
+	public void setTeamsNumber(Integer teamsNumber) {
+		this.teamsNumber = teamsNumber;
+	}
+
+	public Integer getRelegatesNumber() {
+		return relegatesNumber;
+	}
+
+	public void setRelegatesNumber(Integer relegatesNumber) {
+		this.relegatesNumber = relegatesNumber;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 }

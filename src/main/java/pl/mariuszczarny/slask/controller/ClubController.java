@@ -11,11 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Club;
@@ -39,29 +41,18 @@ import pl.mariuszczarny.slask.service.ITrainingService;
  */
 @ManagedBean(name = "clubController")
 @SessionScoped
-public class ClubController implements Serializable {
-
-    @ManagedProperty(value = "#{clubService}")
-    IClubService clubService;
-    @ManagedProperty(value = "#{coachService}")
-    ICoachService coachService;
-    @ManagedProperty(value = "#{financeService}")
-    IFinanceService financeService;
-    @ManagedProperty(value = "#{tournamentService}")
-    ITournamentService tournamentService;
-    @ManagedProperty(value = "#{stadiumService}")
-    IStadiumService stadiumService;
-    @ManagedProperty(value = "#{trainingService}")
-    ITrainingService trainingService;
-    @ManagedProperty(value = "#{formationService}")
-    IFormationService formationService;
-    @ManagedProperty(value = "#{messageController}")
+public class ClubController implements Serializable, IAppController {
+	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LoggerFactory.getLogger(ClubController.class);
+	private IClubService clubService;
+    private ICoachService coachService;
+    private IFinanceService financeService;
+    private ITournamentService tournamentService;
+    private IStadiumService stadiumService;
+    private ITrainingService trainingService;
+    private IFormationService formationService;
     private MessageController messageController;
-    
-    private final static String SUCCESS = "zapisuje";
-    private final static String ERROR = "zapisuje";
-
-    DataModel<Club> clubList;
+    private DataModel<Club> clubList;
     private Club selectedClub;
     private Integer attendanceAvg;
     private Integer attendanceMin;
@@ -133,7 +124,7 @@ public class ClubController implements Serializable {
     }
     
     public String update(){
-        System.out.println(selectedClub);
+    	logger.info("selectedClub " + selectedClub);
         try {
              selectedClub.setAttendanceAvg(attendanceAvg);
              selectedClub.setAttendanceMax(attendanceMax);
@@ -141,15 +132,9 @@ public class ClubController implements Serializable {
              selectedClub.setClubName(clubName);
              selectedClub.setClubNick(clubNick);
              selectedClub.setClubReputation(clubReputation);
-             //selectedClub.setCoachidCoach(coachidCoach);
              selectedClub.setColours(colours);
-             //selectedClub.setFinanceidFinance(financeidFinance);
-             //selectedClub.setFormationidFormation(formationidFormation);
              selectedClub.setMorale(morale);
-             //selectedClub.setStadiumidStadium(stadiumidStadium);
-             //selectedClub.setTournamentidTournament(tournamentidTournament);
              selectedClub.setTrainingAssets(trainingAssets);
-             //selectedClub.setTrainingidTraining(trainingidTraining);
              selectedClub.setYearFound(yearFound);
              selectedClub.setYouth(youth);
         getClubService().update(selectedClub);
@@ -161,7 +146,7 @@ public class ClubController implements Serializable {
     
     public String save()
     {
-        System.out.println("Start saving");
+    	logger.info("Start saving");
         Club club = new Club();
          try {
              club.setId((long)getClubService().findAllByCriteria().size()+1);
@@ -171,15 +156,10 @@ public class ClubController implements Serializable {
              club.setClubName(clubName);
              club.setClubNick(clubNick);
              club.setClubReputation(clubReputation);
-             //club.setCoachidCoach(coachidCoach);
              club.setColours(colours);
-             //club.setFinanceidFinance(financeidFinance);
              club.setFormationidFormation(formationidFormation);
              club.setMorale(morale);
-             //club.setStadiumidStadium(stadiumidStadium);
-             //club.setTournamentidTournament(tournamentidTournament);
              club.setTrainingAssets(trainingAssets);
-             //club.setTrainingidTraining(trainingidTraining);
              club.setYearFound(yearFound);
              club.setYouth(youth);
             getClubService().add(club);
@@ -201,7 +181,6 @@ public class ClubController implements Serializable {
     public DataModel<Club> getClubList() {
         getMessageController().getMessageList().add("pokaż listę klubów");
         
-        //clubList.addAll(getClubService().findAllByCriteria());
         return clubList;
     }
     

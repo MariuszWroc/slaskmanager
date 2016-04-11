@@ -10,24 +10,16 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+
 import org.primefaces.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.batch.core.Job;
-import org.springframework.batch.core.JobExecution;
-import org.springframework.batch.core.JobParameters;
-import org.springframework.batch.core.JobParametersInvalidException;
-import org.springframework.batch.core.launch.JobLauncher;
-import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
-import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
-import org.springframework.batch.core.repository.JobRestartException;
-import org.springframework.context.ApplicationContext;
+
 import pl.mariuszczarny.slask.model.Club;
 import pl.mariuszczarny.slask.model.Game;
 import pl.mariuszczarny.slask.model.User;
@@ -40,15 +32,11 @@ import pl.mariuszczarny.slask.service.IUserService;
  */
 @ManagedBean(name = "mainMenuController")
 @SessionScoped
-public class MainMenuController  implements Serializable{
-    final static Logger logger = LoggerFactory.getLogger(MainMenuController.class);
-    
-    
-    @ManagedProperty(value = "#{gameService}")
-    IGameService gameService;
-    @ManagedProperty(value = "#{userService}")
-    IUserService userService;
-    
+public class MainMenuController  implements Serializable, IAppController{
+	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LoggerFactory.getLogger(MainMenuController.class);
+	private IGameService gameService;
+	private IUserService userService;
     private String login;
     private Club playersClub;
     private Club sellectedClub;
@@ -68,8 +56,7 @@ public class MainMenuController  implements Serializable{
     private Long stadiumId =-1L;
     private Long refereeId =-1L;
    
-    public MainMenuController ()
-    {
+    public MainMenuController () {
         logger.info("MainMenuController");
         loadGames = false;
         loadedGame = false;
@@ -103,7 +90,7 @@ public class MainMenuController  implements Serializable{
     }
     
     public List<Game> getSaveGames() {
-        // TODO sprawdzic czy status usera nie jest false
+        //TODO: sprawdzic czy status usera nie jest false
         user = getUserService().findByLogin(login);
         saveGames = getGameService().findAllByUser(user);
         return saveGames;
@@ -132,7 +119,6 @@ public class MainMenuController  implements Serializable{
     public String create(boolean status){
         activeGame = new Game();
         activeGame.setId(generateId());
-//        activeGame.setClubidClub(playersClub);
         activeGame.setGameCode(11);
         activeGame.setGameName("gameName1");
         activeGame.setUseridUser(user);
@@ -175,12 +161,7 @@ public class MainMenuController  implements Serializable{
             //TODO: należy ustawić aktualną datę i ją wyświetlić
             gameService.update(activeGame);
             logger.info("Import arrange csv from mysql");
-            ApplicationContext appContext = null;
-            if (appContext != null) {
-                logger.info("Done");
-            } else {
-                logger.info("Application context not set");
-            }  
+            logger.info("Application context not set");  
         }
     }
     
@@ -328,6 +309,14 @@ public class MainMenuController  implements Serializable{
     public void setRefereeId(Long refereeId) {
         this.refereeId = refereeId;
     }
+
+	public boolean isLoadGames() {
+		return loadGames;
+	}
+
+	public void setLoadGames(boolean loadGames) {
+		this.loadGames = loadGames;
+	}
     
     
 }

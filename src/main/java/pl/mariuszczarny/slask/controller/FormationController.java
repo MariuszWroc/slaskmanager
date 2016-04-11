@@ -8,10 +8,14 @@ package pl.mariuszczarny.slask.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
+
 import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Formation;
 import pl.mariuszczarny.slask.model.Tactic;
@@ -24,28 +28,22 @@ import pl.mariuszczarny.slask.service.ITacticService;
  */
 @ManagedBean(name = "formationController")
 @SessionScoped
-public class FormationController implements Serializable {
-
-    @ManagedProperty(value = "#{formationService}")
-    IFormationService formationService;
-    @ManagedProperty(value = "#{messageController}")
+public class FormationController implements Serializable, IAppController {
+	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LoggerFactory.getLogger(FormationController.class);
+	private IFormationService formationService;
     private MessageController messageController;
-    @ManagedProperty(value = "#{tacticService}")
-    ITacticService tacticService;
-    
-    private final static String SUCCESS = "zapisuje";
-    private final static String ERROR = "zapisuje";
-
-    List<Formation> formationList;
-    Formation selectedFormation;
+    private ITacticService tacticService;
+    private List<Formation> formationList;
+    private Formation selectedFormation;
     private Long tacticId;
     private Long id;
     private String formationName;
     private Integer defendersNumber;
     private Integer midfieldNumber;
     private Integer forwardNumber;
-    private Tactic tacticidTactic;
     private Tactic selectedTactic;
+	private Tactic tacticidTactic;
 
     public FormationController() {
         id=0L;
@@ -74,13 +72,12 @@ public class FormationController implements Serializable {
     
     public String update()
     {
-        System.out.println(selectedFormation);
+    	logger.info("selectedFormation" + selectedFormation);
         try {
             selectedFormation.setDefendersNumber(defendersNumber);
             selectedFormation.setFormationName(formationName);
             selectedFormation.setForwardNumber(forwardNumber);
             selectedFormation.setMidfieldNumber(midfieldNumber);
-            //selectedFormation.setTacticidTactic(tacticidTactic);
         getFormationService().update(selectedFormation);
         } catch (DataAccessException e) {
             e.printStackTrace();
@@ -90,7 +87,7 @@ public class FormationController implements Serializable {
     
     public String save()
     {
-        System.out.println("Start saving");
+    	logger.info("Start saving");
         Formation formation = new Formation();
          try {
              formation.setId((long)getFormationService().findAllByCriteria().size()+1);
@@ -98,7 +95,6 @@ public class FormationController implements Serializable {
              formation.setFormationName(formationName);
              formation.setForwardNumber(forwardNumber);
              formation.setMidfieldNumber(midfieldNumber);
-            // formation.setTacticidTactic(tacticidTactic);
             getFormationService().add(formation);
             return StringConstants.SAVE_SUCCESS.getValue();
         } catch (DataAccessException e) {
@@ -142,7 +138,7 @@ public class FormationController implements Serializable {
 
     public void setTacticId(Long tacticId) {
         this.tacticId = tacticId;
-        System.out.println(tacticId);
+        logger.info("tacticId" + tacticId.toString());
         tacticidTactic=getTacticService().findById(tacticId);
     }
 
@@ -209,4 +205,12 @@ public class FormationController implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+	public Tactic getTacticidTactic() {
+		return tacticidTactic;
+	}
+
+	public void setTacticidTactic(Tactic tacticidTactic) {
+		this.tacticidTactic = tacticidTactic;
+	}
 }

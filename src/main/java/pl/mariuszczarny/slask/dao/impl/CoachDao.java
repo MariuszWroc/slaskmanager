@@ -20,11 +20,11 @@ import pl.mariuszczarny.slask.model.Person;
 @Repository
 public class CoachDao extends GenericDao<Coach> implements ICoachDao{
     
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public List<Coach> findCoachAndPerson() {
         Criteria criteria = getSession().createCriteria(Coach.class);
             criteria.setFetchMode(Person.class.toString(), FetchMode.JOIN);
-            List list = criteria.list();
-        return list;
+        return criteria.list();
     }
 }

@@ -13,6 +13,9 @@ import javax.faces.bean.SessionScoped;
 import javax.mail.*;
 import javax.mail.internet.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  *
@@ -20,20 +23,17 @@ import javax.mail.internet.*;
  */
 @ManagedBean(name = "emailSenderController")
 @SessionScoped
-public class EmailSenderController implements Serializable{
-    
+public class EmailSenderController implements Serializable, IAppController{
     private static final long serialVersionUID = 1L;
-	
+	private static final Logger logger = LoggerFactory.getLogger(EmailSenderController.class);
     private String address;
     private String title;
     private String message;
-    
-    final String userName = "slaskManager@gmail.com";
-    final String password = "JMslask123";
+    private final String userName = "slaskManager@gmail.com";
+    private final String password = "JMslask123";
     // Sender's email ID needs to be mentioned later change to techSupport...@gmail.com
-    Properties props = new Properties();
-		
-    Session session;
+    private Properties props = new Properties();
+    private Session session;
 
         
     public EmailSenderController(){
@@ -68,7 +68,7 @@ public class EmailSenderController implements Serializable{
 
          // Send message
          Transport.send(mail);
-         System.out.println("Sent message successfully....");
+         logger.info("Sent message successfully....");
       }catch (MessagingException mex) {
          mex.printStackTrace();
       }

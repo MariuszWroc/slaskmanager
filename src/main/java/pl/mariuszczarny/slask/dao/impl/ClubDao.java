@@ -5,9 +5,8 @@
  */
 package pl.mariuszczarny.slask.dao.impl;
 
-import java.util.List;
-import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
+
 import pl.mariuszczarny.slask.model.Club;
 
 /**

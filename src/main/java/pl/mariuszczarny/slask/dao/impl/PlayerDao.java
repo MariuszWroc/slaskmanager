@@ -20,11 +20,11 @@ import pl.mariuszczarny.slask.model.Player;
 @Repository
 public class PlayerDao extends GenericExtendedDao<Player> implements IPlayerDao {
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public List<Player> findPlayerAndPerson() {
         Criteria criteria = getSession().createCriteria(Player.class);
         criteria.setFetchMode(Person.class.toString(), FetchMode.JOIN);
-        List list = criteria.list();
-        return list;
+        return criteria.list();
     }
 }

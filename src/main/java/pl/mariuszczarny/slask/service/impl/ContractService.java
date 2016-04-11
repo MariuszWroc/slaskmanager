@@ -7,11 +7,12 @@
 package pl.mariuszczarny.slask.service.impl;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import pl.mariuszczarny.slask.dao.impl.ContractDao;
-import pl.mariuszczarny.slask.model.Club;
 import pl.mariuszczarny.slask.model.Contract;
 import pl.mariuszczarny.slask.service.IContractService;
 

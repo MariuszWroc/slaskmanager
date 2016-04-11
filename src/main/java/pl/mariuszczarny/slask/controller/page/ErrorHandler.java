@@ -8,27 +8,23 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 public class ErrorHandler {
 	public String getStatusCode(){
-		String val = String.valueOf((Integer)FacesContext.getCurrentInstance().getExternalContext().
+		return String.valueOf((Integer)FacesContext.getCurrentInstance().getExternalContext().
 				getRequestMap().get("javax.servlet.error.status_code"));
-		return val;
 	}
 
 	public String getMessage(){
-		String val =  (String)FacesContext.getCurrentInstance().getExternalContext().
+		return  (String)FacesContext.getCurrentInstance().getExternalContext().
 			getRequestMap().get("javax.servlet.error.message");
-		return val;
 	}
 
 	public String getExceptionType(){
-		String val = FacesContext.getCurrentInstance().getExternalContext().
+		return FacesContext.getCurrentInstance().getExternalContext().
 			getRequestMap().get("javax.servlet.error.exception_type").toString();
-		return val;
 	}
 
 	public String getException(){
-		String val =  (String)((Exception)FacesContext.getCurrentInstance().getExternalContext().
+		return  (String)((Exception)FacesContext.getCurrentInstance().getExternalContext().
 			getRequestMap().get("javax.servlet.error.exception")).toString();
-		return val;
 	}
 
 	public String getRequestURI(){

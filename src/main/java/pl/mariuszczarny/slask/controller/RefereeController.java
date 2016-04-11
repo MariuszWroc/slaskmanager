@@ -8,10 +8,14 @@ package pl.mariuszczarny.slask.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
+
 import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Person;
 import pl.mariuszczarny.slask.model.Referee;
@@ -24,32 +28,24 @@ import pl.mariuszczarny.slask.service.IRefereeService;
  */
 @ManagedBean(name = "refereeController")
 @SessionScoped
-public class RefereeController implements Serializable {
-
-    @ManagedProperty(value = "#{refereeService}")
-    IRefereeService refereeService;
-    @ManagedProperty(value = "#{personService}")
-    IPersonService personService;
-    @ManagedProperty(value = "#{messageController}")
+public class RefereeController implements Serializable, IAppController {
+	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LoggerFactory.getLogger(RefereeController.class);
+	private IRefereeService refereeService;
+    private IPersonService personService;
     private MessageController messageController;
-    
-    @ManagedProperty(value = "#{mainMenuController}")
-    MainMenuController menuController;
-    
-    private final static String SUCCESS = "zapisuje";
-    private final static String ERROR = "zapisuje";
-
-    List<Referee> refereeList;
-    Person personToAdd;
-    Referee selectedReferee;
-    Integer refereeing;
-    Integer punishing;
-    Long personId;
+    private MainMenuController menuController;
+    private List<Referee> refereeList;
+    private Person personToAdd;
+    private Referee selectedReferee;
+    private Integer refereeing;
+    private Integer punishing;
+    private Long personId;
     private Long id;
 
     public RefereeController() {
         id=0L;
-        personToAdd=new Person();
+        personToAdd = new Person();
         selectedReferee= new Referee();
         personId=0L;
         refereeing=0;
@@ -71,32 +67,30 @@ public class RefereeController implements Serializable {
     
     public String update()
     {
-        System.out.println(selectedReferee);
+    	logger.info("selectedReferee " + selectedReferee);
         try {
              selectedReferee.setId((long)getRefereeService().findAllByCriteria().size()+1);
-            // selectedReferee.setPersonidPerson(personToAdd);
              selectedReferee.setPunishing(punishing);
              selectedReferee.setRefereeing(refereeing);
             getRefereeService().update(selectedReferee);
         } catch (DataAccessException e) {
-            e.printStackTrace();
+        	logger.warn(e.getMessage(), e);
         }  
         return selectedReferee.toString();
     }
     
     public String save()
     {
-        System.out.println("Start saving");
+    	logger.info("Start saving");
         Referee referee = new Referee();
          try {
              referee.setId(id);
-            // referee.setPersonidPerson(personToAdd);
              referee.setPunishing(punishing);
              referee.setRefereeing(refereeing);
             getRefereeService().add(referee);
             return StringConstants.SAVE_SUCCESS.getValue();
         } catch (DataAccessException e) {
-            e.printStackTrace();
+        	logger.warn(e.getMessage(), e);
         }   
         return ERROR + " - " + referee.toString();
     }
@@ -112,12 +106,7 @@ public class RefereeController implements Serializable {
     public List<Referee> getRefereeList() {
         getMessageController().getMessageList().add("pokaż listę sędziów");
         refereeList = new ArrayList<Referee>();
-//        if(getMenuController().getRefereeId()>=0){
-            //session cast error needs a fix Mariusz youre up
-            //refereeList.add(getRefereeService().findById(getMenuController().getRefereeId()));
-//        }else{
             refereeList.addAll(getRefereeService().findAllByCriteria());
-//        }
         return refereeList;
     }
 
@@ -141,7 +130,7 @@ public class RefereeController implements Serializable {
 
     public void setPersonId(Long personId) {
         this.personId = personId;
-        personToAdd=getPersonService().findById(this.personId);
+        setPersonToAdd(getPersonService().findById(this.personId));
     }
 
     public IPersonService getPersonService() {
@@ -191,4 +180,12 @@ public class RefereeController implements Serializable {
     public void setMenuController(MainMenuController menuController) {
         this.menuController = menuController;
     }
+
+	public Person getPersonToAdd() {
+		return personToAdd;
+	}
+
+	public void setPersonToAdd(Person personToAdd) {
+		this.personToAdd = personToAdd;
+	}
 }

@@ -37,7 +37,8 @@ public class ContractImport {
                     "spring/batch/jobs/fromdb/contract.xml"
                 };
 
-        ApplicationContext context
+        @SuppressWarnings("resource")
+		ApplicationContext context
                 = new ClassPathXmlApplicationContext(springConfig);
 
         JobLauncher jobContractLauncher = (JobLauncher) context.getBean("jobLauncher");

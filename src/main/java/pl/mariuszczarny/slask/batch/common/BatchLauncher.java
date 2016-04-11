@@ -16,6 +16,7 @@ public class BatchLauncher {
 
 	public static void main(String args[]) {
 		try {
+			@SuppressWarnings("resource")
 			AbstractApplicationContext applicationContext = new ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/simpleJob.xml");
                                
 			JobParametersBuilder builder = new JobParametersBuilder();

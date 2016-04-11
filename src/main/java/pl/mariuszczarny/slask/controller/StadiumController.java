@@ -9,11 +9,15 @@ package pl.mariuszczarny.slask.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
-import pl.mariuszczarny.slask.controller.utils.StringConstants;
+
+import static pl.mariuszczarny.slask.controller.utils.StringConstants.*;
 import pl.mariuszczarny.slask.model.Stadium;
 import pl.mariuszczarny.slask.service.IStadiumService;
 
@@ -23,26 +27,13 @@ import pl.mariuszczarny.slask.service.IStadiumService;
  */
 @ManagedBean(name = "stadiumController")
 @SessionScoped
-public class StadiumController implements Serializable {
-    @ManagedProperty(value = "#{stadiumService}")
-    IStadiumService stadiumService;
-    @ManagedProperty(value = "#{messageController}")
+public class StadiumController implements Serializable, IAppController {
+	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LoggerFactory.getLogger(StadiumController.class);
+	private IStadiumService stadiumService;
     private MessageController messageController;
-    @ManagedProperty(value = "#{mainMenuController}")
-    MainMenuController menuController;
-    
-    private final static String SUCCESS = "zapisuje";
-    private final static String ERROR = "zapisuje";
-    
+    private MainMenuController menuController;
     private Long idStadium;
-
-    public Long getIdStadium() {
-        return idStadium;
-    }
-
-    public void setIdStadium(Long idStadium) {
-        this.idStadium = idStadium;
-    }
     private List<Stadium> stadiumList;
     private List<Stadium> leagueStadiumList;
     private Stadium selectedStadium;
@@ -81,7 +72,7 @@ public class StadiumController implements Serializable {
     
     public String update()
     {
-        System.out.println(selectedStadium);
+        logger.info("selectedStadium " + selectedStadium);
         try {
             selectedStadium.setId((long)getStadiumService().findAllByCriteria().size()+1);
              selectedStadium.setFieldHeight(fieldHeight);
@@ -99,7 +90,7 @@ public class StadiumController implements Serializable {
     
     public String save()
     {
-        System.out.println("Start saving");
+    	logger.info("Start saving");
         Stadium stadium = new Stadium();
          try {
              stadium.setId(id);
@@ -110,9 +101,9 @@ public class StadiumController implements Serializable {
              stadium.setStadiumName(stadiumName);
              stadium.setYearBuild(yearBuild);
             getStadiumService().add(stadium);
-            return StringConstants.SAVE_SUCCESS.getValue();
+            return SAVE_SUCCESS.getValue();
         } catch (DataAccessException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage(), e); 
         }   
         return ERROR + " - " + stadium.toString();
     }
@@ -222,7 +213,7 @@ public class StadiumController implements Serializable {
 
     public List<Stadium> getLeagueStadiumList() {
         getMessageController().getMessageList().add("pokaż listę stadionów");
-        leagueStadiumList = new ArrayList<Stadium>();
+        leagueStadiumList = new ArrayList<>();
         leagueStadiumList.add(getMenuController().getSellectedClub().getStadiumidStadium());
         return leagueStadiumList;
     }
@@ -230,4 +221,12 @@ public class StadiumController implements Serializable {
     public void setLeagueStadiumList(List<Stadium> leagueStadiumList) {
         this.leagueStadiumList = leagueStadiumList;
     }
+
+	public Long getIdStadium() {
+		return idStadium;
+	}
+
+	public void setIdStadium(Long idStadium) {
+		this.idStadium = idStadium;
+	}
 }

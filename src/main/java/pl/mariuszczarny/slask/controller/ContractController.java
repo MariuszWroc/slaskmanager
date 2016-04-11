@@ -10,10 +10,14 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
+
 import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Club;
 import pl.mariuszczarny.slask.model.Contract;
@@ -28,21 +32,14 @@ import pl.mariuszczarny.slask.service.IPlayerService;
  */
 @ManagedBean(name = "contractController")
 @SessionScoped
-public class ContractController implements Serializable {
-
-    @ManagedProperty(value = "#{contractService}")
-    IContractService contractService;
-    @ManagedProperty(value = "#{clubService}")
-    IClubService clubService;
-    @ManagedProperty(value = "#{playerService}")
-    IPlayerService playerService;
-    @ManagedProperty(value = "#{messageController}")
+public class ContractController implements Serializable, IAppController {
+	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LoggerFactory.getLogger(ContractController.class);
+	private IContractService contractService;
+	private IClubService clubService;
+	private IPlayerService playerService;
     private MessageController messageController;
-    
-    private final static String SUCCESS = "zapisuje";
-    private final static String ERROR = "zapisuje";
-
-    List<Contract> contractList;
+    private List<Contract> contractList;
     private Contract selectedContract;
     private Club clubidClub;
     private Player playeridPlayer;
@@ -80,13 +77,12 @@ public class ContractController implements Serializable {
     
     public String update()
     {
-        System.out.println(selectedContract);
+    	logger.info("selectedContract " + selectedContract);
         try {
              selectedContract.setClubidClub(clubidClub);
              selectedContract.setDateEnd(dateEnd);
              selectedContract.setDateStart(dateStart);
              selectedContract.setFee(fee);
-            // selectedContract.setPlayeridPlayer(playeridPlayer);
              selectedContract.setWage(wage);
             getContractService().update(selectedContract);
         } catch (DataAccessException e) {
@@ -97,7 +93,7 @@ public class ContractController implements Serializable {
     
     public String save()
     {
-        System.out.println("Start saving");
+    	logger.info("Start saving");
         Contract contract = new Contract();
          try {
              contract.setId((long)getContractService().findAllByCriteria().size()+1);
@@ -105,7 +101,6 @@ public class ContractController implements Serializable {
              contract.setDateEnd(dateEnd);
              contract.setDateStart(dateStart);
              contract.setFee(fee);
-            // contract.setPlayeridPlayer(playeridPlayer);
              contract.setWage(wage);
             getContractService().add(contract);
             return StringConstants.SAVE_SUCCESS.getValue();
@@ -149,7 +144,7 @@ public class ContractController implements Serializable {
     }
 
     public void setClubId(Long clubId) {
-        System.out.println(clubId);
+    	logger.info("clubId " + clubId);
         clubidClub=getClubService().findById(clubId);
     }
 

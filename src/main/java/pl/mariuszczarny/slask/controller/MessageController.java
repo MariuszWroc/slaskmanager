@@ -19,9 +19,10 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean(name = "messageController")
 @SessionScoped
-public class MessageController implements Serializable{
-    
-    private List<String> messageList;
+public class MessageController implements Serializable, IAppController{
+	private static final String WELCOME_MESSAGE = "Witamy w SlaskManager 2014";
+	private static final long serialVersionUID = 1L;
+	private List<String> messageList;
     
     public MessageController()
     {
@@ -31,7 +32,7 @@ public class MessageController implements Serializable{
     @PostConstruct
     public void init()
     {       
-        getMessageList().add("Witamy w SlaskManager 2014");
+        getMessageList().add(WELCOME_MESSAGE);
     }
     public void setMessageList(List<String> messageList)
     {

@@ -18,10 +18,10 @@ import pl.mariuszczarny.slask.model.Stadium;
 @Repository
 public class StadiumDao extends GenericExtendedDao<Stadium> {
 
-    public List<Stadium> findByClub(Club club) {
+    @SuppressWarnings("unchecked")
+	public List<Stadium> findByClub(Club club) {
         String hql = "FROM Stadium C WHERE C.clubidClub =" + club.getId();
        Query query = getSession().createQuery(hql);
-       List stadiums = query.list();
-       return stadiums;
+       return query.list();
     }
 }

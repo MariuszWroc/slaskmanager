@@ -8,10 +8,14 @@ package pl.mariuszczarny.slask.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
+
 import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.City;
 import pl.mariuszczarny.slask.service.ICityService;
@@ -22,20 +26,15 @@ import pl.mariuszczarny.slask.service.ICityService;
  */
 @ManagedBean(name = "cityController")
 @SessionScoped
-public class CityController implements Serializable {
-
-    @ManagedProperty(value = "#{cityService}")
-    ICityService cityService;
-    @ManagedProperty(value = "#{messageController}")
+public class CityController implements Serializable, IAppController {
+	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LoggerFactory.getLogger(CityController.class);
+	private ICityService cityService;
     private MessageController messageController;
-
-    List<City> cityList = null;
-
+    private List<City> cityList = null;
     private City selectedCity;
     private Long idCity;
     private String cityName;
-    private final static String SUCCESS = "zapisuje";
-    private final static String ERROR = "zapisuje";
 
     public CityController() {
         idCity=0L;
@@ -73,14 +72,14 @@ public class CityController implements Serializable {
     
     public String update()
     {
-        System.out.println(selectedCity);
+    	logger.info("selectedCity " + selectedCity);
         getCityService().update(selectedCity);
         return selectedCity.toString();
     }
     
     public String save()
     {
-        System.out.println("Start saving");
+    	logger.info("Start saving");
         City city = new City();
          try {
             city.setId((long)getCityService().findAllByCriteria().size()+1); 
@@ -88,7 +87,7 @@ public class CityController implements Serializable {
             getCityService().add(city); 
             return StringConstants.SAVE_SUCCESS.getValue();
         } catch (DataAccessException e) {
-            e.printStackTrace();
+            e.getMessage();
         }   
         return ERROR + " - " + selectedCity.toString();
     }

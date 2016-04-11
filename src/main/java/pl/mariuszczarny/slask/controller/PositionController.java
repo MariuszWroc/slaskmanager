@@ -8,10 +8,14 @@ package pl.mariuszczarny.slask.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
+
 import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Position;
 import pl.mariuszczarny.slask.service.IPositionService;
@@ -22,18 +26,13 @@ import pl.mariuszczarny.slask.service.IPositionService;
  */
 @ManagedBean(name = "positionController")
 @SessionScoped
-public class PositionController implements Serializable {
-
-    @ManagedProperty(value = "#{positionService}")
-    IPositionService positionService;
-    @ManagedProperty(value = "#{messageController}")
+public class PositionController implements Serializable, IAppController {
+	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LoggerFactory.getLogger(PositionController.class);
+	private IPositionService positionService;
     private MessageController messageController;
-    
-    private final static String SUCCESS = "zapisuje";
-    private final static String ERROR = "zapisuje";
-
-    List<Position> positionList;
-    Position selectedPosition;
+    private List<Position> positionList;
+    private Position selectedPosition;
     private Integer goalkeeper;
     private Integer defenderLeft;
     private Integer defenderCenter;
@@ -78,7 +77,7 @@ public class PositionController implements Serializable {
     
     public String update()
     {
-        System.out.println(selectedPosition);
+    	logger.info("selectedPosition " + selectedPosition);
         try {
              selectedPosition.setDefenderCenter(defenderCenter);
              selectedPosition.setDefenderLeft(defenderLeft);
@@ -93,14 +92,14 @@ public class PositionController implements Serializable {
              selectedPosition.setWingerRight(wingerRight);
             getPositionService().update(selectedPosition);
         } catch (DataAccessException e) {
-            e.printStackTrace();
+        	logger.warn(e.getMessage(), e);
         }  
         return selectedPosition.toString();
     }
     
     public String save()
     {
-        System.out.println("Start saving");
+    	logger.info("Start saving");
         Position position = new Position();
          try {
              position.setId((long)getPositionService().findAllByCriteria().size()+1);
@@ -118,7 +117,7 @@ public class PositionController implements Serializable {
             getPositionService().add(position);
             return StringConstants.SAVE_SUCCESS.getValue();
         } catch (DataAccessException e) {
-            e.printStackTrace();
+        	logger.warn(e.getMessage(), e);
         }   
         return ERROR + " - " + position.toString();
     }
@@ -133,7 +132,7 @@ public class PositionController implements Serializable {
 
     public List<Position> getPositionList() {
         getMessageController().getMessageList().add("pokaż listę pozycji");
-        positionList = new ArrayList<Position>();
+        positionList = new ArrayList<>();
         positionList.addAll(getPositionService().findAllByCriteria());
         return positionList;
     }

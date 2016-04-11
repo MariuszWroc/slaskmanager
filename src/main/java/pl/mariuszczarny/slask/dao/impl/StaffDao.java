@@ -22,18 +22,18 @@ import pl.mariuszczarny.slask.model.Staff;
 @Repository
 public class StaffDao extends GenericExtendedDao<Staff> implements IStaffDao {
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public List<Staff> findStaffAndPerson() {
         Criteria criteria = getSession().createCriteria(Staff.class);
         criteria.setFetchMode(Person.class.toString(), FetchMode.JOIN);
-        List list = criteria.list();
-        return list;
+        return criteria.list();
     }
 
-    public List findStaffByClub(Club club) {
-        String hql = "FROM Staff S WHERE S.clubidClub =" + club.getId();
+    @SuppressWarnings("unchecked")
+	public List<Staff> findStaffByClub(Club club) {
+       String hql = "FROM Staff S WHERE S.clubidClub =" + club.getId();
        Query query = getSession().createQuery(hql);
-       List staff = query.list();
-       return staff;
+       return query.list();
     }
 }

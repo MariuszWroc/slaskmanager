@@ -8,7 +8,7 @@ package pl.mariuszczarny.slask.service;
 
 
 import java.util.List;
-import pl.mariuszczarny.slask.model.Club;
+
 import pl.mariuszczarny.slask.model.Contract;
 
 /**

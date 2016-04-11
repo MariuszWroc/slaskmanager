@@ -9,10 +9,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
+
 import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Person;
 import pl.mariuszczarny.slask.service.IPersonService;
@@ -23,22 +27,17 @@ import pl.mariuszczarny.slask.service.IPersonService;
  */
 @ManagedBean(name = "personController")
 @SessionScoped
-public class PersonController implements Serializable {
-
-    @ManagedProperty(value = "#{personService}")
-    IPersonService personService;
-    @ManagedProperty(value = "#{messageController}")
+public class PersonController implements Serializable, IAppController {
+	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LoggerFactory.getLogger(PersonController.class);
+	private IPersonService personService;
     private MessageController messageController;
-    
-    private final static String SUCCESS = "zapisuje";
-    private final static String ERROR = "zapisuje";
-
-    List<Person> personList;
-    Person selectedPerson;
-    String name;
-    String surname;
-    Date birthDate;
-    String nation;
+    private List<Person> personList;
+    private Person selectedPerson;
+    private String name;
+    private String surname;
+    private Date birthDate;
+    private String nation;
     private Long id;
 
     public PersonController() {
@@ -65,7 +64,7 @@ public class PersonController implements Serializable {
     
     public String update()
     {
-        System.out.println(selectedPerson);
+    	logger.info("selectedPerson " + selectedPerson);
         try {
              selectedPerson.setBirthDate(birthDate);
              selectedPerson.setName(name);
@@ -73,14 +72,14 @@ public class PersonController implements Serializable {
              selectedPerson.setSurname(surname);
             getPersonService().update(selectedPerson);
         } catch (DataAccessException e) {
-            e.printStackTrace();
+        	logger.warn(e.getMessage(), e);
         }  
         return selectedPerson.toString();
     }
     
     public String save()
     {
-        System.out.println("Start saving");
+    	logger.info("Start saving");
         Person person = new Person();
          try {
              person.setId((long)getPersonService().findAllByCriteria().size()+1);
@@ -91,7 +90,7 @@ public class PersonController implements Serializable {
             getPersonService().add(person);
             return StringConstants.SAVE_SUCCESS.getValue();
         } catch (DataAccessException e) {
-            e.printStackTrace();
+        	logger.warn(e.getMessage(), e);
         }   
         return ERROR + " - " + person.toString();
     }
@@ -106,7 +105,7 @@ public class PersonController implements Serializable {
 
     public List<Person> getPersonList() {
         getMessageController().getMessageList().add("pokaż listę osób");
-        personList = new ArrayList<Person>();
+        personList = new ArrayList<>();
         personList.addAll(getPersonService().findAllByCriteria());
         return personList;
     }

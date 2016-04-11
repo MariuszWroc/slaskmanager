@@ -21,11 +21,11 @@ import pl.mariuszczarny.slask.model.Referee;
 @Repository
 public class RefereeDao extends GenericExtendedDao<Referee> implements IRefereeDao{
     
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public List<Referee> findRefereeAndPerson() {
         Criteria criteria = getSession().createCriteria(Referee.class);
-            criteria.setFetchMode(Person.class.toString(), FetchMode.JOIN);
-            List list = criteria.list();
-        return list;
+        criteria.setFetchMode(Person.class.toString(), FetchMode.JOIN);
+        return criteria.list();
     }
 }

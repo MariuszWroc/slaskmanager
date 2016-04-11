@@ -8,10 +8,14 @@ package pl.mariuszczarny.slask.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
+
 import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Finance;
 import pl.mariuszczarny.slask.service.IFinanceService;
@@ -23,21 +27,15 @@ import pl.mariuszczarny.slask.service.IFinanceService;
  */
 @ManagedBean(name = "financeController")
 @SessionScoped
-public class FinanceController implements Serializable {
-
-    @ManagedProperty(value = "#{financeService}")
-    IFinanceService financeService;
-    @ManagedProperty(value = "#{messageController}")
+public class FinanceController implements Serializable, IAppController {
+	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LoggerFactory.getLogger(FinanceController.class);
+	private IFinanceService financeService;
     private MessageController messageController;
-    @ManagedProperty(value = "#{mainMenuController}")
-    MainMenuController menuController;
-    
-    private final static String SUCCESS = "zapisuje";
-    private final static String ERROR = "zapisuje";
-    
-    List<Finance> financeList;
-    List<Finance> leagueFinanceList;
-    Finance selectedFinance;
+    private MainMenuController menuController;
+    private List<Finance> financeList;
+    private List<Finance> leagueFinanceList;
+    private Finance selectedFinance;
     private Long id;
     private Integer budget;
     private Integer transferBudget;
@@ -78,7 +76,7 @@ public class FinanceController implements Serializable {
     
     public String update()
     {
-        System.out.println(selectedFinance);
+        logger.info("selectedFinance " + selectedFinance);
         try {
             selectedFinance.setAvgSeasonTicketCost(avgSeasonTicketCost);
             selectedFinance.setAvgTicketCost(avgTicketCost);
@@ -97,7 +95,7 @@ public class FinanceController implements Serializable {
     }
 
     public String save() {
-        System.out.println("Start saving");
+    	logger.info("Start saving");
         try {
             Finance finance = new Finance();
             finance.setId((long)getFinanceService().findAllByCriteria().size()+1);
@@ -130,7 +128,6 @@ public class FinanceController implements Serializable {
         getMessageController().getMessageList().add("pokaż listę finansów");
         financeList = new ArrayList<Finance>();
         financeList.add(getMenuController().getPlayersClub().getFinanceidFinance());
-//        financeList.addAll(getFinanceService().findAllByCriteria());
         return financeList;
     }
 
@@ -248,7 +245,6 @@ public class FinanceController implements Serializable {
         getMessageController().getMessageList().add("pokaż listę finansów");
         leagueFinanceList = new ArrayList<Finance>();
         leagueFinanceList.add(getMenuController().getSellectedClub().getFinanceidFinance());
-//        financeList.addAll(getFinanceService().findAllByCriteria());
         return leagueFinanceList;
     }
 

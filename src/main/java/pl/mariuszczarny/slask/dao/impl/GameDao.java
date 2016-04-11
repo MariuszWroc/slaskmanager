@@ -18,10 +18,11 @@ import pl.mariuszczarny.slask.model.Game;
 @Repository
 public class GameDao extends GenericExtendedDao<Game>{
 
-    public List<Game> findAllByUser(Long idUser) {
+    @SuppressWarnings({ "unchecked" })
+	public List<Game> findAllByUser(Long idUser) {
        String hql = "FROM Game G WHERE G.useridUser = " + idUser;
        Query query = getSession().createQuery(hql);
-       List games = query.list();
+       List<Game> games = query.list();
        return games;
     }
     

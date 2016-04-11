@@ -8,10 +8,14 @@ package pl.mariuszczarny.slask.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
+
 import pl.mariuszczarny.slask.controller.utils.StringConstants;
 import pl.mariuszczarny.slask.model.Club;
 import pl.mariuszczarny.slask.model.Person;
@@ -26,30 +30,22 @@ import pl.mariuszczarny.slask.service.IStaffService;
  */
 @ManagedBean(name = "staffController")
 @SessionScoped
-public class StaffController implements Serializable {
-
-    @ManagedProperty(value = "#{staffService}")
-    IStaffService staffService;
-    @ManagedProperty(value = "#{personService}")
-    IPersonService personService;
-    @ManagedProperty(value = "#{clubService}")
-    IClubService clubService;
-    @ManagedProperty(value = "#{messageController}")
+public class StaffController implements Serializable, IAppController {
+	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LoggerFactory.getLogger(StaffController.class);
+	private IStaffService staffService;
+    private IPersonService personService;
+    private IClubService clubService;
     private MessageController messageController;
-    @ManagedProperty(value = "#{mainMenuController}")
-    MainMenuController menuController;
-    
-    private final static String SUCCESS = "zapisuje";
-    private final static String ERROR = "zapisuje";
-
-    List<Staff> staffList;
-    List<Staff> leagueStaffList;
-    Long personId;
-    Long clubId;
-    Person personToAdd;
-    Club clubToAdd;
-    Staff selectedStaff;
-    String staffFunction;
+    private MainMenuController menuController;
+    private List<Staff> staffList;
+    private List<Staff> leagueStaffList;
+    private Long personId;
+    private Long clubId;
+    private Person personToAdd;
+    private Club clubToAdd;
+    private Staff selectedStaff;
+    private String staffFunction;
     private Long id;
 
     public StaffController() {
@@ -59,7 +55,7 @@ public class StaffController implements Serializable {
         clubId=0L;
         selectedStaff= new Staff();
         personToAdd=new Person();
-        clubToAdd= new Club();
+        clubToAdd=new Club();
     }
     
     public String prepareEdit() {
@@ -77,26 +73,22 @@ public class StaffController implements Serializable {
     
     public String update()
     {
-        System.out.println(selectedStaff);
+    	logger.info("selectedStaff " + selectedStaff);
         try {
-             //selectedStaff.setClubidClub(clubToAdd);
-             //selectedStaff.setPersonidPerson(personToAdd);
              selectedStaff.setStaffFunction(staffFunction);
             getStaffService().update(selectedStaff);
         } catch (DataAccessException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage(), e); 
         }  
         return selectedStaff.toString();
     }
     
     public String save()
     {
-        System.out.println("Start saving");
+    	logger.info("Start saving");
         Staff staff = new Staff();
          try {
              staff.setId((long)getStaffService().findAllByCriteria().size()+1);
-             //staff.setClubidClub(clubToAdd);
-             //staff.setPersonidPerson(personToAdd);
              staff.setStaffFunction(staffFunction);
             getStaffService().add(staff);
             return StringConstants.SAVE_SUCCESS.getValue();
@@ -166,7 +158,7 @@ public class StaffController implements Serializable {
 
     public void setClubId(Long clubId) {
         this.clubId = clubId;
-        clubToAdd=getClubService().findById(this.clubId);
+        setClubToAdd(getClubService().findById(this.clubId));
     }
 
     public Person getPersonToAdd() {
@@ -219,4 +211,12 @@ public class StaffController implements Serializable {
     public void setLeagueStaffList(List<Staff> leagueStaffList) {
         this.leagueStaffList = leagueStaffList;
     }
+
+	public Club getClubToAdd() {
+		return clubToAdd;
+	}
+
+	public void setClubToAdd(Club clubToAdd) {
+		this.clubToAdd = clubToAdd;
+	}
 }
